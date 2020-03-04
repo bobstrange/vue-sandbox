@@ -50,3 +50,38 @@ Vue provides `Transition` component.
   transition: opacity .5s ease-out;
 }
 ```
+
+### Global transition
+`App.vue`の`<style></style>`に定義する
+
+### Page transition
+Routerにtransitionを設定する場合には、`mode`を設定したほうがよい。
+Defaultは`mode="in-out"`だが、この設定だと新しいコンテンツが表示->古いコンテンツが消える->
+新しいコンテンツの再描画となり、遷移の見た目がおかしくなる。
+
+そのため、`mode="out-in"`として、古いコンテンツが消える -> 新しいコンテンツが表示される
+という風にする。
+
+```html
+<transition name="fade" mode="out-in">
+  <router-view />
+</transition>
+```
+
+### Slide-in/outするTransition
+↓のようにすると、スライドしながら表示/非表示される
+
+```css
+.slide-fade-enter {
+  transform: translateX(4rem);
+  opacity: 0;
+}
+.slide-fade-enter-active,
+.slide-fade-leave-active {
+  transition: all 0.3s ease;
+}
+.slide-fade-leave-to {
+  transform: translateX(-4rem);
+  opacity: 0;
+}
+```
