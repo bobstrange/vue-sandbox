@@ -106,3 +106,14 @@ Defaultは`mode="in-out"`だが、この設定だと新しいコンテンツが�
   </li>
 </transition-group>
 ```
+
+### use v-move
+`v-move`を使うと、ソートなどでtransition group内の要素が入れ替わるときの
+アニメーションを設定できる。
+`transition-name-move`で、`transition`を設定すればよい。
+
+```css
+.slide-up-move {
+  transition: transform .3s ease;
+}
+```
