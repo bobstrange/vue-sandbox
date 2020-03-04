@@ -1,4 +1,8 @@
 # animating-vue
+[animating-vue](https://vuemastery.com/courses/animating-vue) memo
+
+## Memo
+[Here](./docs/README.md)
 
 ## Project setup
 ```
