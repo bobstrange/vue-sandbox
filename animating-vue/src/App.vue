@@ -130,4 +130,8 @@ html {
   transform: translateY(-4rem);
   opacity: 0;
 }
+
+.slide-up-move {
+  transition: transform .3s ease;
+}
 </style>
