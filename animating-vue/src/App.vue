@@ -117,4 +117,17 @@ html {
   transform: translateX(-4rem);
   opacity: 0;
 }
+
+.slide-up-enter {
+  transform: translateY(4rem);
+  opacity: 0;
+}
+.slide-up-enter-active,
+.slide-up-leave-active {
+  transition: all 0.3s ease;
+}
+.slide-up-leave-to {
+  transform: translateY(-4rem);
+  opacity: 0;
+}
 </style>
