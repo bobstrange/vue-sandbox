@@ -5,7 +5,9 @@
       <router-link to="/about">About</router-link>
       <router-link to="/modal">Modal</router-link>
     </div>
-    <router-view />
+    <transition name="slide-fade" mode="out-in">
+      <router-view />
+    </transition>
   </div>
 </template>
 
@@ -81,5 +83,30 @@ button {
   margin-top: 20px;
   border-radius: 2%;
   background-color: #e0e0e0;
+}
+
+/* Global Transition */
+.fade-enter {
+  opacity: 0;
+}
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s ease-out;
+}
+.fade-leave-to {
+  opacity: 0;
+}
+
+.slide-fade-enter {
+  transform: translateX(4rem);
+  opacity: 0;
+}
+.slide-fade-enter-active,
+.slide-fade-leave-active {
+  transition: all 0.3s ease;
+}
+.slide-fade-leave-to {
+  transform: translateX(-4rem);
+  opacity: 0;
 }
 </style>
