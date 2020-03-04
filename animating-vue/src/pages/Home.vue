@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <button @click="toggleModal">Open</button>
+    <button class="btn-open" @click="toggleModal">Open</button>
     <transition name="fade">
       <div v-if="isOpen" class="modal">
         <button @click="toggleModal">Close</button>

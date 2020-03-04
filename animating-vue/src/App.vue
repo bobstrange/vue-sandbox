@@ -4,6 +4,7 @@
       <router-link to="/">Home</router-link>
       <router-link to="/about">About</router-link>
       <router-link to="/modal">Modal</router-link>
+      <router-link to="/list">List</router-link>
     </div>
     <transition name="slide-fade" mode="out-in">
       <router-view />
@@ -28,16 +29,21 @@ html {
   --color-grey-light: #666;
   --color-grey-dark: #333;
 }
+
+* {
+  box-sizing: border-box;
+}
+
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  box-sizing: border-box;
 }
 
-button {
+.btn-open,
+.btn-close {
   width: 8rem;
   height: 4rem;
   border-radius: 5px;
@@ -84,6 +90,8 @@ button {
   border-radius: 2%;
   background-color: #e0e0e0;
 }
+
+
 
 /* Global Transition */
 .fade-enter {
