@@ -85,3 +85,24 @@ Defaultは`mode="in-out"`だが、この設定だと新しいコンテンツが�
   opacity: 0;
 }
 ```
+
+### Group transition
+`transition-group`でグループに対するTransitionを定義できる。
+`tag=""`で、グループを包むElementのタグを指定できる(デフォルトは`<span>`)
+`name=""`でTransition名を指定する。
+この場合`name="slide-up"`としているので、`slide-up-...`で定義した、
+下から上にスライドインするアニメーションで要素が追加される。
+
+ただし、このままでは、ページ遷移のときには、`router-view`で定義した`slide-fade`の
+アニメーションが実行されてしまう。
+ページ遷移のとき(コンポーネントが初期表示されるとき)のアニメーションは、
+`appear`で設定できる。
+
+
+```html
+<transition-group tag="ul" name="slide-up" appear="slide-up">
+  <li v-for="contact in contacts" :key="contact">
+    {{ contact }}
+  </li>
+</transition-group>
+```
