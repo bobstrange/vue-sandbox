@@ -1,23 +1,53 @@
 <template>
   <div>
-    <button @click="isOpen = !isOpen">
+    <button @click="isOpen = !isOpen" class="btn-profile">
       My Profile
     </button>
-    <div v-if="isOpen" class="drawer">
-      <img src="../assets/avatar.png" alt="avatar" />
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-    </div>
+
+    <transition
+      @before-enter="beforeEnter"
+      @enter="enter"
+      @leave="leave"
+      :css="false"
+    >
+      <div v-if="isOpen" class="drawer">
+        <img src="../assets/avatar.png" alt="avatar" />
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </transition>
   </div>
 </template>
 
 <script>
+import Velocity from 'velocity-animate'
+
 export default {
   data() {
     return {
       isOpen: false
+    }
+  },
+  methods: {
+    beforeEnter(el) {
+      el.style.opacity = 0
+      el.style.width = '0rem'
+    },
+    enter(el, done) {
+      Velocity(
+        el,
+        { opacity: 1, width: '5rem'},
+        { duration: 1000, easing: [100, 5], complete: done }
+      )
+    },
+    leave(el, done) {
+      Velocity(
+        el,
+        { opacity: 0, width: '0rem'},
+        { duration: 1000, easing: 'easeInCubic', complete: done }
+      )
     }
   }
 }
@@ -47,5 +77,16 @@ img {
   background-color: #f0f0f0;
   border: 0.02em solid #ababab;
   border-radius: 1%;
+}
+
+button {
+  margin-top: 3rem;
+  height: 3.2rem;
+  width: 10rem;
+  border-radius: 50px;
+  background: linear-gradient(to right, #16c0b0, #84cf6a);
+  color: white;
+  margin-left: 2rem;
+  font-size: 1.4rem;
 }
 </style>
