@@ -43,4 +43,31 @@ export default {
     }
 ```
 
+## 2. Componentごとにコードの再利用が完全にはできなかった
 
+3種類のコードを分割する方法
+
+- `mixin`
+    - Pros
+        - 機能ごとに分割はできる
+    - Cons
+        - 名前のコンフリクト
+        - Unclear relationship(名前空間を共有するので)
+        - 簡単には再利用できない
+- `mixin factories`
+    - Pros
+        - 再利用しやすい
+        - Clear relationship
+    - Cons
+        - Weak namespacing
+        - 暗黙的なプロパティの追加
+        - Runtimeでインスタンスにさわれない
+- `scoped-slot`
+    - Pros
+        - Mixinの問題は解消される
+    - Cons
+        - Indentの増加
+        - 設定が多い
+        - パフォーマンスの問題
+
+Vue3で、Composition functionが導入
