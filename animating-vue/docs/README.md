@@ -117,3 +117,73 @@ Defaultは`mode="in-out"`だが、この設定だと新しいコンテンツが�
   transition: transform .3s ease;
 }
 ```
+
+## JavaScript hook
+プラクティスとしては、hook名と呼ばれるメソッド名は同じにする。
+
+```html
+<transition
+  @before-enter="beforeEnter"
+  @enter="..."
+  @after-enter=""
+  @enter-cancelled=""
+
+  @before-leave=""
+  @leave=""
+  @after-leave=""
+  @leave-cancelled=""
+>
+```
+
+```html
+<transition
+  @before-enter="beforeEnter"
+  @enter="enter"
+  @leave="leave"
+  :css="false"
+>
+  <div v-if="isOpen" class="drawer">
+    <img src="../assets/avatar.png" alt="avatar" />
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+</transition>
+```
+
+> JavaScript のみのトランジションのために明示的に v-bind:css="false" を追加するのは良いアイデアです。これは、Vue に CSS 判定をスキップさせます。また、誤って CSS ルールがトランジションに干渉するのを防ぎます。
+
+各JavaScriptのhookメソッドは、第一引数として `element` 第二引数として、 `done`コールバックを受け取る。
+
+`enter`, `leave`では、アニメーション終了後に `done` コールバックを実行する必要がある。
+
+https://jp.vuejs.org/v2/guide/transitions.html#JavaScript-%E3%83%95%E3%83%83%E3%82%AF
+
+> JavaScript のみを利用したトランジションの場合は、done コールバックを enter と leave フックで呼ぶ必要があります。呼ばない場合は、フックは同期的に呼ばれ、トランジションはただちに終了します。
+
+```js
+methods: {
+  beforeEnter(el) {
+    el.style.opacity = 0
+    el.style.width = '0rem'
+  },
+  enter(el, done) {
+    Velocity(
+      el,
+      { opacity: 1, width: '5rem'},
+      { duration: 1000, easing: 'easeOutBounce', complete: done }
+    )
+  },
+  leave(el, done) {
+    Velocity(
+      el,
+      { opacity: 0, width: '0rem'},
+      { duration: 1000, easing: 'easeInCubic', complete: done }
+    )
+  }
+}
+```
+※[`velocity-animate`](https://www.npmjs.com/package/velocity-animate)
+を使用すると、elementに対してAnimationの設定ができる。
+
