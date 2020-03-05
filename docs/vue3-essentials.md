@@ -76,22 +76,34 @@ Vue3で、Composition functionが導入
 
 ```vue
 <template>
-  <div>Capacity: {{ capacity /* capacity.valueとしなくて良い */ }}</div>
+  <div>Spaces Left: {{ spacesLeft }} out of {{ capacity /* capacity.valueとしなくて良い */ }}</div>
   <button @click="increaseCapacity()">Add</button>
+  <h2>Attending</h2>
+  <ul>
+    <li v-for="(name, index) in {{ attending }}" :key="index">
+      {{ name }}
+    </li>
+  </ul>
 </template>
 
 <script>
-imoprt { ref } from "vue"
+imoprt { ref, computed } from "vue"
 
 export default {
   setup() {
     const capacity = ref(3) // declare reactive object
+    const attending = ref(['John', 'Jane', 'Sam'])
+
+    // Define computed property
+    const spacesLeft = computed(() => {
+        return capacity.value - attending.value.length
+    })
 
     // Define method
     function increaseCapacity() {
       capacity.value++
     }
-    return { capacity } // expose data to view
+    return { capacity, increaseCapacity, attending, spacesLeft } // expose data, method and computed to view
   }
 }
 </script>
@@ -99,3 +111,4 @@ export default {
 
 - なにが、vueに渡されているかがわかりやすくなる
 - どこでプロパティが定義されているかが理解しやすくなる
+
