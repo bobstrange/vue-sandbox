@@ -76,7 +76,8 @@ Vue3で、Composition functionが導入
 
 ```vue
 <template>
-  <div>Capacity: {{ capacity  }}</div>
+  <div>Capacity: {{ capacity /* capacity.valueとしなくて良い */ }}</div>
+  <button @click="increaseCapacity()">Add</button>
 </template>
 
 <script>
@@ -85,6 +86,11 @@ imoprt { ref } from "vue"
 export default {
   setup() {
     const capacity = ref(3) // declare reactive object
+
+    // Define method
+    function increaseCapacity() {
+      capacity.value++
+    }
     return { capacity } // expose data to view
   }
 }
