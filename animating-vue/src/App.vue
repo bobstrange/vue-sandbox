@@ -1,10 +1,11 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/">Home</router-link>
-      <router-link to="/about">About</router-link>
-      <router-link to="/modal">Modal</router-link>
-      <router-link to="/list">List</router-link>
+      <router-link to="/">Home</router-link> |
+      <router-link to="/about">About</router-link> |
+      <router-link to="/modal">Modal</router-link> |
+      <router-link to="/list">List</router-link> |
+      <router-link to="/drawer">Drawer</router-link>
     </div>
     <transition name="slide-fade" mode="out-in">
       <router-view />

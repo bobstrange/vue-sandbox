@@ -32,6 +32,12 @@ export default new Router({
       path: "/list",
       name: "list",
       component: () => import(/* webpackChunkName: "list" */ "./pages/List.vue")
+    },
+    {
+      path: '/drawer',
+      name: 'drawer',
+      component: () =>
+        import(/* webpackChunkName: "list" */ './pages/Drawer.vue')
     }
   ]
 });
