@@ -73,6 +73,11 @@ export default {
 Vue3で、Composition functionが導入
 
 ## Composition API
+Composition APIのメリット
+
+- なにが、viewに渡されているかがわかりやすくなる
+- どこでプロパティが定義されているかが理解しやすくなる
+- コードが論理的にまとまる
 
 ```vue
 <template>
@@ -87,7 +92,7 @@ Vue3で、Composition functionが導入
 </template>
 
 <script>
-imoprt { ref, computed } from "vue"
+import { ref, computed } from "vue"
 
 export default {
   setup() {
@@ -96,7 +101,8 @@ export default {
 
     // Define computed property
     const spacesLeft = computed(() => {
-        return capacity.value - attending.value.length
+      // reactive objectは.valueで値にアクセスできる
+      return capacity.value - attending.value.length
     })
 
     // Define method
@@ -109,6 +115,55 @@ export default {
 </script>
 ```
 
-- なにが、vueに渡されているかがわかりやすくなる
-- どこでプロパティが定義されているかが理解しやすくなる
+Reactive objectについては、下のように定義することもできる。
 
+```vue
+<script>
+import { reactive, computed } from "vue"
+
+export default {
+  setup() {
+    // Reactive objectを定義
+    const event = reactive({
+      capacity: 4,
+      attending: ['John', 'Jane', 'Sam'],
+      spacesLeft: computed(() => {
+        // event.capacity.valueや、event.attending.valueとしなくて良い
+        return event.capacity - event.attending.length
+      })
+    })
+    
+    // Methodは同じように定義
+    function increaseCapacity() { event.capacity++ }
+    return { event, increaseCapacity }
+  }
+
+}
+</script>
+```
+
+`value`にアクセスしなくて良いので、JS側はこちらのほうが書きやすい。
+ただ、template側が、`event.spacesLeft`, `event.capacity`と、なってしまう。
+
+reactive objectをrefに分解する`toRefs`を使うことで、下のように解決できる。
+
+```vue
+<script>
+import { reactive, computed, toRefs } from "vue"
+
+export default {
+  setup() {
+    const event = reactive({
+      capacity: 4,
+      attending: ['John', 'Jane', 'Sam'],
+      spacesLeft: computed(() => {
+        return event.capacity - event.attending.length
+      })
+    })
+    
+    function increaseCapacity() { event.capacity++ }
+    return { ...toRefs(event), increaseCapacity }
+  }
+}
+</script>
+```
