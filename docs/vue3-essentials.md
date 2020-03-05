@@ -71,3 +71,25 @@ export default {
         - パフォーマンスの問題
 
 Vue3で、Composition functionが導入
+
+## Composition API
+
+```vue
+<template>
+  <div>Capacity: {{ capacity  }}</div>
+</template>
+
+<script>
+imoprt { ref } from "vue"
+
+export default {
+  setup() {
+    const capacity = ref(3) // declare reactive object
+    return { capacity } // expose data to view
+  }
+}
+</script>
+```
+
+- なにが、vueに渡されているかがわかりやすくなる
+- どこでプロパティが定義されているかが理解しやすくなる
