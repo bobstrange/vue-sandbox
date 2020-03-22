@@ -1,9 +1,11 @@
 # Unit test vue
+## Refs
+- [Testing events](tests/unit/LoginForm.spec.js)
 
 ## What to test
 
 ### Component
-#### Should be testing 
+#### Should be testing
 - Inputs
     - data()
     - Props
