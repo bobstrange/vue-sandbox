@@ -1,5 +1,6 @@
 # Unit test vue
 ## Refs
+- [Testing data](tests/unit/AppHeader.spec.js)
 - [Testing events](tests/unit/LoginForm.spec.js)
 
 ## What to test
