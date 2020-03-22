@@ -3,6 +3,7 @@
 ## What to test
 
 ### Component
+#### Should be testing 
 - Inputs
     - data()
     - Props
@@ -16,3 +17,9 @@
     - emitted events
     - Store
     - Changes in child components
+
+#### Should not be testing
+- Implementation details
+- Framework itself
+    - prop validation
+    - ...
