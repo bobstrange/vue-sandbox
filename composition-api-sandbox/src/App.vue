@@ -6,8 +6,8 @@
   </div>
 </template>
 
-<script>
-import { fakeUsers } from './util/fake_users'
+<script lang="ts">
+import { fakeUsers } from './util/fake_users.js'
 // import UserList from './components/UserList.vue'
 import CompositionUserList from './components/CompositionUserList.vue'
 
@@ -23,7 +23,7 @@ export default {
     }
   },
   methods: {
-    userDeleteClicked(id) {
+    userDeleteClicked(id: number) {
       console.log('userDeleteClicked: ', id)
       this.users = this.users.filter(user => {
         return id !== user.id

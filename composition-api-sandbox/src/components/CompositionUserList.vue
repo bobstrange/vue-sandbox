@@ -31,7 +31,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import {
   ref,
   computed,
@@ -40,8 +40,19 @@ import {
   watch
 } from '@vue/composition-api'
 
+export type User = {
+  id: number,
+  email: string,
+  first_name: string,
+  last_name: string,
+  avatar: string
+}
+type Props = {
+  users: User[]
+}
+
 export default defineComponent({
-  setup(props, context) {
+  setup(props: Props, context) {
     /* lifecycle hook */
     onMounted(() => {
       console.log('On mounted called')
@@ -54,21 +65,21 @@ export default defineComponent({
      *    }
      *  }
      */
-    const searchText = ref('')
-    const userList = ref(props.users)
+    const searchText = ref<string>('')
+    const userList = ref<User[]>(props.users)
 
     /**
      * computed: {
      *   searchResult() {...}
      * }
      */
-    const searchResult = computed(() => {
+    const searchResult = computed<User | undefined>((): User | undefined => {
       /**
        * searchTextは、reactive propertyなので、値は`.value`で取得する
        */
       const search = searchText.value
       if (search.length === 0) {
-        return {}
+        return
       }
 
       return userList.value.find(user => {
@@ -85,7 +96,7 @@ export default defineComponent({
      *  deleteUser(id) { ... }
      * }
      */
-    function deleteUser(id) {
+    function deleteUser(id: number): void {
       /**
        * setup(props, context)の第二引数 contextは、attrs, slots, emitなど
        * が存在する
@@ -94,11 +105,11 @@ export default defineComponent({
     }
 
     /* watcher */
-    watch(
+    watch<User[]>(
       /* 第一引数に、watchしたいもののrefもしくは、watchしたいものを返す即時関数を渡す */
       () => props.users,
       /* 第二引数に、watchの処理を渡す */
-      (curr, prev) => {
+      (curr: User[], prev: User[]) => {
         console.log('previous users: ', prev)
         console.log('current users: ', curr)
         userList.value = curr

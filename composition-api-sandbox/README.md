@@ -56,6 +56,8 @@ setup() {
      }
    */
   const searchText = ref('')
+
+  /* computed */
   const searchResult = computed(() => {
     const search = searchText.value
     if (search.length === 0) {
