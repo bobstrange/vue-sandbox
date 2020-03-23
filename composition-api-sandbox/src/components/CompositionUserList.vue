@@ -29,33 +29,34 @@
 </template>
 
 <script>
-import { defineComponent } from '@vue/composition-api'
+import { ref, computed, defineComponent } from '@vue/composition-api'
 
 export default defineComponent({
+  setup() {
+    const searchText = ref('')
+    const searchResult = computed(() => {
+      const search = searchText.value
+      if (search.length === 0) {
+        return {}
+      }
+      return this.props.users.find(user => {
+        return (
+          user.first_name.includes(search) ||
+          user.last_name.includes(search) ||
+          user.email.includes(search)
+        )
+      })
+    })
+
+    return {
+      searchText,
+      searchResult
+    }
+  },
   props: {
     users: {
       type: Array,
       default: () => []
-    }
-  },
-  data() {
-    return {
-      searchText: ''
-    }
-  },
-  computed: {
-    searchResult() {
-      const searchText = this.searchText
-      if (searchText.length === 0) {
-        return {}
-      }
-      return this.users.find(user => {
-        return (
-          user.first_name.includes(searchText) ||
-          user.last_name.includes(searchText) ||
-          user.email.includes(searchText)
-        )
-      })
     }
   }
 })
