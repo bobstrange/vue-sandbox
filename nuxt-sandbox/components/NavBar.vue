@@ -1,19 +1,26 @@
 <template>
   <div class="nav">
-    <nuxt-link to="/" class="brand">
+    <nuxt-link to="/" class="brand-title">
       Real world events
     </nuxt-link>
     <nav>
       <nuxt-link to="/" class="brand">List</nuxt-link>
-      <nuxt-link to="/" class="brand">Create</nuxt-link>
+      <nuxt-link to="/create" class="brand">Create</nuxt-link>
     </nav>
   </div>
 </template>
 
 <style scoped>
+.brand-title {
+  font-weight: 400;
+  font-size: 2rem;
+  color: #39b982;
+  text-decoration: none;
+}
+
 .brand {
   font-weight: 400;
-  font-size: 1.5em;
+  font-size: 1.4em;
   color: #39b982;
   text-decoration: none;
 }
