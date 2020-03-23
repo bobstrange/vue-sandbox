@@ -18,6 +18,7 @@
     </div>
     <ul>
       <li v-for="user in userList" :key="user.id">
+        <button class="user__delete-button" @click="deleteUser(user.id)">Delete</button>
         <span class="user__id">id: {{ user.id }}</span>
         <span class="user__email">email: {{ user.email }}</span>
         <span class="user__name"
@@ -57,7 +58,7 @@ export default defineComponent({
         return {}
       }
 
-     return userList.value.find(user => {
+      return userList.value.find(user => {
         return (
           user.first_name.includes(search) ||
           user.last_name.includes(search) ||
@@ -66,10 +67,22 @@ export default defineComponent({
       })
     })
 
+    /*
+     * method: {
+     *  deleteUser(id) { ... }
+     * }
+     */
+    function deleteUser(id) {
+      this.userList = userList.value.filter(user => {
+        return id !== user.id
+      })
+    }
+
     return {
       searchText,
       userList,
-      searchResult
+      searchResult,
+      deleteUser
     }
   },
   props: {
@@ -101,6 +114,10 @@ li {
 
 li:not(:last-child) {
   margin-bottom: 1rem;
+}
+
+.user__delete-button {
+  border-radius: 2px;
 }
 
 .user__id,
