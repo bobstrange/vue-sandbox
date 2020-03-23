@@ -2,7 +2,7 @@
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png" />
     <!-- <UserList :users="users" /> -->
-    <CompositionUserList :users="users" />
+    <CompositionUserList :users="users" @deleteUser="userDeleteClicked"/>
   </div>
 </template>
 
@@ -20,6 +20,14 @@ export default {
   data() {
     return {
       users: fakeUsers
+    }
+  },
+  methods: {
+    userDeleteClicked(id) {
+      console.log('userDeleteClicked: ', id)
+      this.users = this.users.filter(user => {
+        return id !== user.id
+      })
     }
   }
 }

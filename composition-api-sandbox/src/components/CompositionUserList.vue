@@ -18,7 +18,9 @@
     </div>
     <ul>
       <li v-for="user in userList" :key="user.id">
-        <button class="user__delete-button" @click="deleteUser(user.id)">Delete</button>
+        <button class="user__delete-button" @click="deleteUser(user.id)">
+          Delete
+        </button>
         <span class="user__id">id: {{ user.id }}</span>
         <span class="user__email">email: {{ user.email }}</span>
         <span class="user__name"
@@ -30,10 +32,21 @@
 </template>
 
 <script>
-import { ref, computed, defineComponent } from '@vue/composition-api'
+import {
+  ref,
+  computed,
+  defineComponent,
+  onMounted,
+  watch
+} from '@vue/composition-api'
 
 export default defineComponent({
-  setup(props) {
+  setup(props, context) {
+    /* lifecycle hook */
+    onMounted(() => {
+      console.log('On mounted called')
+    })
+
     /**
      *  data() {
      *    return {
@@ -73,11 +86,28 @@ export default defineComponent({
      * }
      */
     function deleteUser(id) {
-      this.userList = userList.value.filter(user => {
-        return id !== user.id
-      })
+      /**
+       * setup(props, context)の第二引数 contextは、attrs, slots, emitなど
+       * が存在する
+       */
+      context.emit('deleteUser', id)
     }
 
+    /* watcher */
+    watch(
+      /* 第一引数に、watchしたいもののrefもしくは、watchしたいものを返す即時関数を渡す */
+      () => props.users,
+      /* 第二引数に、watchの処理を渡す */
+      (curr, prev) => {
+        console.log('previous users: ', prev)
+        console.log('current users: ', curr)
+        userList.value = curr
+      }
+    )
+
+    /**
+     * Templateで使用するdataや、methodを返す
+     */
     return {
       searchText,
       userList,
