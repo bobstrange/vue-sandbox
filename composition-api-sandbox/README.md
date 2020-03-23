@@ -1,4 +1,7 @@
 # vue-composition-api
+## Example
+- [従来](./src/components/UserList.vue)
+- [CompositionAPI](./src/components/UserList.vue)
 
 ## Composition APIの導入
 
@@ -39,6 +42,7 @@ export default defineComponent({
 一旦これだけで、コードは動作する
 
 ## setup
+
 今までの `data`,`computed`, `method`相当の部分を`setup()`内で定義する
 reactiveなプロパティは、`ref()`
 computedは、`computed()`
