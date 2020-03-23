@@ -33,12 +33,30 @@ import { ref, computed, defineComponent } from '@vue/composition-api'
 
 export default defineComponent({
   setup() {
+    /**
+     *  data() {
+     *    return {
+     *      searchText: ''
+     *    }
+     *  }
+     */
     const searchText = ref('')
+    /**
+     * computed: {
+     *   searchResult() {...}
+     * }
+     */
     const searchResult = computed(() => {
+      /**
+       * searchTextは、reactive propertyなので、値は`.value`で取得する
+       */
       const search = searchText.value
       if (search.length === 0) {
         return {}
       }
+      /**
+       * propsへのアクセスは今までどおりthis経由で行う
+       */
       return this.props.users.find(user => {
         return (
           user.first_name.includes(search) ||
