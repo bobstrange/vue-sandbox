@@ -7,30 +7,32 @@
 </template>
 
 <script lang="ts">
+import { defineComponent, ref } from '@vue/composition-api'
 import { fakeUsers } from './util/fake_users.js'
 // import UserList from './components/UserList.vue'
-import CompositionUserList from './components/CompositionUserList.vue'
+import CompositionUserList, { User } from './components/CompositionUserList.vue'
 
-export default {
+export default defineComponent({
   name: 'App',
   components: {
     // UserList,
     CompositionUserList
   },
-  data() {
-    return {
-      users: fakeUsers
-    }
-  },
-  methods: {
-    userDeleteClicked(id: number) {
+  setup() {
+    const users = ref<User[]>(fakeUsers)
+
+    function userDeleteClicked(id: number) {
       console.log('userDeleteClicked: ', id)
-      this.users = this.users.filter(user => {
+      users.value = users.value.filter((user: User) => {
         return id !== user.id
       })
     }
+    return {
+      users,
+      userDeleteClicked
+    }
   }
-}
+})
 </script>
 
 <style>
