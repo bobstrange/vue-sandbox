@@ -1,18 +1,21 @@
 <template>
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png" />
-    <UserList :users="users" />
+    <!-- <UserList :users="users" /> -->
+    <CompositionUserList :users="users" />
   </div>
 </template>
 
 <script>
 import { fakeUsers } from './util/fake_users'
-import UserList from './components/UserList.vue'
+// import UserList from './components/UserList.vue'
+import CompositionUserList from './components/CompositionUserList.vue'
 
 export default {
   name: 'App',
   components: {
-    UserList
+    // UserList,
+    CompositionUserList
   },
   data() {
     return {

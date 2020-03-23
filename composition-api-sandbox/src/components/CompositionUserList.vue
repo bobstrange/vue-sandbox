@@ -29,7 +29,9 @@
 </template>
 
 <script>
-export default {
+import { defineComponent } from '@vue/composition-api'
+
+export default defineComponent({
   props: {
     users: {
       type: Array,
@@ -44,7 +46,6 @@ export default {
   computed: {
     searchResult() {
       const searchText = this.searchText
-      console.log(searchText)
       if (searchText.length === 0) {
         return {}
       }
@@ -57,7 +58,7 @@ export default {
       })
     }
   }
-}
+})
 </script>
 
 <style scoped>
