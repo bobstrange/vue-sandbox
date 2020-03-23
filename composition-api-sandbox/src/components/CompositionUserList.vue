@@ -17,7 +17,7 @@
       </div>
     </div>
     <ul>
-      <li v-for="user in users" :key="user.id">
+      <li v-for="user in userList" :key="user.id">
         <span class="user__id">id: {{ user.id }}</span>
         <span class="user__email">email: {{ user.email }}</span>
         <span class="user__name"
@@ -32,7 +32,7 @@
 import { ref, computed, defineComponent } from '@vue/composition-api'
 
 export default defineComponent({
-  setup() {
+  setup(props) {
     /**
      *  data() {
      *    return {
@@ -41,6 +41,8 @@ export default defineComponent({
      *  }
      */
     const searchText = ref('')
+    const userList = ref(props.users)
+
     /**
      * computed: {
      *   searchResult() {...}
@@ -54,10 +56,8 @@ export default defineComponent({
       if (search.length === 0) {
         return {}
       }
-      /**
-       * propsへのアクセスは今までどおりthis経由で行う
-       */
-      return this.props.users.find(user => {
+
+     return userList.value.find(user => {
         return (
           user.first_name.includes(search) ||
           user.last_name.includes(search) ||
@@ -68,6 +68,7 @@ export default defineComponent({
 
     return {
       searchText,
+      userList,
       searchResult
     }
   },
