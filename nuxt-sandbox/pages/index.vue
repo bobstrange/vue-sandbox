@@ -17,10 +17,17 @@ export default {
   components: {
     EventCard
   },
-  async asyncData({ $axios }) {
-    const response = await $axios.get('http://localhost:3000/events')
-    return {
-      events: response.data
+  async asyncData({ $axios, error }) {
+    try {
+      const response = await $axios.get('http://localhost:3000/events')
+      return {
+        events: response.data
+      }
+    } catch (e) {
+      error({
+        statusCode: 503,
+        message: 'Unable to fetch event. Please try again.'
+      })
     }
   },
   head() {
