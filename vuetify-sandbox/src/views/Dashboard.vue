@@ -1,14 +1,13 @@
 <template>
-  <div class="dashboard">
-    <h1>Dashbaord</h1>
+  <v-container class="dashboard">
+    <h1 class="dashboard__header">Dashbaord</h1>
     <v-data-table
       :headers="headers"
       :items="desserts"
       :items-per-page="5"
-      class="elevation-1"
+      class="dashboard__table"
       @click:row="selectRow"
     >
-
     </v-data-table>
     <div class="text-center ma-2">
       <v-snackbar
@@ -24,8 +23,7 @@
         </v-btn>
       </v-snackbar>
     </div>
-
-  </div>
+  </v-container>
 
 </template>
 
@@ -143,5 +141,14 @@
 </script>
 
 <style>
+.dashboard__header {
+  padding: 1rem;
+  font-size: 2rem;
+  font-weight: 300;
+}
 
+.dashboard__table {
+  padding: 1rem;
+  font-size: 1.6rem;
+}
 </style>
