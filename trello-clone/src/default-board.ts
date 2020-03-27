@@ -1,6 +1,7 @@
 import { uuid } from './utils'
+import { Board } from '@/models/Board'
 
-export default {
+const board: Board =  {
   name: 'workshop',
   columns: [
     {
@@ -9,20 +10,20 @@ export default {
         {
           description: '',
           name: 'first task',
-          id: uuid(),
-          userAssigned: null
+          id: '1-1',
+          userAssigned: false
         },
         {
           description: '',
           name: 'second task',
-          id: uuid(),
-          userAssigned: null
+          id: '1-2',
+          userAssigned: false
         },
         {
           description: '',
-          name: 'and thrid',
-          id: uuid(),
-          userAssigned: null
+          name: 'and third',
+          id: '1-3',
+          userAssigned: false
         }
       ]
     },
@@ -32,8 +33,8 @@ export default {
         {
           description: '',
           name: 'first task',
-          id: uuid(),
-          userAssigned: null
+          id: '2-1',
+          userAssigned: false
         }
       ]
     },
@@ -43,10 +44,12 @@ export default {
         {
           description: '',
           name: 'first task',
-          id: uuid(),
-          userAssigned: null
+          id: '3-1',
+          userAssigned: false
         }
       ]
     }
   ]
 }
+
+export default board

@@ -1,28 +1,51 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import defaultBoardPage from '@/default-board'
+import { saveStatePlugin } from '@/utils'
+
+import { Board } from '@/models/Board'
+import { Task } from '@/models/Task'
 
 Vue.use(Vuex)
 
-const board = JSON.parse(localStorage.getItem('board') as string) || defaultBoardPage
+const board: Board = JSON.parse(localStorage.getItem('board') as string) as Board || defaultBoardPage
 
-export default new Vuex.Store({
-  state: {
-    board
-  },
-  getters: {
-    getTask(state) {
-      return (id: string) => {
-        const task = state.board.columns.find((column) => {
-          column.tasks.find((task) => {
-            return task.id === id
-          })
-        })
-        return task
+type State = {
+  board: Board
+}
+
+type GetterInterface = {
+  getTask: (id: string) => Task | undefined
+}
+
+type Getters<S, G> = {
+  [K in keyof G]: (state: S, getters: G) => G[K]
+}
+
+const state: State = {
+  board
+}
+
+const getters: Getters<State, GetterInterface> = {
+  getTask(state) {
+    return (id: string) => {
+      for (const column of state.board.columns) {
+        for (const task of column.tasks) {
+          if (task.id === id) {
+            return task
+          }
+        }
       }
     }
-  },
+  }
+}
+
+
+export default new Vuex.Store({
+  state,
+  getters,
   mutations: {},
   actions: {},
-  modules: {}
+  modules: {},
+  plugins: [saveStatePlugin]
 })
