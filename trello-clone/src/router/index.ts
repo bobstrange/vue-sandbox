@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import BoardPage from '../views/BoardPage.vue'
 import TaskPage from '../views/TaskPage.vue'
+import NotFoundPage from '../views/NotFoundPage.vue'
 
 Vue.use(VueRouter)
 
@@ -12,11 +13,15 @@ const routes = [
     component: BoardPage,
     children: [
       {
-        path: 'task/:id',
+        path: 'tasks/:id',
         name: 'Task',
         component: TaskPage
       }
-    ]
+    ],
+  },
+  {
+    path: '*',
+    component: NotFoundPage
   }
 ]
 
