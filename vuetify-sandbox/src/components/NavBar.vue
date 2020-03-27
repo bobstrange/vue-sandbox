@@ -10,15 +10,28 @@
 
     <v-spacer></v-spacer>
 
-    <v-btn text rounded>Home</v-btn>
-    <v-btn text rounded>Login</v-btn>
+    <v-btn
+      text
+      rounded
+      :to="{ name: link.routeName }"
+      v-for="(link, index) in links"
+      :key="index"
+    >
+      {{ link.label }}
+    </v-btn>
 
   </v-app-bar>
 </template>
 
 <script>
-export default {
+import { navigationLinks } from '../router/index'
 
+export default {
+  data() {
+    return {
+      links: navigationLinks
+    }
+  },
 }
 </script>
 
