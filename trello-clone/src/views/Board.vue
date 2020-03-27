@@ -52,17 +52,15 @@ export default {
 
 <style scoped>
 .board {
-  background-color: #57bf7a;
+  background-color: #469961;
   min-height: 100vh;
 }
 
 .column__base {
   padding: 0.5rem;
-  background-color: #D4DEE5;
 }
 
 .column__task {
-  background-color: #D4DEE5;
 }
 
 .column__title {
