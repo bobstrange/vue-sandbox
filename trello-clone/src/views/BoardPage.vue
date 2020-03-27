@@ -23,6 +23,7 @@
               outlined
               v-for="(task, i) in column.tasks"
               :key="i"
+              @click="taskClicked(task)"
             >
               <v-card-title>
                 {{ task.name }}
@@ -39,16 +40,24 @@
   </div>
 </template>
 
-<script>
-import { mapState } from 'vuex'
+<script lang="ts">
+import { defineComponent, computed } from '@vue/composition-api'
+import { Task } from '@/models/Task'
 
-export default {
+export default defineComponent({
   name: 'Home',
-  components: {},
-  computed: {
-    ...mapState({ board: 'board' })
-  }
-}
+  setup(props, context) {
+    const board = computed(() => context.root.$store.state.board)
+    function taskClicked(task: Task) {
+      context.root.$router.push({
+        name: 'Task',
+        params: { id: task.id }
+      })
+    }
+    return { board, taskClicked }
+  },
+  components: {}
+})
 </script>
 
 <style scoped>
