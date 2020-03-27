@@ -1,7 +1,7 @@
 <template>
-  <v-app>
+  <v-app class="app">
     <v-content>
-      Main
+      <router-view />
     </v-content>
   </v-app>
 </template>
@@ -19,3 +19,10 @@ export default Vue.extend({
   })
 })
 </script>
+
+<style>
+html {
+  box-sizing: border-box;
+  font-size: 62.5%;
+}
+</style>
