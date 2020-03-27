@@ -1,24 +1,23 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Board from '../views/Board.vue'
+import BoardPage from '../views/BoardPage.vue'
+import TaskPage from '../views/TaskPage.vue'
 
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
-    name: 'Board',
-    component: Board
+    name: 'BoardPage',
+    component: BoardPage,
+    children: [
+      {
+        path: 'task/:id',
+        name: 'Task',
+        component: TaskPage
+      }
+    ]
   }
-  // {
-  //   path: "/about",
-  //   name: "About",
-  //   // route level code-splitting
-  //   // this generates a separate chunk (about.[hash].js) for this route
-  //   // which is lazy-loaded when the route is visited.
-  //   component: () =>
-  //     import(/* webpackChunkName: "about" */ "../views/About.vue")
-  // }
 ]
 
 const router = new VueRouter({

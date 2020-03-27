@@ -7,6 +7,9 @@ export function uuid(): string {
 
 export function saveStatePlugin<T>(store: Store<T>) {
   store.subscribe((mutation, state: any) =>
-    localStorage.setItem('boards', JSON.stringify(state.boards))
+    localStorage.setItem(
+      'board',
+      JSON.stringify(state.boards)
+    )
   )
 }
