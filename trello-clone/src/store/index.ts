@@ -32,6 +32,11 @@ type MutationInterface = {
   CREATE_TASK: {
     tasks: Task[],
     name: Task['name']
+  },
+  UPDATE_TASK: {
+    task: Task,
+    key: keyof Task,
+    value: Task[keyof Task]
   }
 }
 
@@ -43,6 +48,11 @@ type ActionInterface = {
   createTask: {
     tasks: Task[],
     name: Task['name']
+  },
+  updateTask: {
+    task: Task,
+    key: keyof Task,
+    value: Task[keyof Task]
   }
 }
 
@@ -92,12 +102,23 @@ const mutations: Mutations<State, MutationInterface> = {
       description: '',
       userAssigned: true
     })
+  },
+  UPDATE_TASK(state, { task, key, value }) {
+    task[key] = value
   }
 }
 
-const actions: Actions<State, ActionInterface, GetterInterface, MutationInterface> = {
+const actions: Actions<
+  State,
+  ActionInterface,
+  GetterInterface,
+  MutationInterface
+> = {
   createTask(ctx, payload) {
     ctx.commit('CREATE_TASK', payload)
+  },
+  updateTask(ctx, payload) {
+    ctx.commit('UPDATE_TASK', payload)
   }
 }
 
