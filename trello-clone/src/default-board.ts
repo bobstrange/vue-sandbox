@@ -1,20 +1,22 @@
 import { uuid } from './utils'
 import { Board } from '@/models/Board'
 
-const board: Board =  {
+const board: Board = {
   name: 'workshop',
   columns: [
     {
       name: 'todo',
       tasks: [
         {
-          description: '',
+          description:
+            'A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart. I am alone, and feel the charm of existence in this spot, ',
           name: 'first task',
           id: '1-1',
           userAssigned: false
         },
         {
-          description: '',
+          description:
+            'A wonderful serenity has taken possession of my entire soul, like these sweet mornings o',
           name: 'second task',
           id: '1-2',
           userAssigned: false
@@ -31,7 +33,8 @@ const board: Board =  {
       name: 'in-progress',
       tasks: [
         {
-          description: '',
+          description:
+            'A wonderful serenity has taken possession of my entire soul, like these sweet mornings o',
           name: 'first task',
           id: '2-1',
           userAssigned: false
