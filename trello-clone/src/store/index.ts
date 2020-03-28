@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import Vuex from 'vuex'
+import Vuex, { Mutation } from 'vuex'
 import defaultBoardPage from '@/default-board'
 import { saveStatePlugin, uuid } from '@/utils'
 
@@ -25,13 +25,41 @@ type Getters<S, G> = {
 type MutationInterface = {
   CREATE_TASK: {
     tasks: Task[],
-    name: Task['name'],
+    name: Task['name']
   }
 }
 
 type Mutations<S, M> = {
   [K in keyof M]: (state: S, payload: M[K]) => void
 }
+
+type ActionInterface = {
+  createTask: {
+    tasks: Task[],
+    name: Task['name']
+  }
+}
+
+type Commit<M> = <T extends keyof M>(type: T, payload?: M[T]) => void
+
+type Dispatch<A> = <T extends keyof A>(type: T, payload?: A[T]) => Promise<any>
+
+type Context<S, A, G, M, RS, RG> = {
+  commit: Commit<M>,
+  dispatch: Dispatch<A>,
+  state: S,
+  getters: G,
+  rootState: RS,
+  rootGetters: RG
+}
+
+type Actions<S, A, G = {}, M = {}, RS = {}, RG = {}> = {
+  [K in keyof A]: (
+    ctx: Context<S, A, G, M, RS, RG>,
+    payload: A[K]
+  ) => any
+}
+
 const state: State = {
   board
 }
@@ -61,8 +89,10 @@ const mutations: Mutations<State, MutationInterface> = {
   }
 }
 
-const actions = {
-
+const actions: Actions<State, ActionInterface, GetterInterface, MutationInterface> = {
+  createTask(ctx, payload) {
+    ctx.commit('CREATE_TASK', payload)
+  }
 }
 
 export default new Vuex.Store({
