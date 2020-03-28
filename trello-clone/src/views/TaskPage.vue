@@ -1,6 +1,10 @@
 <template>
   <div class="task-page">
-    <v-dialog v-model="openDialog" @click:outside="outsideClicked">
+    <v-dialog
+      v-model="openDialog"
+      width="30rem"
+      @click:outside="outsideClicked"
+    >
       <v-card class="task-detail">
         <v-card-title>
           {{ task.name }}
