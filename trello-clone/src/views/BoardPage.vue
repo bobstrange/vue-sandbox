@@ -39,7 +39,7 @@
               placeholder="+ Add new task"
               @keydown.enter.exact.prevent
               @keyup.enter="createTask($event, column.tasks)"
-              v-on:keydown.enter.shift.exact="NewLine"
+              v-on:keydown.enter.shift.exact="newline($event)"
             />
           </v-card>
         </v-col>
@@ -72,10 +72,16 @@ export default defineComponent({
         })
       }
     }
+    function newline(event: Event) {
+      if (event.target instanceof HTMLTextAreaElement) {
+        event.target.value += '\n'
+      }
+    }
     return {
       board,
       taskClicked,
-      createTask
+      createTask,
+      newline
     }
   },
   components: {}
