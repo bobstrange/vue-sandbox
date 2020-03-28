@@ -8,7 +8,13 @@ import { Task } from '@/models/Task'
 
 Vue.use(Vuex)
 
-const board: Board = JSON.parse(localStorage.getItem('board') as string) as Board || defaultBoardPage
+let board: Board
+try {
+  console.log('JSON', localStorage.getItem('board'))
+  board = JSON.parse(localStorage.getItem('board') as string) as Board || defaultBoardPage
+} catch (error) {
+  board = defaultBoardPage
+}
 
 type State = {
   board: Board
@@ -99,7 +105,7 @@ export default new Vuex.Store({
   state,
   getters,
   mutations,
-  actions: {},
+  actions,
   modules: {},
   plugins: [saveStatePlugin]
 })

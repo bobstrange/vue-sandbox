@@ -32,6 +32,15 @@
                 {{ task.description }}
               </v-card-text>
             </v-card>
+            <v-textarea
+              class="column__add-task"
+              auto-grow
+              rows="1"
+              placeholder="+ Add new task"
+              @keydown.enter.exact.prevent
+              @keyup.enter="createTask($event, column.tasks)"
+              v-on:keydown.enter.shift.exact="NewLine"
+            />
           </v-card>
         </v-col>
       </v-row>
@@ -54,7 +63,20 @@ export default defineComponent({
         params: { id: task.id }
       })
     }
-    return { board, taskClicked }
+    function createTask(event: Event, tasks: Task[]) {
+      if (event.target instanceof HTMLTextAreaElement) {
+        const name = event.target.value
+        context.root.$store.dispatch('createTask', {
+          tasks,
+          name
+        })
+      }
+    }
+    return {
+      board,
+      taskClicked,
+      createTask
+    }
   },
   components: {}
 })
@@ -80,5 +102,9 @@ export default defineComponent({
 
 .column__task:not(:last-child) {
   margin-bottom: 0.5rem;
+}
+
+.column__add-task {
+  padding: 0 2px;
 }
 </style>
