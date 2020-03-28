@@ -28,16 +28,19 @@ type Getters<S, G> = {
   [K in keyof G]: (state: S, getters: G) => G[K]
 }
 
+type CreateTaskPayload = {
+  tasks: Task[]
+  name: Task['name']
+}
+type UpdateTaskPayload = {
+  task: Task,
+  key: keyof Pick<Task, 'description' | 'name'>
+  value: Task[keyof Pick<Task, 'description' | 'name'>]
+}
+
 type MutationInterface = {
-  CREATE_TASK: {
-    tasks: Task[],
-    name: Task['name']
-  },
-  UPDATE_TASK: {
-    task: Task,
-    key: keyof Task,
-    value: Task[keyof Task]
-  }
+  CREATE_TASK: CreateTaskPayload,
+  UPDATE_TASK: UpdateTaskPayload
 }
 
 type Mutations<S, M> = {
@@ -45,15 +48,8 @@ type Mutations<S, M> = {
 }
 
 type ActionInterface = {
-  createTask: {
-    tasks: Task[],
-    name: Task['name']
-  },
-  updateTask: {
-    task: Task,
-    key: keyof Task,
-    value: Task[keyof Task]
-  }
+  createTask: CreateTaskPayload,
+  updateTask: UpdateTaskPayload
 }
 
 type Commit<M> = <T extends keyof M>(type: T, payload?: M[T]) => void

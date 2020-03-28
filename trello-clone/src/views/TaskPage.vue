@@ -17,11 +17,11 @@
             :value="task.name"
           />
         </v-card-title>
-        <v-card-text v-if="task.description">
+        <v-card-text>
           <v-textarea
             auto-grow
             rows="1"
-            placeholder="Task name"
+            placeholder="Task description"
             @keydown.enter.exact.prevent
             @keyup.enter="updateTask($event, 'description', task)"
             @keydown.enter.shift.prevent="newline($event)"
