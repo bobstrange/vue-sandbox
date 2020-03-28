@@ -1,12 +1,15 @@
 <template>
   <div class="task-page">
-    <v-container>
-      <v-card>
+    <v-dialog v-model="openDialog" @click:outside="outsideClicked">
+      <v-card class="task-detail">
         <v-card-title>
           {{ task.name }}
         </v-card-title>
+        <v-card-text v-if="task.description">
+          {{ task.description }}
+        </v-card-text>
       </v-card>
-    </v-container>
+    </v-dialog>
   </div>
 </template>
 
@@ -15,6 +18,19 @@ import { mapGetters } from 'vuex'
 import { Task } from '@/models/Task'
 
 export default {
+  name: 'TaskPage',
+  data() {
+    return {
+      openDialog: true
+    }
+  },
+  methods: {
+    outsideClicked() {
+      this.$router.push({
+        name: 'BoardPage'
+      })
+    }
+  },
   computed: {
     id(): string {
       return this.$route.params.id
@@ -29,6 +45,6 @@ export default {
 </script>
 
 <style scoped>
-.task-page {
+.task-detail {
 }
 </style>

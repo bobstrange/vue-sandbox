@@ -45,12 +45,12 @@ import { defineComponent, computed } from '@vue/composition-api'
 import { Task } from '@/models/Task'
 
 export default defineComponent({
-  name: 'Home',
+  name: 'BoardPage',
   setup(props, context) {
     const board = computed(() => context.root.$store.state.board)
     function taskClicked(task: Task) {
       context.root.$router.push({
-        name: 'Task',
+        name: 'TaskPage',
         params: { id: task.id }
       })
     }
