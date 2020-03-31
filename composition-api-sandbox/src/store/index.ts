@@ -20,14 +20,24 @@ const getters = {
 }
 
 const mutations = {
-  UPDATE_USERS(state: UserState, payload: User[]) {
-    state.users = payload
+  UPDATE_USERS(state: UserState, users: User[]): void {
+    state.users = users
+  },
+  DELETE_USER(state: UserState, id: number): void {
+    const users = state.users.filter(user => {
+      return id !== user.id
+    })
+
+    state.users = users
   }
 }
 
 const actions = {
   fetchUsers({ commit }: { commit: any }) {
     commit('UPDATE_USERS', fakeUsers)
+  },
+  deleteUser({ commit }: { commit: any }, payload: any) {
+    commit('DELETE_USER', payload)
   }
 }
 

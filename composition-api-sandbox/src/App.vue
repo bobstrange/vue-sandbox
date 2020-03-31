@@ -23,10 +23,7 @@ export default defineComponent({
       return root.$store.getters['user/getUsers']
     })
     function userDeleteClicked(id: number) {
-      console.log('userDeleteClicked: ', id)
-      users.value = users.value.filter((user: User) => {
-        return id !== user.id
-      })
+      root.$store.dispatch('user/deleteUser', id)
     }
     return {
       users,

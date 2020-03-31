@@ -26,9 +26,9 @@
         </button>
         <span class="user__id">id: {{ user.id }}</span>
         <span class="user__email">email: {{ user.email }}</span>
-        <span class="user__name"
-          >name: {{ user.first_name }} {{ user.last_name }}</span
-        >
+        <span class="user__name">
+          name: {{ user.first_name }} {{ user.last_name }}
+        </span>
       </li>
     </ul>
   </div>
