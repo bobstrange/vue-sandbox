@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import Vuex, { Action, Mutation, Store, Getter} from 'vuex'
+import Vuex from 'vuex'
 
 import { User } from '@/model/User'
 import { fakeUsers } from '@/util/fake_users'
@@ -9,21 +9,39 @@ Vue.use(Vuex)
 type UserState = {
   users: User[]
 }
+
 const state: UserState = {
   users: []
 }
 
-const getters = {
-  getUsers(state: UserState): User[] {
+type Getter<S, G> = {
+  [K in keyof G]: (state: S) => G[K]
+}
+type IUserGetter = {
+  getUsers: User[]
+}
+type UserGetter = Getter<UserState, IUserGetter>
+
+const getters: UserGetter = {
+  getUsers(state) {
     return state.users
   }
 }
 
-const mutations = {
-  UPDATE_USERS(state: UserState, users: User[]): void {
+type IUserMutation = {
+  UPDATE_USERS: User[]
+  DELETE_USER: number
+}
+
+type Mutation<S, M> = {
+  [K in keyof M]: (state: S, payload: M[K]) => void
+}
+
+const mutations: Mutation<UserState, IUserMutation> = {
+  UPDATE_USERS(state, users): void {
     state.users = users
   },
-  DELETE_USER(state: UserState, id: number): void {
+  DELETE_USER(state, id): void {
     const users = state.users.filter(user => {
       return id !== user.id
     })
