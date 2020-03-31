@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 
 import { User } from '@/model/User'
 import { fakeUsers } from '@/util/fake_users'
+import { Getter, Mutation, Action } from '@/store/store_types'
 
 Vue.use(Vuex)
 
@@ -14,9 +15,6 @@ const state: UserState = {
   users: []
 }
 
-type Getter<S, G> = {
-  [K in keyof G]: (state: S) => G[K]
-}
 type IUserGetter = {
   getUsers: User[]
 }
@@ -33,10 +31,6 @@ type IUserMutation = {
   DELETE_USER: number
 }
 
-type Mutation<S, M> = {
-  [K in keyof M]: (state: S, payload: M[K]) => void
-}
-
 const mutations: Mutation<UserState, IUserMutation> = {
   UPDATE_USERS(state, users): void {
     state.users = users
@@ -50,11 +44,16 @@ const mutations: Mutation<UserState, IUserMutation> = {
   }
 }
 
-const actions = {
-  fetchUsers({ commit }: { commit: any }) {
+type IUserAction = {
+  fetchUsers: void
+  deleteUser: number
+}
+
+const actions: Action<UserState, IUserAction, IUserMutation, IUserGetter> = {
+  fetchUsers({ commit }) {
     commit('UPDATE_USERS', fakeUsers)
   },
-  deleteUser({ commit }: { commit: any }, payload: any) {
+  deleteUser({ commit }, payload) {
     commit('DELETE_USER', payload)
   }
 }
