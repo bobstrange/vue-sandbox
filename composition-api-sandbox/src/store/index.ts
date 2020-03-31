@@ -10,7 +10,7 @@ type UserState = {
   users: User[]
 }
 const state: UserState = {
-  users: fakeUsers
+  users: []
 }
 
 const getters = {

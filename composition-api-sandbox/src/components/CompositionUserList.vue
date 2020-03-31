@@ -1,6 +1,7 @@
 <template>
   <div class="user-list">
     <h1>Users</h1>
+    <button class="fetch-user" @click="fetchUsers">Fetch Users</button>
     <div class="search-user">
       <div class="search-user__search">
         <label class="search-user__label" for="search">
@@ -90,6 +91,9 @@ export default defineComponent({
       })
     })
 
+    function fetchUsers(): void {
+      context.root.$store.dispatch('user/fetchUsers')
+    }
     /*
      * vue2
      * method: {
@@ -123,7 +127,8 @@ export default defineComponent({
       searchText,
       userList,
       searchResult,
-      deleteUser
+      deleteUser,
+      fetchUsers
     }
   },
   props: {
@@ -143,6 +148,13 @@ export default defineComponent({
 
 .search-user__label {
   margin-right: 1rem;
+}
+
+.fetch-user {
+  margin-bottom: 2rem;
+  border-radius: 5rem;
+  border: none;
+  padding: 0.5rem 2rem;
 }
 
 ul {

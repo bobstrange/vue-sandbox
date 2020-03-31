@@ -8,7 +8,6 @@
 
 <script lang="ts">
 import { defineComponent, ref, computed } from '@vue/composition-api'
-import { fakeUsers } from '@/util/fake_users'
 // import UserList from './components/UserList.vue'
 import CompositionUserList from '@/components/CompositionUserList.vue'
 import { User } from '@/model/User'
@@ -20,7 +19,6 @@ export default defineComponent({
     CompositionUserList
   },
   setup(props, { root }) {
-    // const users = ref<User[]>(fakeUsers)
     const users = computed<User[]>(() => {
       return root.$store.getters['user/getUsers']
     })
