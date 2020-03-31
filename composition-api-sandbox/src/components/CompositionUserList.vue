@@ -41,10 +41,10 @@ import {
 } from '@vue/composition-api'
 
 export type User = {
-  id: number,
-  email: string,
-  first_name: string,
-  last_name: string,
+  id: number
+  email: string
+  first_name: string
+  last_name: string
   avatar: string
 }
 type Props = {
@@ -59,6 +59,7 @@ export default defineComponent({
     })
 
     /**
+     *  vue2
      *  data() {
      *    return {
      *      searchText: ''
@@ -69,6 +70,7 @@ export default defineComponent({
     const userList = ref<User[]>(props.users)
 
     /**
+     * vue2
      * computed: {
      *   searchResult() {...}
      * }
@@ -92,6 +94,7 @@ export default defineComponent({
     })
 
     /*
+     * vue2
      * method: {
      *  deleteUser(id) { ... }
      * }
