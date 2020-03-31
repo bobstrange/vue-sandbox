@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/camelcase */
 export const fakeUsers = [
   {
     id: 7,

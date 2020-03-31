@@ -3,7 +3,9 @@
     <h1>Users</h1>
     <div class="search-user">
       <div class="search-user__search">
-        <label class="search-user__label" for="search">Search User:</label>
+        <label class="search-user__label" for="search">
+          Search User:
+        </label>
         <input
           class="search-user__text"
           id="search"
@@ -40,13 +42,8 @@ import {
   watch
 } from '@vue/composition-api'
 
-export type User = {
-  id: number
-  email: string
-  first_name: string
-  last_name: string
-  avatar: string
-}
+import { User } from '@/model/User'
+
 type Props = {
   users: User[]
 }

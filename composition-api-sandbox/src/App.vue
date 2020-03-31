@@ -2,15 +2,16 @@
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png" />
     <!-- <UserList :users="users" /> -->
-    <CompositionUserList :users="users" @deleteUser="userDeleteClicked"/>
+    <CompositionUserList :users="users" @deleteUser="userDeleteClicked" />
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from '@vue/composition-api'
-import { fakeUsers } from './util/fake_users.js'
+import { defineComponent, ref, computed } from '@vue/composition-api'
+import { fakeUsers } from '@/util/fake_users'
 // import UserList from './components/UserList.vue'
-import CompositionUserList, { User } from './components/CompositionUserList.vue'
+import CompositionUserList from '@/components/CompositionUserList.vue'
+import { User } from '@/model/User'
 
 export default defineComponent({
   name: 'App',
@@ -18,9 +19,11 @@ export default defineComponent({
     // UserList,
     CompositionUserList
   },
-  setup() {
-    const users = ref<User[]>(fakeUsers)
-
+  setup(props, { root }) {
+    // const users = ref<User[]>(fakeUsers)
+    const users = computed<User[]>(() => {
+      return root.$store.getters['user/getUsers']
+    })
     function userDeleteClicked(id: number) {
       console.log('userDeleteClicked: ', id)
       users.value = users.value.filter((user: User) => {
