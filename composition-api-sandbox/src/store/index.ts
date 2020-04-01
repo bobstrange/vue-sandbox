@@ -11,6 +11,10 @@ type UserState = {
   users: User[]
 }
 
+type RootState = {
+  'user/users': UserState['users']
+}
+
 const state: UserState = {
   users: []
 }
@@ -18,9 +22,14 @@ const state: UserState = {
 type IUserGetter = {
   getUsers: User[]
 }
-type UserGetter = Getter<UserState, IUserGetter>
 
-const getters: UserGetter = {
+type IRootGetter = {
+  'user/getUsers': IUserGetter['getUsers']
+}
+
+type UserGetters = Getter<UserState, IUserGetter, RootState, IRootGetter>
+
+const getters: UserGetters = {
   getUsers(state) {
     return state.users
   }
@@ -31,7 +40,9 @@ type IUserMutation = {
   DELETE_USER: number
 }
 
-const mutations: Mutation<UserState, IUserMutation> = {
+type UserMutations = Mutation<UserState, IUserMutation>
+
+const mutations: UserMutations = {
   UPDATE_USERS(state, users): void {
     state.users = users
   },
@@ -49,7 +60,8 @@ type IUserAction = {
   deleteUser: number
 }
 
-const actions: Action<UserState, IUserAction, IUserMutation, IUserGetter> = {
+type UserActions = Action<UserState, IUserAction, IUserMutation, IUserGetter>
+const actions: UserActions = {
   fetchUsers({ commit }) {
     commit('UPDATE_USERS', fakeUsers)
   },

@@ -1,8 +1,13 @@
-export type Getter<S, G> = {
-  [K in keyof G]: (state: S) => G[K]
+export type Getter<S, GI, RS = {}, RGI = {}> = {
+  [K in keyof GI]: (
+    state: S,
+    getters: GI,
+    rootState: RS,
+    rootGetters: RGI
+  ) => GI[K]
 }
-export type Mutation<S, M> = {
-  [K in keyof M]: (state: S, payload: M[K]) => void
+export type Mutation<S, MI> = {
+  [K in keyof MI]: (state: S, payload: MI[K]) => void
 }
 
 export type Commit<MI> = <T extends keyof MI>(type: T, payload?: MI[T]) => void
