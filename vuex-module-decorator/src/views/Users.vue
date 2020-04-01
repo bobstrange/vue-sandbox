@@ -9,19 +9,34 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import { defineComponent, computed, onBeforeMount } from '@vue/composition-api'
 import { User } from '@/models/User'
 
 export default defineComponent({
+  name: 'UsersPage',
   setup(props, { root }) {
     onBeforeMount(() => {
-      root.$store.dispatch['user/fetchUsers']
+      root.$store.dispatch('user/fetchUsers')
     })
-    const users = computed(() => root.$store.state['user/users'])
+    const users = computed<User[]>(() => {
+      return root.$store.state.user.users
+    })
     return { users }
   }
 })
 </script>
 
-<style lang="scss" scoped></style>>
+<style lang="scss" scoped>
+ul {
+  list-style: none;
+}
+
+li {
+  font-size: 1.6rem;
+  text-align: left;
+  &:not(:last-child) {
+    margin-bottom: 1rem;
+  }
+}
+</style>
