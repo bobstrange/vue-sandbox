@@ -7,11 +7,11 @@ import { Getter, Mutation, Action } from '@/store/store_types'
 
 Vue.use(Vuex)
 
-type UserState = {
+export type UserState = {
   users: User[]
 }
 
-type RootState = {
+export type UserRootState = {
   'user/users': UserState['users']
 }
 
@@ -19,15 +19,20 @@ const state: UserState = {
   users: []
 }
 
-type IUserGetter = {
+export type IUserGetter = {
   getUsers: User[]
 }
 
-type IRootGetter = {
+export type IUserRootGetter = {
   'user/getUsers': IUserGetter['getUsers']
 }
 
-type UserGetters = Getter<UserState, IUserGetter, RootState, IRootGetter>
+type UserGetters = Getter<
+  UserState,
+  IUserGetter,
+  UserRootState,
+  IUserRootGetter
+>
 
 const getters: UserGetters = {
   getUsers(state) {
@@ -35,7 +40,7 @@ const getters: UserGetters = {
   }
 }
 
-type IUserMutation = {
+export type IUserMutation = {
   UPDATE_USERS: User[]
   DELETE_USER: number
 }
@@ -55,7 +60,7 @@ const mutations: UserMutations = {
   }
 }
 
-type IUserAction = {
+export type IUserAction = {
   fetchUsers: void
   deleteUser: number
 }
