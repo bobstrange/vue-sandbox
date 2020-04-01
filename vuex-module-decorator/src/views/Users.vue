@@ -11,16 +11,19 @@
 
 <script lang="ts">
 import { defineComponent, computed, onBeforeMount } from '@vue/composition-api'
+import { getModule } from 'vuex-module-decorators'
+import UserStoreModule from '@/store/user.store'
 import { User } from '@/models/User'
 
 export default defineComponent({
   name: 'UsersPage',
   setup(props, { root }) {
+    const userStore = getModule(UserStoreModule, root.$store)
     onBeforeMount(() => {
-      root.$store.dispatch('user/fetchUsers')
+      userStore.fetchUsers()
     })
     const users = computed<User[]>(() => {
-      return root.$store.state.user.users
+      return userStore.users
     })
     return { users }
   }
