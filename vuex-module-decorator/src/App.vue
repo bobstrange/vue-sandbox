@@ -16,7 +16,7 @@ html {
   text-align: center;
   margin: 0 auto;
   max-width: 120rem;
-  height: 100vh;
+  min-height: 100vh;
   color: #2c3e50;
   background-color: #42b983;
 }
