@@ -24,7 +24,9 @@
       "dom",
       "dom.iterable",
       "scripthost"
-    ]
+    ],
+    /* For vuex-module-decorators */
+    "experimentalDecorators": true
   },
   "include": [
     "src/**/*.ts",
