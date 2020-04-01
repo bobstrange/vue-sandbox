@@ -2,10 +2,10 @@ import axios from 'axios'
 import { Post } from '@/models/Post'
 
 export class PostAPI {
-  fetchPost(id: number) {
-    return axios.get<Post>(`https://jsonplaceholder.typicode.com/posts/${id}`)
+  async fetchPost(id: number): Promise<Post> {
+    return (await axios.get<Post>(`https://jsonplaceholder.typicode.com/posts/${id}`)).data
   }
-  fetchPosts() {
-    return axios.get<Post[]>('https://jsonplaceholder.typicode.com/posts')
+  async fetchPosts(): Promise<Post[]> {
+    return (await axios.get<Post[]>('https://jsonplaceholder.typicode.com/posts')).data
   }
 }

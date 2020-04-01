@@ -3,7 +3,7 @@ import { PostAPI } from '../post'
 describe('fetchPosts', () => {
   test('returns posts', async () => {
     const client = new PostAPI()
-    const posts = (await client.fetchPosts()).data
+    const posts = await client.fetchPosts()
     expect(posts[4]).toEqual({
       userId: 1,
       id: 5,
@@ -18,7 +18,7 @@ describe('fetchPosts', () => {
 describe('fetchPost', () => {
   test('returns a post', async () => {
     const client = new PostAPI()
-    const post = (await client.fetchPost(5)).data
+    const post = await client.fetchPost(5)
     expect(post).toEqual({
       userId: 1,
       id: 5,

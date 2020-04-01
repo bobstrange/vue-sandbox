@@ -3,7 +3,7 @@ import { UserAPI } from "../user"
 describe('fetchUser', () => {
   test('returns a user', async () => {
     const client = new UserAPI()
-    const user = (await client.fetchUser(2)).data
+    const user = await client.fetchUser(2)
     expect(user).toEqual({
       id: 2,
       name: 'Ervin Howell',
@@ -32,7 +32,7 @@ describe('fetchUser', () => {
 describe('fetchUsers', () => {
   test('returns users', async () => {
     const client = new UserAPI()
-    const users = (await client.fetchUsers()).data
+    const users = await client.fetchUsers()
     expect(users[0]).toEqual({
       id: 1,
       name: 'Leanne Graham',
