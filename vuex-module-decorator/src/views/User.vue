@@ -1,7 +1,12 @@
 <template>
   <div class="users">
     <h1>User</h1>
-    {{ user.name }}
+    <div v-if="user">
+      {{ user.name }}
+    </div>
+    <div v-else>
+      Unexist user
+    </div>
   </div>
 </template>
 
@@ -18,8 +23,8 @@ export default defineComponent({
     onBeforeMount(() => {
       userStore.fetchUsers()
     })
-    const user = computed<User | {}>(() => {
-      return userStore.getUser(parseInt(root.$route.params.id)) || {}
+    const user = computed<User | undefined>(() => {
+      return userStore.getUser(parseInt(root.$route.params.id)) || undefined
     })
     return {
       user
