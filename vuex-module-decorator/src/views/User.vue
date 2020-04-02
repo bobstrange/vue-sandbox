@@ -2,7 +2,11 @@
   <div class="users">
     <h1>User</h1>
     <div v-if="user">
-      {{ user.name }}
+      <ul>
+        <li>Name: {{ user.name }}</li>
+        <li>UserName: {{ user.username }}</li>
+        <li>email: {{ user.email }}</li>
+      </ul>
       <h2>Posts</h2>
       <ul>
         <li v-for="(post, index) in posts" :key="index">
@@ -56,4 +60,8 @@ export default defineComponent({
 })
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+ul {
+  list-style: none;
+}
+</style>

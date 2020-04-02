@@ -23,7 +23,7 @@ ul {
 
 li {
   font-size: 1.6rem;
-  color: white;
+  color: #eeeeee;
   text-align: left;
   margin-left: 1rem;
   margin-top: 1rem;

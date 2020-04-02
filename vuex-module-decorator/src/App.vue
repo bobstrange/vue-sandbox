@@ -47,9 +47,18 @@ nav {
 
 h1 {
   margin: 0;
-  font-size: 4rem;
+  font-size: 3rem;
   font-weight: 300;
-  color: white;
+  color: #eeeeee;
+  padding: 1rem 1rem;
+  text-align: left;
+}
+
+h2 {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: 400;
+  color: #444444;
   padding: 1rem 1rem;
   text-align: left;
 }
