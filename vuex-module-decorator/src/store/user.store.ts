@@ -11,6 +11,12 @@ import { UserAPI } from '@/api/user'
 export default class UserStoreModule extends VuexModule {
   users: User[] = []
 
+  get getUser(): (id: number) => User | undefined {
+    return (id) => {
+      return this.users.find(user => id === user.id)
+    }
+  }
+
   @Mutation
   UPDATE_USERS(users: User[]) {
     this.users = users

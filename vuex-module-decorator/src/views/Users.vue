@@ -1,11 +1,22 @@
 <template>
   <div class="users">
     <h1>Users</h1>
-    <ul>
-      <li v-for="user in users" :key="user.id">
-        {{ user.name }}
-      </li>
-    </ul>
+    <table>
+      <tr>
+        <th>Name</th>
+        <th>User Name</th>
+        <th>Email</th>
+      </tr>
+      <tr v-for="user in users" :key="user.id">
+        <td>
+          <router-link :to="{ name: 'User', params: { id: user.id } }">
+            {{ user.name }}
+          </router-link>
+        </td>
+        <td>{{ user.username }}</td>
+        <td>{{ user.email }}</td>
+      </tr>
+    </table>
   </div>
 </template>
 
@@ -31,15 +42,9 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-ul {
-  list-style: none;
-}
-
-li {
+th,
+td {
   font-size: 1.6rem;
   text-align: left;
-  &:not(:last-child) {
-    margin-bottom: 1rem;
-  }
 }
 </style>
