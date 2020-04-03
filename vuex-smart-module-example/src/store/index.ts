@@ -1,9 +1,9 @@
-import Vue from "vue";
-import Vuex from "vuex";
-import { createStore, Module } from 'vuex-smart-module'
-import { user } from '@/store/user.store'
+import Vue from "vue"
+import Vuex from "vuex"
+import { createStore, Module } from "vuex-smart-module"
+import { user } from "@/store/user.store"
 
-Vue.use(Vuex);
+Vue.use(Vuex)
 
 const root = new Module({
   modules: {

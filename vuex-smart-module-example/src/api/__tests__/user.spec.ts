@@ -1,59 +1,59 @@
 import { UserAPI } from "../user"
 
-describe('fetchUser', () => {
-  test('returns a user', async () => {
+describe("fetchUser", () => {
+  test("returns a user", async () => {
     const client = new UserAPI()
     const user = await client.fetchUser(2)
     expect(user).toEqual({
       id: 2,
-      name: 'Ervin Howell',
-      username: 'Antonette',
-      email: 'Shanna@melissa.tv',
+      name: "Ervin Howell",
+      username: "Antonette",
+      email: "Shanna@melissa.tv",
       address: {
-        street: 'Victor Plains',
-        suite: 'Suite 879',
-        city: 'Wisokyburgh',
-        zipcode: '90566-7771',
+        street: "Victor Plains",
+        suite: "Suite 879",
+        city: "Wisokyburgh",
+        zipcode: "90566-7771",
         geo: {
-          lat: '-43.9509',
-          lng: '-34.4618'
+          lat: "-43.9509",
+          lng: "-34.4618"
         }
       },
-      phone: '010-692-6593 x09125',
-      website: 'anastasia.net',
+      phone: "010-692-6593 x09125",
+      website: "anastasia.net",
       company: {
-        name: 'Deckow-Crist',
-        catchPhrase: 'Proactive didactic contingency',
-        bs: 'synergize scalable supply-chains'
+        name: "Deckow-Crist",
+        catchPhrase: "Proactive didactic contingency",
+        bs: "synergize scalable supply-chains"
       }
     })
   })
 })
-describe('fetchUsers', () => {
-  test('returns users', async () => {
+describe("fetchUsers", () => {
+  test("returns users", async () => {
     const client = new UserAPI()
     const users = await client.fetchUsers()
     expect(users[0]).toEqual({
       id: 1,
-      name: 'Leanne Graham',
-      username: 'Bret',
-      email: 'Sincere@april.biz',
+      name: "Leanne Graham",
+      username: "Bret",
+      email: "Sincere@april.biz",
       address: {
-        street: 'Kulas Light',
-        suite: 'Apt. 556',
-        city: 'Gwenborough',
-        zipcode: '92998-3874',
+        street: "Kulas Light",
+        suite: "Apt. 556",
+        city: "Gwenborough",
+        zipcode: "92998-3874",
         geo: {
-          lat: '-37.3159',
-          lng: '81.1496'
+          lat: "-37.3159",
+          lng: "81.1496"
         }
       },
-      phone: '1-770-736-8031 x56442',
-      website: 'hildegard.org',
+      phone: "1-770-736-8031 x56442",
+      website: "hildegard.org",
       company: {
-        name: 'Romaguera-Crona',
-        catchPhrase: 'Multi-layered client-server neural-net',
-        bs: 'harness real-time e-markets'
+        name: "Romaguera-Crona",
+        catchPhrase: "Multi-layered client-server neural-net",
+        bs: "harness real-time e-markets"
       }
     })
     expect(users.length).toBe(10)
