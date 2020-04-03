@@ -1,11 +1,13 @@
 import Vue from "vue";
 import Vuex from "vuex";
+import { createStore, Module } from 'vuex-smart-module'
+import { user } from '@/store/user.store'
 
 Vue.use(Vuex);
 
-export default new Vuex.Store({
-  state: {},
-  mutations: {},
-  actions: {},
-  modules: {}
-});
+const root = new Module({
+  modules: {
+    user
+  }
+})
+export default createStore(root)
