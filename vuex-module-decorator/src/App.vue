@@ -65,7 +65,7 @@ h2 {
 
 a {
   font-weight: bold;
-  color: white;
+  color: #eeeeee;
   text-decoration: none;
 
   &.router-link-exact-active {
