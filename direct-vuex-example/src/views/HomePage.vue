@@ -1,11 +1,25 @@
 <template>
   <div class="home">
-    Home
+    <ul>
+      <li v-for="user in users" :key="user.id">{{ user.username }}</li>
+    </ul>
   </div>
 </template>
 
-<script>
-export default {
-  name: "HomePage"
-};
+<script lang="ts">
+import { defineComponent, onBeforeMount, ref } from '@vue/composition-api'
+import { fetchUsers } from '@/services/user'
+import { User } from '@/models/User'
+
+export default defineComponent({
+  name: 'HomePage',
+  setup() {
+    const users = ref<User[]>([])
+    onBeforeMount(async () => {
+      const usersData = await fetchUsers()
+      users.value = usersData
+    })
+    return { users }
+  }
+})
 </script>
