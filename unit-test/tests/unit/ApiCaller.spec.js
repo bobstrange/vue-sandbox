@@ -7,6 +7,8 @@ jest.mock('@/services/api')
 
 describe('ApiCaller', () => {
   beforeEach(() => {
+    // 各テストの実行前にMockをクリアする
+    // (Methodの呼び出された回数など)
     jest.clearAllMocks()
   })
 
@@ -14,6 +16,8 @@ describe('ApiCaller', () => {
     getMessage.mockResolvedValueOnce({ text: 'mock message text' })
     const wrapper = mount(ApiCaller)
 
+    // lifecyclehookの完了を待ち受けるため、flushPromisesで待つ
+    // https://vue-test-utils.vuejs.org/ja/guides/testing-async-components.html#%E9%9D%9E%E5%90%8C%E6%9C%9F%E5%8B%95%E4%BD%9C%E3%81%AE%E3%83%86%E3%82%B9%E3%83%88
     await flushPromises()
     expect(getMessage).toHaveBeenCalledTimes(1)
     const paragraph = wrapper.find('[data-testid="message"]')
