@@ -3,6 +3,8 @@ import Vuex, { ActionContext } from "vuex";
 import { User } from '@/models/User'
 import { fetchUsers } from '@/services/user'
 
+import { createDirectStore } from 'direct-vuex'
+
 Vue.use(Vuex);
 
 type UserState = {
@@ -27,9 +29,18 @@ const user = {
     }
   }
 }
-export default new Vuex.Store({
-  state: {},
-  mutations: {},
-  actions: {},
-  modules: {}
-});
+
+const { store, rootActionContext, moduleActionContext } = createDirectStore({
+  modules: { user }
+})
+
+export default store
+
+export { rootActionContext, moduleActionContext }
+
+export type AppStore = typeof store
+declare module 'vuex' {
+  interface Store<S> {
+    direct: AppStore
+  }
+}
