@@ -13,11 +13,11 @@ import { User } from '@/models/User'
 
 export default defineComponent({
   name: 'HomePage',
-  setup() {
+  setup(_, { root }) {
     const users = ref<User[]>([])
     onBeforeMount(async () => {
-      const usersData = await fetchUsers()
-      users.value = usersData
+      // const usersData = await fetchUsers()
+      // users.value = usersData
     })
     return { users }
   }
