@@ -13,9 +13,11 @@ type UserState = {
 
 const user = {
   namespaced: true,
-  state: {
-    users: []
-  } as UserState,
+  state: (): UserState => {
+    return {
+      users: []
+    }
+  },
   getters: {},
   mutations: {
     SET_USERS(state: UserState, users: User[]) {
@@ -30,14 +32,27 @@ const user = {
   }
 }
 
-const { store, rootActionContext, moduleActionContext } = createDirectStore({
+const {
+  store,
+  rootActionContext,
+  moduleActionContext,
+  rootGetterContext,
+  moduleGetterContext
+} = createDirectStore({
   modules: { user }
 })
 
+// Export the direct-store instead of the classic Vuex Store
 export default store
 
-export { rootActionContext, moduleActionContext }
+export {
+  rootActionContext,
+  moduleActionContext,
+  rootGetterContext,
+  moduleGetterContext
+}
 
+// Enable types in the injected store '$store'
 export type AppStore = typeof store
 declare module 'vuex' {
   interface Store<S> {
