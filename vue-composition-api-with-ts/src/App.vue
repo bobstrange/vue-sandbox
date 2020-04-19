@@ -1,15 +1,18 @@
 <template>
   <div id="app">
-    <h1>Hello</h1>
+    <Timeline />
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
+import Timeline from '@/components/Timeline.vue'
 
 export default defineComponent({
   name: 'App',
-  components: {}
+  components: {
+    Timeline
+  }
 })
 </script>
 
