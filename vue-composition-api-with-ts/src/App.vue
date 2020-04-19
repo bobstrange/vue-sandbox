@@ -1,6 +1,10 @@
 <template>
   <div id="app">
-    <Timeline />
+    <section class="section">
+      <div class="container">
+        <Timeline />
+      </div>
+    </section>
   </div>
 </template>
 
