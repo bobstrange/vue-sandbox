@@ -4,7 +4,7 @@
 </template>
 
 <script>
-import { getMessage } from '../services/api'
+import { getMessage } from '@/services/api'
 
 export default {
   data() {
@@ -15,7 +15,9 @@ export default {
   },
   async created() {
     try {
-      this.message = await this.getMessage
+      console.log('before this.message: ', this.message)
+      this.message = await getMessage()
+      console.log('this.message: ', this.message)
     } catch (e) {
       this.error = 'Something went wrong'
     }
