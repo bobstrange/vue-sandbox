@@ -15,9 +15,7 @@ export default {
   },
   async created() {
     try {
-      console.log('before this.message: ', this.message)
       this.message = await getMessage()
-      console.log('this.message: ', this.message)
     } catch (e) {
       this.error = 'Something went wrong'
     }
