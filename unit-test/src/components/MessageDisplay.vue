@@ -1,6 +1,6 @@
 <template>
   <p v-if="error" data-testid="message-error">{{ error }}</p>
-  <p v-else data-testid="messege">{{ message.text }}</p>
+  <p v-else data-testid="message">{{ message.text }}</p>
 </template>
 
 <script>
@@ -16,7 +16,9 @@ export default {
   async created() {
     try {
       this.message = await getMessage()
+      console.log('message: ', this.message)
     } catch (e) {
+      console.log('Catch error:')
       this.error = 'Something went wrong'
     }
   }
