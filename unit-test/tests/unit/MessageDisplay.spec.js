@@ -9,7 +9,7 @@ beforeEach(() => {
 })
 
 describe('MessageDisplay', () => {
-  it.only('calls getMessage and displays message', async () => {
+  it('calls getMessage and displays message', async () => {
     const mockMessage = 'Hi there !'
     getMessage.mockResolvedValueOnce({ text: mockMessage })
 
