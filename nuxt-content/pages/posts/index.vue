@@ -1,7 +1,6 @@
 <template>
   <div class="container">
     <h1>Posts</h1>
-    <h2>Contents</h2>
     <ul>
       <li v-for="(content, index) in contents" :key="index">
         <nuxt-link :to="content.path">title: {{ content.title }}</nuxt-link>
