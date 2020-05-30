@@ -8,12 +8,20 @@
 import Vue from 'vue'
 
 export default Vue.extend({
-  async asyncData({ $content, params }) {
+  async asyncData({ $content, params, error }) {
     const { slug } = params
-    const doc = await $content('posts', slug || 'index').fetch()
-    return {
-      doc
+
+    let doc
+
+    try {
+      doc = await $content('posts', slug).fetch()
+    } catch (e) {
+      return error({
+        statusCode: 404,
+        message: 'Page not found'
+      })
     }
+    return { doc }
   },
   components: {}
 })
