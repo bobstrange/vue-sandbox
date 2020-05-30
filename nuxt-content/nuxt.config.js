@@ -51,6 +51,21 @@ export default {
    ** See https://axios.nuxtjs.org/options
    */
   axios: {},
+  /**
+   * Content module configuration
+   * See https://content.nuxtjs.org/configuration
+   */
+  content: {
+    apiPrefix: 'content/api',
+    dir: 'content',
+    fullTextSearchFields: ['title', 'description', 'slug', 'text'],
+    markdown: {
+      externalLInks: {
+        target: '_self',
+        rel: false
+      }
+    }
+  },
   /*
    ** Build configuration
    */
