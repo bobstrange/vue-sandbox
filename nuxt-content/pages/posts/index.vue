@@ -17,7 +17,7 @@ export default Vue.extend({
     const contents = await $content('posts')
       .only(['title', 'path'])
       .where({
-        isArchived: { $ne: true }
+        show: { $ne: false }
       })
       .fetch()
     return { contents }

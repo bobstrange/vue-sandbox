@@ -1,6 +1,7 @@
 ---
 title: How to introduce @nuxtjs/content
 slug: how-to-int-nuxtjs-content
+show: true
 ---
 
 # @nuxtjs/contentを導入する

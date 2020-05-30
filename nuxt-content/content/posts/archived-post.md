@@ -1,6 +1,6 @@
 ---
 title: Archived Post
-isArchived: true
+show: false
 ---
 
 # Archived post
