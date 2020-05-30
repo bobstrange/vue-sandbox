@@ -13,7 +13,7 @@ import Vue from 'vue'
 
 export default Vue.extend({
   async asyncData({ $content }) {
-    const doc = await $content('home').fetch()
+    const doc = await $content('index').fetch()
     return {
       doc
     }
