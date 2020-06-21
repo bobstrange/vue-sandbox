@@ -3,7 +3,7 @@
   <div class="mail-table">
     <tbody>
       <tr
-        v-for="email in emails"
+        v-for="email in unarchivedEmails"
         :key="id"
         :class="['clickable', email.read ? 'read' : '']"
         @click="email.read = true"
@@ -18,12 +18,13 @@
         <td class="date">
           {{ format(new Date(email.sentAt), "yyyy do MMM") }}
         </td>
+        <td><button @click="email.archived = true">Archive</button></td>
       </tr>
     </tbody>
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import { defineComponent } from "vue"
 import { format } from "date-fns"
 
@@ -76,6 +77,16 @@ export default defineComponent({
           read: false
         }
       ]
+    }
+  },
+  computed: {
+    sortedEmails() {
+      return this.emails.sort((left, right) => {
+        return left.sentAt < right.sentAt ? 1 : -1
+      })
+    },
+    unarchivedEmails() {
+      return this.sortedEmails.filter(email => !email.archived)
     }
   }
 })
