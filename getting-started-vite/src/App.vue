@@ -15,7 +15,9 @@
             <strong>{{ email.subject }}</strong> - {{ email.body }}
           </p>
         </td>
-        <td class="date">{{ email.sentAt }}</td>
+        <td class="date">
+          {{ format(new Date(email.sentAt), "yyyy do MMM") }}
+        </td>
       </tr>
     </tbody>
   </div>
@@ -23,11 +25,13 @@
 
 <script>
 import { defineComponent } from "vue"
+import { format } from "date-fns"
 
 export default defineComponent({
   name: "App",
   data() {
     return {
+      format,
       emails: [
         {
           id: 1,
