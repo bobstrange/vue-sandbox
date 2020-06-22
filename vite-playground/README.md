@@ -48,3 +48,12 @@ TypeScriptのコンパイルは、[esbuild](https://github.com/evanw/esbuild)を
 ただ、`esbuild` は、型情報無しでトランスパイルを行うので、 `const enum` とか、 `implicit type-only imports` とかが使えないとのこと。
 `tsconfig.json`に、`"isolatedModules": true` をセットしておいたほうが良いとのこと。
 
+## [CSS/JSON Importing](https://github.com/vitejs/vite#css--json-importing)
+
+JS内に、`.css`や、`.json`のimportを記述できる (`<script>` タグ内や、 `*.vue` SFCを含む)
+
+`.css` は、ファイル名が `.module.css` で終わっていない場合は、何もexportしない。
+([CSSModules](https://github.com/vitejs/vite#css-modules)の項目参照)
+
+`.css`ファイルを、Importすると開発時には、cssのルールが当たった状態になり、
+production buildでは、 `style.css` に定義が含まれるようになる。
