@@ -1,5 +1,23 @@
 # vite playground
 
+## [Getting Started](https://github.com/vitejs/vite#getting-started)
+
+Vue3でのProjectの作り方
+
+```shell
+npm init vite-app <app-name>
+
+# reactや、preactのtemplateもあるらしい
+# npm init vite-app --template react <app-name>
+# npm init vite-app --template preact <app-name>
+
+cd <app-name>
+npm install
+npm run dev
+```
+
+`@pika/react`, `@pika/react-dom`を使っているみたい
+
 ## [Bare Module Resolving](https://github.com/vitejs/vite#bare-module-resolving)
 Viteは、NodeJSや、module bundlerなどと同様に、bare module の名前解決ができる。
 
@@ -20,4 +38,13 @@ NodeJSや、webpackなどのmodule bundlerでは、パスがなくても名前�
 > Certain environments, like Node.js or bundle tools allow bare modules, without any path, as they have their own ways for finding modules and hooks to fine-tune them. But browsers do not support bare modules yet.
 
 [参考](https://javascript.info/modules-intro#no-bare-modules-allowed)
+
+## [TypeScript](https://github.com/vitejs/vite#typescript)
+Viteはデフォルトで、TypeScriptをサポートしている。
+ただ、コンパイル対象は`.ts` ファイルのみで、型のチェックはしてくれない。
+型のチェックは、エディタや、コマンド(npx tsc --noEmit)でやってね、ってこと。
+
+TypeScriptのコンパイルは、[esbuild](https://github.com/evanw/esbuild)を使用しているので、すごい早いらしい。
+ただ、`esbuild` は、型情報無しでトランスパイルを行うので、 `const enum` とか、 `implicit type-only imports` とかが使えないとのこと。
+`tsconfig.json`に、`"isolatedModules": true` をセットしておいたほうが良いとのこと。
 
