@@ -57,3 +57,26 @@ JS内に、`.css`や、`.json`のimportを記述できる (`<script>` タグ内�
 
 `.css`ファイルを、Importすると開発時には、cssのルールが当たった状態になり、
 production buildでは、 `style.css` に定義が含まれるようになる。
+
+## [Production build](https://github.com/vitejs/vite#production-build)
+
+Production環境用に、`vite build` でビルドができる。
+
+### [Mode and Environment vars](https://github.com/vitejs/vite#modes-and-environment-variables)
+デフォルトでは、`production` と `development` の2種類のモードがあるとのこと
+
+`vite` と `vite server` では `development`
+`vite build` では `production` がデフォルトで使用される。
+
+`--mode`を渡して、上書きできる。(`vite build --mode development`)
+
+環境変数は、project root配下の `.env`ファイルに定義できる
+
+```shell
+.env               # 全部の環境で読み込まれる
+.env.local         # 全部の環境で読み込まれる, git 管理対象外
+.env.[mode]        # [mode]の環境で読み込まれる
+.env.[mode].local  # [mode]の環境で読み込まれる, git管理対象外
+```
+
+**`VITE_`というプレフィックスが入って居る場合のみ、exposeされる**
