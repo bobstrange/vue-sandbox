@@ -21,7 +21,9 @@
       </tr>
     </tbody>
   </table>
-  <MailView v-if="selectedEmail" :email="selectedEmail" />
+  <ModalView v-if="selectedEmail" @closeModal="selectedEmail = null">
+    <MailView :email="selectedEmail" />
+  </ModalView>
 </template>
 
 <script lang="ts">
@@ -30,6 +32,7 @@ import { format } from 'date-fns'
 import axios from 'axios'
 
 import MailView from './MailView.vue'
+import ModalView from './ModalView.vue'
 
 const updateEmail = async email => {
   await axios.put(`http://localhost:3001/emails/${email.id}`, email)
@@ -72,7 +75,8 @@ export default defineComponent({
     }
   },
   components: {
-    MailView
+    MailView,
+    ModalView
   }
 })
 </script>
