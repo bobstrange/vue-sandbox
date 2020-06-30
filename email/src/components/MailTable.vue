@@ -17,7 +17,7 @@
         <td class="date">
           {{ format(new Date(email.sentAt), 'yyyy do MMM') }}
         </td>
-        <td><button @click="email.archived = true">Archive</button></td>
+        <td><button @click="onClickArchiveEmail(email)">Archive</button></td>
       </tr>
     </tbody>
   </table>
@@ -28,19 +28,28 @@ import { defineComponent } from 'vue'
 import { format } from 'date-fns'
 import axios from 'axios'
 
+const updateEmail = async email => {
+  await axios.put(`http://localhost:3001/emails/${email.id}`, email)
+}
+
 export default defineComponent({
   name: 'MailTable',
   async setup() {
     const { data: emails } = await axios.get('http://localhost:3001/emails')
-    const onClickReadEmail = async email => {
+    const onClickReadEmail = email => {
       email.read = true
-      await axios.put(`http://localhost:3001/emails/${email.id}`, email)
+      updateEmail(email)
+    }
+    const onClickArchiveEmail = email => {
+      email.archived = true
+      updateEmail(email)
     }
 
     return {
       format,
       emails,
-      onClickReadEmail
+      onClickReadEmail,
+      onClickArchiveEmail
     }
   },
   computed: {
