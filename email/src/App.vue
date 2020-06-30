@@ -11,12 +11,12 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue"
+import { defineComponent } from 'vue'
 
-import MailTable from "./components/MailTable.vue"
+import MailTable from './components/MailTable.vue'
 
 export default defineComponent({
-  name: "App",
+  name: 'App',
   components: {
     MailTable
   }
@@ -58,7 +58,7 @@ button.selected {
   cursor: pointer;
 }
 
-input[type="checkbox"] {
+input[type='checkbox'] {
   -webkit-appearance: none;
   cursor: pointer;
   width: 24px;
@@ -71,11 +71,11 @@ input[type="checkbox"] {
   padding: 10px;
 }
 
-input[type="checkbox"].partial-check {
+input[type='checkbox'].partial-check {
   background: #abc;
 }
 
-input[type="checkbox"]:checked {
+input[type='checkbox']:checked {
   background: #679;
 }
 
@@ -112,6 +112,9 @@ input[type="checkbox"]:checked {
 /* Email Modal */
 
 .email-display {
+  padding: 40px 0;
+  max-width: 1000px;
+  margin: auto;
   text-align: left;
 }
 
