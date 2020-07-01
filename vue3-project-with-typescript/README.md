@@ -25,3 +25,14 @@ You have several errors to have fixed.
 
 See this [commit](https://github.com/bobstrange/vue-sandbox/commit/5b4934cb7937628bc7990fd2164d8441b2c355f3)
 
+### Add vue-router-next to the project
+Run `npm install vue-router@next`
+
+- Add [router.ts](./src/router.ts).
+    - define several routes.
+    - export a router instance.
+- Add several pages.
+- Put `<router-view /> to [App.vue](./src/App.vue)
+- Fix [main.ts](./src/main.ts) to use router.
+
+See this [commit](https://github.com/bobstrange/vue-sandbox/commit/d92ecf53611943e49f353d670764442ccdd7c52a)
