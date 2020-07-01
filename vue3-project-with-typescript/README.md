@@ -9,32 +9,19 @@ Sandbox for creating a vue3 + TypeScript project with using other vue plugins.
 - [vue-i18n-next](https://github.com/intlify/vue-i18n-next)
 
 ## Memo
-Run the following command, cd <project> and `npm run serve` then I've got a error on src/shims-tsx.d.ts.
+### Create a project.
+
+Run @vue/cli create.
 
 ```shell
 npx @vue/cli create vue3-project-with-typescript --inlinePreset '{"plugins": {"@vue/cli-plugin-typescript": {"classComponent": false},"vue-cli-plugin-vue-next": {}}}'
 ```
 
-```
-8:36 Cannot use namespace 'Vue' as a type.
-     6 |     interface Element extends VNode {}
-     7 |     // tslint:disable no-empty-interface
-  >  8 |     interface ElementClass extends Vue {}
-       |                                    ^
-     9 |     interface IntrinsicElements {
-    10 |       [elem: string]: any
-    11 |     }
-E
-```
+You have several errors to have fixed.
 
-```
-10:7 Duplicate string index signature.
-     8 |     interface ElementClass extends Vue {}
-     9 |     interface IntrinsicElements {
-  > 10 |       [elem: string]: any
-       |       ^
-    11 |     }
-    12 |   }
-    13 | }
-V
-```
+1. Copy [shim.d.ts](https://github.com/vuejs/vue-router-next/blob/master/playground/shim.d.ts) from vue-router-next project and paste it into [shims-vue.d.ts](./src/shims-vue.d.ts).
+2. Remove [shims-tsx.d.ts](./src/shims-tsx.d.ts) for now.
+3. Use `defineComponent` instead of `Vue.extend`
+
+See this [commit](https://github.com/bobstrange/vue-sandbox/commit/5b4934cb7937628bc7990fd2164d8441b2c355f3)
+
