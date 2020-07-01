@@ -1,15 +1,15 @@
 <template>
   <div id="app">
-    <h1>Hello Vue3</h1>
+    <router-view />
   </div>
 </template>
 
 <script lang="ts">
-import Vue, { defineComponent } from "vue";
+import Vue, { defineComponent } from 'vue'
 export default defineComponent({
-  name: "App",
-  components: {},
-});
+  name: 'App',
+  components: {}
+})
 </script>
 
 <style>
