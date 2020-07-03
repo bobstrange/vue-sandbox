@@ -1,6 +1,6 @@
 <template>
   <nav>
-    <RouterLink :to="{ name: 'IndexPage' }"></RouterLink>
+    <RouterLink :to="{ name: 'PostsPage' }">Posts</RouterLink> |
     <RouterLink :to="{ name: 'UsersPage' }">Users</RouterLink>
   </nav>
 </template>
