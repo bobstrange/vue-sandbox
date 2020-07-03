@@ -2,10 +2,14 @@
   <h1>Posts</h1>
   <ul>
     <li v-for="post in posts" :key="post.id">
-      {{ post.title }}
+      <div class="post-list__item">
+        <router-link :to="{ name: 'PostPage', params: { id: post.id } }">{{
+          post.title
+        }}</router-link>
+      </div>
     </li>
   </ul>
-  <RouterView />
+  <router-view />
 </template>
 
 <script lang="ts">
@@ -16,6 +20,7 @@ import { fetchPosts } from '../apis/postClient'
 export default defineComponent({
   setup() {
     const posts = ref<Post[]>([])
+
     onBeforeMount(async () => {
       posts.value = (await fetchPosts()).data
     })

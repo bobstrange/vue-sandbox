@@ -6,17 +6,19 @@
 
 <script lang="ts">
 import { defineComponent, ref, onMounted, onBeforeMount } from 'vue'
+import { useRoute } from 'vue-router'
 import { Post } from '../types/Post'
 import { fetchPost } from '../apis/postClient'
 
 export default defineComponent({
   setup(_, context) {
-    const postId = 1
+    const postId = ref<number>(Number(useRoute().params.id))
     const post = ref<Post | null>(null)
 
     onBeforeMount(async () => {
-      post.value = (await fetchPost(postId)).data
+      post.value = (await fetchPost(postId.value)).data
     })
+
     return {
       post
     }
