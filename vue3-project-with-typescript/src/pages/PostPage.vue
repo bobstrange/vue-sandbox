@@ -1,0 +1,27 @@
+<template>
+  <h1>Post</h1>
+  <div>Title: {{ post.title }}</div>
+  <p>{{ post.body }}</p>
+</template>
+
+<script lang="ts">
+import { defineComponent, ref, onMounted, onBeforeMount } from 'vue'
+import { Post } from '../types/Post'
+import { fetchPost } from '../apis/postClient'
+
+export default defineComponent({
+  setup(_, context) {
+    const postId = 1
+    const post = ref<Post | null>(null)
+
+    onBeforeMount(async () => {
+      post.value = (await fetchPost(postId)).data
+    })
+    return {
+      post
+    }
+  }
+})
+</script>
+
+<style></style>

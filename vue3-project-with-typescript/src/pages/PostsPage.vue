@@ -5,6 +5,7 @@
       {{ post.title }}
     </li>
   </ul>
+  <RouterView />
 </template>
 
 <script lang="ts">
