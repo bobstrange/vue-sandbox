@@ -1,10 +1,10 @@
 import { createRouter, RouteRecordRaw, createWebHistory } from 'vue-router'
 import IndexPage from './pages/IndexPage.vue'
-import ProductsPage from './pages/ProductsPage.vue'
+import UsersPage from './pages/UsersPage.vue'
 
 const routes: RouteRecordRaw[] = [
   { path: '/', name: 'IndexPage', component: IndexPage },
-  { path: '/products', name: 'ProductsPage', component: ProductsPage }
+  { path: '/users', name: 'UsersPage', component: UsersPage }
 ]
 
 export const router = createRouter({

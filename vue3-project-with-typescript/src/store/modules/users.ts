@@ -6,7 +6,7 @@ const actions = {}
 
 const mutations = {}
 
-export const products = {
+export const users = {
   namespaced: true,
   state,
   getters,
