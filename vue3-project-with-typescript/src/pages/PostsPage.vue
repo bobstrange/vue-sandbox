@@ -1,15 +1,16 @@
 <template>
-  <h1>Posts</h1>
-  <ul>
+  <ul class="px-4 py-4">
     <li v-for="post in posts" :key="post.id">
-      <div class="post-list__item">
+      <div class="text-left text-lg px-2 py-1">
         <router-link :to="{ name: 'PostPage', params: { id: post.id } }">{{
           post.title
         }}</router-link>
       </div>
     </li>
   </ul>
-  <router-view :key="route.path" />
+  <div class="top-0 w-screen h-full fixed bg-black bg-opacity-25">
+    <router-view :key="route.path" />
+  </div>
 </template>
 
 <script lang="ts">

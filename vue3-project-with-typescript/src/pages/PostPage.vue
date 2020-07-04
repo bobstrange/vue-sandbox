@@ -1,7 +1,11 @@
 <template>
-  <h1>Post</h1>
-  <div>Title: {{ post.title }}</div>
-  <p>{{ post.body }}</p>
+  <div
+    class="relative flex flex-row bg-white pin mx-4 m-32 mx-auto py-4 text-left rounded shadow"
+  >
+    <h1>Post</h1>
+    <div>Title: {{ post.title }}</div>
+    <p>{{ post.body }}</p>
+  </div>
 </template>
 
 <script lang="ts">
