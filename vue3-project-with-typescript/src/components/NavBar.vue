@@ -49,4 +49,10 @@ export default defineComponent({
 })
 </script>
 
-<style></style>
+<style scoped>
+.router-link-active {
+  @apply font-bold;
+  @apply text-xl;
+  @apply underline;
+}
+</style>
