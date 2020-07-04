@@ -9,24 +9,27 @@
       </div>
     </li>
   </ul>
-  <router-view />
+  <router-view :key="route.path" />
 </template>
 
 <script lang="ts">
 import { defineComponent, ref, onBeforeMount } from 'vue'
 import { Post } from '../types/Post'
 import { fetchPosts } from '../apis/postClient'
+import { useRoute } from 'vue-router'
 
 export default defineComponent({
   setup() {
     const posts = ref<Post[]>([])
+    const route = useRoute()
 
     onBeforeMount(async () => {
       posts.value = (await fetchPosts()).data
     })
 
     return {
-      posts
+      posts,
+      route
     }
   }
 })
