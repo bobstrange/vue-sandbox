@@ -13,7 +13,7 @@ import { fetchPost } from '../apis/postClient'
 export default defineComponent({
   setup(_, context) {
     const postId = ref<number>(Number(useRoute().params.id))
-    const post = ref<Post | null>(null)
+    const post = ref<Post | {}>({})
 
     onBeforeMount(async () => {
       post.value = (await fetchPost(postId.value)).data
