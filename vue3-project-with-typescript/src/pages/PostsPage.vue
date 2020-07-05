@@ -10,21 +10,32 @@
   </ul>
   <div
     class="flex top-0 w-screen h-full fixed bg-black bg-opacity-25 justify-center items-center"
+    v-if="isModalOpen"
+    @click="onModalClick"
   >
     <router-view :key="route.path" class="inner-view" />
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, onBeforeMount } from 'vue'
+import { defineComponent, ref, onBeforeMount, computed } from 'vue'
 import { Post } from '../types/Post'
 import { fetchPosts } from '../apis/postClient'
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 
 export default defineComponent({
   setup() {
     const posts = ref<Post[]>([])
     const route = useRoute()
+    const router = useRouter()
+
+    const onModalClick = () => {
+      router.push({ name: 'PostsPage' })
+    }
+
+    const isModalOpen = computed(() => {
+      return route.path !== '/posts'
+    })
 
     onBeforeMount(async () => {
       posts.value = (await fetchPosts()).data
@@ -32,7 +43,9 @@ export default defineComponent({
 
     return {
       posts,
-      route
+      route,
+      isModalOpen,
+      onModalClick
     }
   }
 })
