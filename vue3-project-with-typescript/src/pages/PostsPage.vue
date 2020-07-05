@@ -8,8 +8,10 @@
       </div>
     </li>
   </ul>
-  <div class="top-0 w-screen h-full fixed bg-black bg-opacity-25">
-    <router-view :key="route.path" />
+  <div
+    class="flex top-0 w-screen h-full fixed bg-black bg-opacity-25 justify-center items-center"
+  >
+    <router-view :key="route.path" class="inner-view" />
   </div>
 </template>
 
@@ -36,4 +38,9 @@ export default defineComponent({
 })
 </script>
 
-<style></style>
+<style scoped>
+.inner-view {
+  @apply w-2/3;
+  height: 32rem;
+}
+</style>

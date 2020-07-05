@@ -1,10 +1,9 @@
 <template>
-  <div
-    class="relative flex flex-row bg-white pin mx-4 m-32 mx-auto py-4 text-left rounded shadow"
-  >
-    <h1>Post</h1>
-    <div>Title: {{ post.title }}</div>
-    <p>{{ post.body }}</p>
+  <div class="bg-white pin px-8 py-8 text-left rounded-lg shadow">
+    <div class="font-bold text-xl mb-2">{{ post.title }}</div>
+    <p class="text-gray-700 text-base">
+      {{ post.body }}
+    </p>
   </div>
 </template>
 
