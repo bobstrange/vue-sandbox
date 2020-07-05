@@ -1,6 +1,7 @@
 <template>
-  <h1>Users Page</h1>
-  <UserList :users="users" />
+  <div>
+    <UserList :users="users" />
+  </div>
 </template>
 
 <script lang="ts">
