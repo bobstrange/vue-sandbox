@@ -1,4 +1,12 @@
-import { MutationTree, ActionContext, ActionTree } from 'vuex'
+import {
+  MutationTree,
+  ActionContext,
+  ActionTree,
+  Store,
+  CommitOptions,
+  DispatchOptions,
+  Module
+} from 'vuex'
 import { Post } from '@/types/Post'
 import { fetchPosts } from '@/apis/postClient'
 export type PostState = {
@@ -27,6 +35,28 @@ type PostGetters = {
   posts(state: PostState): Post[]
 }
 
+type PostModule = Omit<
+  Module<PostState, PostState>,
+  'getters' | 'commit' | 'dispatch'
+> & {
+  getters: PostGetters
+} & {
+  commit<
+    K extends keyof PostMutations,
+    P extends Parameters<PostMutations[K]>[1]
+  >(
+    key: K,
+    payload: P,
+    options?: CommitOptions
+  ): ReturnType<PostMutations[K]>
+} & {
+  dispatch<K extends keyof PostActions>(
+    key: K,
+    payload: Parameters<PostActions[K]>[1],
+    options?: DispatchOptions
+  ): ReturnType<PostActions[K]>
+}
+
 const state: PostState = {
   posts: []
 }
@@ -51,7 +81,7 @@ const mutations: MutationTree<PostState> & PostMutations = {
   }
 }
 
-export const posts = {
+export const posts: PostModule = {
   namespaced: true,
   state,
   getters,
