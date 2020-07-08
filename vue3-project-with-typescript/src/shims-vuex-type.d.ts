@@ -28,9 +28,6 @@ declare module 'vuex' {
     rootGetters: RootGetters
   }
   type Actions<S, A, G = {}, M = {}> = {
-    [K in keyof A]: (
-      ctx: ExActionContext<S, A, G, M>,
-      payload: A[K]
-    ) => Promise<any>
+    [K in keyof A]: (ctx: ExActionContext<S, A, G, M>, payload: A[K]) => void
   }
 }
