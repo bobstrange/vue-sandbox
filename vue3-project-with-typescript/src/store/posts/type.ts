@@ -6,7 +6,7 @@ export interface S {
 
 export interface G {
   posts: Post[]
-  postById: (id: number) => Post?
+  postById: (id: number) => Post | undefined
 }
 
 export interface RG {
@@ -15,7 +15,7 @@ export interface RG {
 }
 
 export interface M {
-  UPDATE_POSTS: void
+  UPDATE_POSTS: Post[]
 }
 
 export interface RM {
@@ -23,7 +23,7 @@ export interface RM {
 }
 
 export interface A {
-  UPDATE_POSTS: void
+  UPDATE_POSTS: Post[]
 }
 
 export interface RA {
