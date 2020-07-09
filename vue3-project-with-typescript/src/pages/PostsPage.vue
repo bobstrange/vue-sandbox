@@ -22,12 +22,14 @@
 <script lang="ts">
 import { defineComponent, ref, onBeforeMount, computed } from 'vue'
 import { Post } from '../types/Post'
-import { fetchPosts } from '../apis/postClient'
 import { useRoute, useRouter } from 'vue-router'
+import { usePostsStore } from '@/store/posts'
 
 export default defineComponent({
   setup() {
-    const posts = ref<Post[]>([])
+    const postsStore = usePostsStore()
+    const posts = computed(() => postsStore.posts)
+
     const route = useRoute()
     const router = useRouter()
 
@@ -39,8 +41,8 @@ export default defineComponent({
       return route.path !== '/posts'
     })
 
-    onBeforeMount(async () => {
-      posts.value = (await fetchPosts()).data
+    onBeforeMount(() => {
+      postsStore.updatePosts()
     })
 
     return {
