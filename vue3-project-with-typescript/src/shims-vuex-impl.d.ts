@@ -1,5 +1,5 @@
 import 'vuex'
-import * as Posts from '@/store/posts/type'
+import * as Posts from '@/vuex_store/posts/type'
 
 declare module 'vuex' {
   type RootState = {
