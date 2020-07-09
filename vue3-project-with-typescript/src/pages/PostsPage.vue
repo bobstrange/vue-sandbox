@@ -20,7 +20,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, onBeforeMount, computed } from 'vue'
+import { defineComponent, ref, onBeforeMount, computed, inject } from 'vue'
 import { Post } from '../types/Post'
 import { useRoute, useRouter } from 'vue-router'
 import { usePostsStore } from '@/store/posts'
@@ -28,6 +28,7 @@ import { usePostsStore } from '@/store/posts'
 export default defineComponent({
   setup() {
     const postsStore = usePostsStore()
+
     const posts = computed(() => postsStore.posts)
 
     const route = useRoute()

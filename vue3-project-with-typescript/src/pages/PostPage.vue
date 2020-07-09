@@ -8,18 +8,21 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, onMounted, onBeforeMount } from 'vue'
+import { defineComponent, ref, onMounted, onBeforeMount, computed } from 'vue'
 import { useRoute } from 'vue-router'
 import { Post } from '../types/Post'
 import { fetchPost } from '../apis/postClient'
+import { usePostsStore } from '@/store/posts'
 
 export default defineComponent({
   setup(_, context) {
+    const postsStore = usePostsStore()
+
     const postId = ref<number>(Number(useRoute().params.id))
-    const post = ref<Post | {}>({})
+    const post = computed(() => postsStore.postsById(postId.value))
 
     onBeforeMount(async () => {
-      post.value = (await fetchPost(postId.value)).data
+      // post.value = (await fetchPost(postId.value)).data
     })
 
     return {

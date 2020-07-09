@@ -1,9 +1,9 @@
 import { Post } from '@/types/Post'
-import { reactive, UnwrapRef } from 'vue'
+import { reactive, UnwrapRef, InjectionKey, inject } from 'vue'
 
 import { fetchPosts } from '@/apis/postClient'
 
-export const usePostsStore = () => {
+export const createPostsStore = () => {
   const state: UnwrapRef<{ posts: Post[] }> = reactive({
     posts: []
   })
@@ -23,4 +23,14 @@ export const usePostsStore = () => {
   }
 }
 
-export type PostStore = ReturnType<typeof usePostsStore>
+export type PostsStore = ReturnType<typeof createPostsStore>
+
+export const PostsStoreKey: InjectionKey<PostsStore> = Symbol('PostsStore')
+
+export const usePostsStore = () => {
+  const store = inject(PostsStoreKey)
+  if (!store) {
+    throw new Error('PostsStoreKey is not provided')
+  }
+  return store
+}
