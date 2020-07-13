@@ -19,7 +19,9 @@ export default defineComponent({
     const postsStore = usePostsStore()
 
     const postId = ref<number>(Number(useRoute().params.id))
-    const post = computed(() => postsStore.postsById(postId.value))
+    const post = computed<Post | {}>(
+      () => postsStore.postById(postId.value) || {}
+    )
 
     onBeforeMount(async () => {
       // post.value = (await fetchPost(postId.value)).data

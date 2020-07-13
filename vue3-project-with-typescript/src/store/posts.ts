@@ -12,7 +12,7 @@ export const createPostsStore = () => {
     get posts() {
       return state.posts
     },
-    postsById(id: number) {
+    postById(id: number) {
       return state.posts.find(post => post.id === id)
     },
     async updatePosts() {
