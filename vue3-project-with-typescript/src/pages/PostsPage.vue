@@ -12,7 +12,7 @@
     <div
       class="flex top-0 w-screen h-full fixed bg-black bg-opacity-25 justify-center items-center"
       v-if="isModalOpen"
-      @click="onModalClick"
+      @click.self="onModalClick"
     >
       <router-view :key="route.path" class="inner-view" />
     </div>
