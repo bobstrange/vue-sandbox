@@ -1,7 +1,7 @@
 import { Post } from '@/types/Post'
 import { reactive, UnwrapRef, InjectionKey, inject } from 'vue'
 
-import { fetchPosts } from '@/apis/postClient'
+import { fetchPosts, updatePost as sendUpdatePost } from '@/apis/postClient'
 
 export const createPostsStore = () => {
   const state: UnwrapRef<{ posts: Post[] }> = reactive({
@@ -14,6 +14,12 @@ export const createPostsStore = () => {
     },
     postById(id: number) {
       return state.posts.find(post => post.id === id)
+    },
+    async updatePost(postdata: Post) {
+      const post = (await sendUpdatePost(postdata)).data
+      const id = post.id
+      const index = state.posts.findIndex(post => post.id === id)
+      state.posts[index] = post
     },
     async updatePosts() {
       const response = await fetchPosts()
