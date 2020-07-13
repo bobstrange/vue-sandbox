@@ -1,10 +1,29 @@
 <template>
-  <div class="bg-white pin px-8 py-8 text-left rounded-lg shadow">
-    <div class="font-bold text-xl mb-2">{{ post.title }}</div>
-    <p class="text-gray-700 text-base">
-      {{ post.body }}
-    </p>
-  </div>
+  <form
+    class="flex flex-col bg-white pin px-8 py-8 text-left rounded-lg shadow"
+  >
+    <input
+      class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 mb-6 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-green-500"
+      type="text"
+      v-model="post.title"
+    />
+    <textarea
+      class="flex-1 bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 mb-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-green-500"
+      v-model="post.body"
+    />
+
+    <div class="items-center flex-row justify-end">
+      <div class="w-1/3 block">
+        <button
+          class="shadow bg-green-500 hover:bg-green-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
+          type="button"
+          @click="save"
+        >
+          Save
+        </button>
+      </div>
+    </div>
+  </form>
 </template>
 
 <script lang="ts">
@@ -23,12 +42,18 @@ export default defineComponent({
       () => postsStore.postById(postId.value) || {}
     )
 
+    const save = async ({ target }: { target: HTMLInputElement }) => {
+      const data = { ...post.value, body: target.value } as Post
+      await postsStore.updatePost(data)
+    }
+
     onBeforeMount(async () => {
       // post.value = (await fetchPost(postId.value)).data
     })
 
     return {
-      post
+      post,
+      save
     }
   }
 })
