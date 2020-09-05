@@ -53,6 +53,7 @@ let total = 0
 effect(() => {
   total = product.price * product.quantity
 })
+
 effect(() => {
   salePrice = product.price * 0.8
 })
