@@ -2,7 +2,7 @@
   <div class="dashboard">
     <h1>Dashboard</h1>
     <template v-if="!isLoading">
-      <p v-for="event in events" :key="event.id">{event.title}</p>
+      <EventCard v-for="event in events" :key="event.id" :event="event" />
     </template>
     <p v-else>
       Loading contents...
@@ -12,16 +12,24 @@
 
 <script lang="ts">
 import { defineComponent, ref } from "vue";
+import EventCard from "./EventCard.vue";
+import { Event } from "../types";
 
 export default defineComponent({
+  name: "Dashbaord",
   setup() {
     const isLoading = ref(true);
-    const events = ref([]);
-
+    const events = ref<Event[]>([
+      { title: "foo", time: "aaa", date: new Date() },
+    ]);
+    isLoading.value = false;
     return {
       isLoading,
       events,
     };
+  },
+  components: {
+    EventCard,
   },
 });
 </script>
