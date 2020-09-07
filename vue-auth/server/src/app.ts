@@ -1,14 +1,19 @@
 import express, { Request, Response, NextFunction } from "express";
 import cors from "cors";
 import { verify, sign } from "jsonwebtoken";
-import events from "../db/events.json";
 import fs from "fs";
+import events from "../db/events.json";
+import { SECRET_KEY } from "./config";
 
-const secretKey = process.env.SECRET_KEY;
-if (!secretKey) {
-  throw new Error("SECRET_KEY must be defined");
+declare global {
+  namespace Express {
+    export interface Request {
+      token?: string;
+    }
+  }
 }
 
+const secretKey = SECRET_KEY;
 const app = express();
 app.use(cors());
 app.use(express.json());
@@ -19,16 +24,18 @@ app.get("/", (req, res) => {
   });
 });
 
-app.get("/dashboard", (req, res) => {
-  verify(req.token, secretKey, (err) => {
-    if (err) {
-      res.sendStatus(401);
-    } else {
-      res.json({
-        events: events,
-      });
-    }
-  });
+app.get("/dashboard", verifyTokenHandler, (req, res) => {
+  if (req.token) {
+    verify(req.token, secretKey, (err) => {
+      if (err) {
+        res.sendStatus(401);
+      } else {
+        res.json({
+          events: events,
+        });
+      }
+    });
+  }
 });
 
 app.post("/register", async (req, res) => {
