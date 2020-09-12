@@ -11,7 +11,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from "vue";
+import { defineComponent, onBeforeMount, ref } from "vue";
+import axios from "axios";
 import EventCard from "./EventCard.vue";
 import { Event } from "../types";
 
@@ -19,10 +20,12 @@ export default defineComponent({
   name: "Dashbaord",
   setup() {
     const isLoading = ref(true);
-    const events = ref<Event[]>([
-      { title: "foo", time: "aaa", date: new Date() },
-    ]);
-    isLoading.value = false;
+    const events = ref<Event[]>([]);
+    onBeforeMount(async () => {
+      const result = await axios.get<Event[]>("//localhost:8080/dashboard");
+      events.value = result.data;
+      isLoading.value = false;
+    });
     return {
       isLoading,
       events,
