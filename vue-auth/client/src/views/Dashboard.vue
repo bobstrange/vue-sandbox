@@ -22,8 +22,10 @@ export default defineComponent({
     const isLoading = ref(true);
     const events = ref<Event[]>([]);
     onBeforeMount(async () => {
-      const result = await axios.get<Event[]>("//localhost:8080/dashboard");
-      events.value = result.data;
+      const result = await axios.get<{ events: Event[] }>(
+        "//localhost:8080/dashboard"
+      );
+      events.value = result.data.events;
       isLoading.value = false;
     });
     return {

@@ -31,9 +31,7 @@ app.get("/dashboard", verifyTokenHandler, (req, res) => {
       if (err) {
         res.sendStatus(401);
       } else {
-        res.json({
-          events: events,
-        });
+        res.json(events);
       }
     });
   }
