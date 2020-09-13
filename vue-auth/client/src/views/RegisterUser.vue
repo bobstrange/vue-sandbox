@@ -1,6 +1,6 @@
 <template>
   <div>
-    <form>
+    <form @submit.prevent="register">
       <label for="name">Name:</label>
       <input type="text" v-model="name" name="name" value />
 
@@ -37,6 +37,7 @@ export default defineComponent({
       name,
       email,
       password,
+      register,
     };
   },
 });

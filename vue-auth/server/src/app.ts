@@ -2,6 +2,7 @@ import express, { Request, Response, NextFunction } from "express";
 import cors from "cors";
 import { verify, sign } from "jsonwebtoken";
 import fs from "fs";
+import path from "path";
 import events from "../db/events.json";
 import { SECRET_KEY } from "./config";
 
@@ -39,7 +40,7 @@ app.get("/dashboard", verifyTokenHandler, (req, res) => {
 });
 
 app.post("/register", async (req, res) => {
-  if (req.body) {
+  if (!req.body) {
     return res.sendStatus(401);
   }
 
@@ -51,7 +52,11 @@ app.post("/register", async (req, res) => {
 
   const data = JSON.stringify(user, null, 2);
   try {
-    await fs.promises.writeFile("../db/user.json", data);
+    console.log();
+    await fs.promises.writeFile(
+      path.join(__dirname, "../", "db/user.json"),
+      data
+    );
   } catch (error) {
     console.error(error);
     return res.status(401).json({
