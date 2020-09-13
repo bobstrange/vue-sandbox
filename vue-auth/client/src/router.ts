@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
-import Index from "./components/Index.vue";
-import Dashboard from "./components/Dashboard.vue";
+import Index from "./views/Index.vue";
+import Dashboard from "./views/Dashboard.vue";
+import RegisterUser from "./views/RegisterUser.vue";
 
 export const routes = createRouter({
   history: createWebHistory(),
@@ -14,6 +15,11 @@ export const routes = createRouter({
       path: "/dashboard",
       name: "dashboard",
       component: Dashboard,
+    },
+    {
+      path: "/register",
+      name: "register",
+      component: RegisterUser,
     },
   ],
 });
