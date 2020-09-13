@@ -13,7 +13,7 @@
 <script lang="ts">
 import { defineComponent, onBeforeMount, ref } from "vue";
 import axios from "axios";
-import EventCard from "./EventCard.vue";
+import EventCard from "../components/EventCard.vue";
 import { Event } from "../types";
 
 export default defineComponent({
