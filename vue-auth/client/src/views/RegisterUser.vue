@@ -17,6 +17,7 @@
 
 <script lang="ts">
 import { defineComponent, ref } from "vue";
+import { useRouter } from "vue-router";
 import { useStore } from "vuex";
 
 export default defineComponent({
@@ -25,11 +26,16 @@ export default defineComponent({
     const email = ref("");
     const password = ref("");
     const store = useStore();
-    const register = () => {
-      store.dispatch("register", {
+    const router = useRouter();
+
+    const register = async () => {
+      await store.dispatch("register", {
         name: name.value,
         email: email.value,
         password: password.value,
+      });
+      router.push({
+        name: "dashboard",
       });
     };
 
