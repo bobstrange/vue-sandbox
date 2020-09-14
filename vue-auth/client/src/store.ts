@@ -11,9 +11,7 @@ const state: State = {
 };
 
 export const store = createStore({
-  state: {
-    user: {},
-  },
+  state,
   mutations: {
     SET_USER_DATA(state, userData) {
       state.user = userData;
@@ -29,6 +27,10 @@ export const store = createStore({
         "//localhost:8080/register",
         credentials
       );
+      commit("SET_USER_DATA", response.data);
+    },
+    async login({ commit }, credentials) {
+      const response = await axios.post("//localhost:8080/login", credentials);
       commit("SET_USER_DATA", response.data);
     },
   },
