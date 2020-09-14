@@ -71,7 +71,9 @@ app.post("/register", async (req, res) => {
 });
 
 app.post("/login", async (req, res) => {
-  const userDB: unknown = fs.readFileSync("../db/user.json");
+  const userDB: unknown = fs.readFileSync(
+    path.join(__dirname, "../", "db/user.json")
+  );
   const userInfo = JSON.parse(userDB as string);
   if (
     req.body?.email === userInfo.email &&
