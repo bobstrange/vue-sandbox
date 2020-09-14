@@ -17,7 +17,7 @@ export default defineComponent({
 });
 </script>
 
-<style scoped>
+<style>
 body {
   text-align: center;
   color: #2c3e50;
@@ -64,7 +64,6 @@ input {
   height: 2.6em;
   padding: 0.5em;
   margin-bottom: 1em;
-  font: 1em "Avenir", Helvetica, sans-serif;
 }
 
 h1 {
