@@ -1,6 +1,16 @@
 <template>
   <div class="home">
-    Hi there!
+    <h1>Hi there!</h1>
+    <div>
+      To use this app you'll need to
+      <router-link :to="{ name: 'login' }">
+        Login
+      </router-link>
+      or
+      <router-link :to="{ name: 'register' }">
+        Register
+      </router-link>
+    </div>
   </div>
 </template>
 

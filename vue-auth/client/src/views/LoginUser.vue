@@ -8,6 +8,9 @@
       <input type="password" v-model="password" value />
 
       <button type="submit" name="button">Login</button>
+      <router-link :to="{ name: 'register' }">
+        Don't have an account? Register.
+      </router-link>
     </form>
   </div>
 </template>
