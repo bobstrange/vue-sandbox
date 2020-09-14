@@ -10,8 +10,15 @@ const state: State = {
   user: null,
 };
 
+const getters = {
+  loggedIn(state) {
+    return !!state.user;
+  },
+};
+
 export const store = createStore({
   state,
+  getters,
   mutations: {
     SET_USER_DATA(state, userData) {
       state.user = userData;

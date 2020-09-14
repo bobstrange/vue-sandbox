@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <h1>Hi there!</h1>
-    <div>
+    <div v-if="isLoggedIn">
       To use this app you'll need to
       <router-link :to="{ name: 'login' }">
         Login
@@ -15,9 +15,20 @@
 </template>
 
 <script>
-import { defineComponent } from "vue";
+import { computed, defineComponent } from "vue";
+import { useStore } from "vuex";
 
-export default defineComponent({});
+export default defineComponent({
+  setup() {
+    const store = useStore();
+    const isLoggedIn = computed(() => {
+      return store.getters.isLoggedIn;
+    });
+    return {
+      isLoggedIn,
+    };
+  },
+});
 </script>
 
 <style></style>
