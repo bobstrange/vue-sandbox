@@ -2,6 +2,7 @@
   <div class="nav">
     <router-link :to="{ name: 'home' }">Home</router-link>
     <router-link :to="{ name: 'dashboard' }">Dashboard</router-link>
+    <router-link :to="{ name: 'login' }" class="button">Login</router-link>
   </div>
 </template>
 
@@ -25,5 +26,18 @@ a {
   text-decoration: none;
   border-top: 2px solid transparent;
   border-bottom: 2px solid transparent;
+}
+
+button,
+.button {
+  margin-left: auto;
+  background: white;
+  text-decoration: none;
+  color: #2c3e50;
+}
+
+button,
+.button.router-link-active {
+  color: #2c3e50;
 }
 </style>
