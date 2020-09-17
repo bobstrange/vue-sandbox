@@ -14,16 +14,13 @@
   </div>
 </template>
 
-<script>
-import { computed, defineComponent } from "vue";
-import { useStore } from "vuex";
+<script lang="ts">
+import { defineComponent } from "vue";
+import { useAuthentication } from "../use/useAuthentication";
 
 export default defineComponent({
   setup() {
-    const store = useStore();
-    const isLoggedIn = computed(() => {
-      return store.getters.isLoggedIn;
-    });
+    const { isLoggedIn } = useAuthentication();
     return {
       isLoggedIn,
     };
