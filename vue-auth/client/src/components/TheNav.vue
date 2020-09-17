@@ -2,12 +2,29 @@
   <div class="nav">
     <router-link :to="{ name: 'home' }">Home</router-link>
     <router-link :to="{ name: 'dashboard' }">Dashboard</router-link>
-    <router-link :to="{ name: 'login' }" class="button">Login</router-link>
+    <router-link :to="{ name: 'login' }" class="button" v-if="!isLoggedIn"
+      >Login</router-link
+    >
   </div>
 </template>
 
-<script>
-export default {};
+<script lang="ts">
+import { computed, defineComponent } from "vue";
+
+export default defineComponent({
+  setup(props) {
+    const isLoggedIn = computed(() => {
+      return props.isLoggedIn;
+    });
+    return { isLoggedIn };
+  },
+  props: {
+    isLoggedIn: {
+      type: Boolean,
+      required: true,
+    },
+  },
+});
 </script>
 
 <style scoped>

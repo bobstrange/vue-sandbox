@@ -3,8 +3,8 @@ import { useStore } from "vuex";
 
 export function useAuthentication() {
   const store = useStore();
-  const isLoggedIn = computed(() => {
-    return store.getters.isLoggedIn;
+  const isLoggedIn = computed<boolean>(() => {
+    return store.getters.loggedIn;
   });
   return {
     isLoggedIn,

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <TheNav />
+    <TheNav :isLoggedIn="isLoggedIn" />
     <router-view class="page" />
   </div>
 </template>
@@ -8,9 +8,16 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import TheNav from "./components/TheNav.vue";
+import { useAuthentication } from "./use/useAuthentication";
 
 export default defineComponent({
   name: "App",
+  setup() {
+    const { isLoggedIn } = useAuthentication();
+    return {
+      isLoggedIn,
+    };
+  },
   components: {
     TheNav,
   },

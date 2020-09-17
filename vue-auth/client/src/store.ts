@@ -11,7 +11,7 @@ const state: State = {
 };
 
 const getters = {
-  loggedIn(state) {
+  loggedIn(state): boolean {
     return !!state.user;
   },
 };
