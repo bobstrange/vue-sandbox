@@ -27,6 +27,10 @@ export const store = createStore({
         "Authorization"
       ] = `Bearer ${userData.token}`;
     },
+    CLEAR_USER_DATA() {
+      localStorage.removeItem("user");
+      location.reload();
+    },
   },
   actions: {
     async register({ commit }, credentials) {
@@ -39,6 +43,9 @@ export const store = createStore({
     async login({ commit }, credentials) {
       const response = await axios.post("//localhost:8080/login", credentials);
       commit("SET_USER_DATA", response.data);
+    },
+    async logout({ commit }) {
+      commit("CLEAR_USER_DATA");
     },
   },
 });

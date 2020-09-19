@@ -2,9 +2,12 @@
   <div class="nav">
     <router-link :to="{ name: 'home' }">Home</router-link>
     <router-link :to="{ name: 'dashboard' }">Dashboard</router-link>
-    <router-link :to="{ name: 'login' }" class="button" v-if="!isLoggedIn"
-      >Login</router-link
-    >
+    <router-link :to="{ name: 'login' }" class="button" v-if="!isLoggedIn">
+      Login
+    </router-link>
+    <button v-else type="button" class="logout" @click="logout">
+      Logout
+    </button>
   </div>
 </template>
 
@@ -12,11 +15,17 @@
 import { computed, defineComponent } from "vue";
 
 export default defineComponent({
-  setup(props) {
+  setup(props, context) {
     const isLoggedIn = computed(() => {
       return props.isLoggedIn;
     });
-    return { isLoggedIn };
+    const logout = () => {
+      context.emit("onLogoutClicked");
+    };
+    return {
+      isLoggedIn,
+      logout,
+    };
   },
   props: {
     isLoggedIn: {

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <TheNav :isLoggedIn="isLoggedIn" />
+    <TheNav :isLoggedIn="isLoggedIn" @onLogoutClicked="logout" />
     <router-view class="page" />
   </div>
 </template>
@@ -13,9 +13,10 @@ import { useAuthentication } from "./use/useAuthentication";
 export default defineComponent({
   name: "App",
   setup() {
-    const { isLoggedIn } = useAuthentication();
+    const { isLoggedIn, logout } = useAuthentication();
     return {
       isLoggedIn,
+      logout,
     };
   },
   components: {

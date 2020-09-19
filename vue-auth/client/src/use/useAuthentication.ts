@@ -6,7 +6,11 @@ export function useAuthentication() {
   const isLoggedIn = computed<boolean>(() => {
     return store.getters.loggedIn;
   });
+  const logout = async () => {
+    return await store.dispatch("logout");
+  };
   return {
     isLoggedIn,
+    logout,
   };
 }
