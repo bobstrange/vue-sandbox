@@ -1,7 +1,9 @@
 <template>
   <div class="nav">
     <router-link :to="{ name: 'home' }">Home</router-link>
-    <router-link :to="{ name: 'dashboard' }">Dashboard</router-link>
+    <router-link :to="{ name: 'dashboard' }" v-if="isLoggedIn">
+      Dashboard
+    </router-link>
     <router-link :to="{ name: 'login' }" class="button" v-if="!isLoggedIn">
       Login
     </router-link>
