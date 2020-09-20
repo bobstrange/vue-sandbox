@@ -8,6 +8,9 @@
       <input type="password" v-model="password" value />
 
       <button type="submit" name="button">Login</button>
+
+      <p>{{ error }}</p>
+
       <router-link :to="{ name: 'register' }">
         Don't have an account? Register.
       </router-link>
@@ -24,20 +27,29 @@ export default defineComponent({
   setup() {
     const email = ref("");
     const password = ref("");
+    const error = ref<string>(null);
     const store = useStore();
     const router = useRouter();
 
     const login = async () => {
-      await store.dispatch("login", {
-        email: email.value,
-        password: password.value,
-      });
-      router.push({ name: "dashboard" });
+      try {
+        await store.dispatch("login", {
+          email: email.value,
+          password: password.value,
+        });
+        router.push({ name: "dashboard" });
+      } catch (e) {
+        console.log(e.response);
+        console.log(e.response.data);
+        console.log(e.response.data.error);
+        error.value = e.response.data.error;
+      }
     };
     return {
       email,
       password,
       login,
+      error,
     };
   },
 });

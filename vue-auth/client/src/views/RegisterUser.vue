@@ -11,6 +11,10 @@
       <input type="password" v-model="password" value />
 
       <button type="submit" name="button">Register</button>
+
+      <ul>
+        <li v-for="(error, index) in errors" :key="index">{{ error }}</li>
+      </ul>
       <router-link :to="{ name: 'register' }">
         Already have an account? Login.
       </router-link>
@@ -28,18 +32,23 @@ export default defineComponent({
     const name = ref("");
     const email = ref("");
     const password = ref("");
+    const errors = ref<string[]>([]);
     const store = useStore();
     const router = useRouter();
 
     const register = async () => {
-      await store.dispatch("register", {
-        name: name.value,
-        email: email.value,
-        password: password.value,
-      });
-      router.push({
-        name: "dashboard",
-      });
+      try {
+        await store.dispatch("register", {
+          name: name.value,
+          email: email.value,
+          password: password.value,
+        });
+        router.push({
+          name: "dashboard",
+        });
+      } catch (e) {
+        errors.value = e.response.data.errors;
+      }
     };
 
     return {
@@ -47,6 +56,7 @@ export default defineComponent({
       email,
       password,
       register,
+      errors,
     };
   },
 });
