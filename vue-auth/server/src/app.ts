@@ -49,25 +49,41 @@ app.post("/register", async (req, res) => {
   };
 
   const data = JSON.stringify(user, null, 2);
-  try {
-    console.log();
-    await fs.promises.writeFile(
-      path.join(__dirname, "../", "db/user.json"),
-      data
-    );
-  } catch (error) {
-    console.error(error);
-    return res.status(401).json({
-      error,
-    });
+  const userDB: unknown = fs.readFileSync(
+    path.join(__dirname, "../", "db/user.json")
+  );
+  const userInfo = JSON.parse(userDB as string);
+
+  const errors = [];
+  if (userInfo.email === user.email) {
+    errors.push("Eamil already exists");
+  }
+  if (user.password.length < 8) {
+    errors.push("Password too short.");
   }
 
-  const token = sign({ user }, secretKey);
-  res.json({
-    token,
-    email: user.email,
-    name: user.name,
-  });
+  if (errors.length) {
+    res.status(400).send({ errors });
+  } else {
+    try {
+      await fs.promises.writeFile(
+        path.join(__dirname, "../", "db/user.json"),
+        data
+      );
+    } catch (error) {
+      console.error(error);
+      return res.status(401).json({
+        error,
+      });
+    }
+
+    const token = sign({ user }, secretKey);
+    res.json({
+      token,
+      email: user.email,
+      name: user.name,
+    });
+  }
 });
 
 app.post("/login", async (req, res) => {
@@ -86,7 +102,7 @@ app.post("/login", async (req, res) => {
       name: userInfo.name,
     });
   } else {
-    res.sendStatus(401);
+    res.status(401).json({ error: "Invalid login. Please try again." });
   }
 });
 
