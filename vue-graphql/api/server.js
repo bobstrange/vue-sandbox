@@ -57,22 +57,18 @@ const currentUserId = "user-1";
 
 var resolvers = {
   Query: {
-    currentUser: (parent, args) => {
-      let user = data.users.find((u) => u.id === currentUserId);
-      let posts = data.posts.filter((p) => p.userId === currentUserId);
-      user = Object.assign({}, user, {
-        posts: posts,
-      });
+    currentUser: (_, __, context) => {
+      const user = context.data.users.find((u) => u.id === context.currentUserId);
       return user;
     },
-    postsByUser: (parent, args) => {
-      let posts = data.posts.filter((p) => p.userId === args.userId);
+    postsByUser: (_, args, context) => {
+      const posts = context.data.posts.filter((p) => p.userId === args.userId);
       return posts;
     },
   },
   User: {
-    posts: (parent, args) => {
-      let posts = data.posts.filter((p) => p.userId === parent.id);
+    posts: (parent, __, context) => {
+      const posts = context.data.posts.filter((p) => p.userId === parent.id);
       return posts;
     },
   },
@@ -81,6 +77,10 @@ var resolvers = {
 const server = new ApolloServer({
   typeDefs: schema,
   resolvers,
+  context: {
+    currentUserId,
+    data
+  }
 });
 
 const port = process.env.PORT || 8080;
