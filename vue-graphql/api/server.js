@@ -2,7 +2,7 @@ const { ApolloServer, gql } = require("apollo-server");
 
 const schema = gql(`
   type Query {
-    currentUser: user
+    currentUser: User
     postsByUser(userId: String!): [Post]
   }
 
@@ -55,22 +55,24 @@ const data = {
 
 const currentUserId = "user-1";
 
-const resolvers = {
+var resolvers = {
   Query: {
     currentUser: (parent, args) => {
-      let user = data.users.find((_) => _.id === currentUserId);
-      const posts = data.posts.filter((_) => _.userId === currentUserId);
-      user = Object.assign({}, user, { posts });
+      let user = data.users.find((u) => u.id === currentUserId);
+      let posts = data.posts.filter((p) => p.userId === currentUserId);
+      user = Object.assign({}, user, {
+        posts: posts,
+      });
       return user;
     },
     postsByUser: (parent, args) => {
-      let posts = data.posts.filter((_) => _.userId === args.userId);
+      let posts = data.posts.filter((p) => p.userId === args.userId);
       return posts;
     },
   },
   User: {
     posts: (parent, args) => {
-      let posts = data.posts.filter((_) => _.userId === parent.id);
+      let posts = data.posts.filter((p) => p.userId === parent.id);
       return posts;
     },
   },
