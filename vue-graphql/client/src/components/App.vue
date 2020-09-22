@@ -70,7 +70,16 @@ export default {
       this.$apollo.mutate({
         mutation: ADD_POST,
         variables: { content: this.newPostContent },
-        update: updateAddPost.bind(this)
+        update: updateAddPost.bind(this),
+        optimisticResponse: {
+          __typename: "Mutation",
+          addPost: {
+            __typename: "Post",
+            id: "post-?",
+            content: this.newPostContent,
+            userId: this.currentUser.id
+          }
+        }
       });
       this.newPostContent = "";
     }
