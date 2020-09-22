@@ -12,6 +12,25 @@
 </template>
 
 <script>
+import gql from "graphql-tag";
+const CURRENT_USER = gql`
+  query {
+    currentUser {
+      id
+      username
+    }
+  }
+`;
+
+const POSTS_BY_USER = gql`
+  query($userId: String!) {
+    postsByUser(userId: $userId) {
+      id
+      content
+    }
+  }
+`;
+
 export default {
   name: "app",
   data: function() {
@@ -25,6 +44,18 @@ export default {
     addPost() {
       this.posts.push({ content: this.newPostContent });
       this.newPostContent = "";
+    }
+  },
+  apollo: {
+    currentUser: CURRENT_USER,
+    posts: {
+      query: POSTS_BY_USER,
+      variables() {
+        return { userId: this.currentUser.id };
+      },
+      update(data) {
+        return data.postsByUser;
+      }
     }
   }
 };
