@@ -6,6 +6,10 @@ const schema = gql(`
     postsByUser(userId: String!): [Post]
   }
 
+  type Mutation {
+    addPost(content: string): Post
+  }
+
   type User {
     id: ID!
     username: String!
@@ -58,12 +62,23 @@ const currentUserId = "user-1";
 var resolvers = {
   Query: {
     currentUser: (_, __, context) => {
-      const user = context.data.users.find((u) => u.id === context.currentUserId);
+      const user = context.data.users.find(
+        (u) => u.id === context.currentUserId
+      );
       return user;
     },
     postsByUser: (_, args, context) => {
       const posts = context.data.posts.filter((p) => p.userId === args.userId);
       return posts;
+    },
+    addPost: async (_, { content }, { currentUserId, data }) => {
+      const post = {
+        id: `post-${data.posts.length + 1}`,
+        content: content,
+        userId: currentUserId,
+      };
+      data.posts.push(post);
+      return post;
     },
   },
   User: {
@@ -79,8 +94,8 @@ const server = new ApolloServer({
   resolvers,
   context: {
     currentUserId,
-    data
-  }
+    data,
+  },
 });
 
 const port = process.env.PORT || 8080;
