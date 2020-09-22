@@ -7,7 +7,7 @@ const schema = gql(`
   }
 
   type Mutation {
-    addPost(content: string): Post
+    addPost(content: String): Post
   }
 
   type User {
@@ -71,6 +71,14 @@ var resolvers = {
       const posts = context.data.posts.filter((p) => p.userId === args.userId);
       return posts;
     },
+  },
+  User: {
+    posts: (parent, __, context) => {
+      const posts = context.data.posts.filter((p) => p.userId === parent.id);
+      return posts;
+    },
+  },
+  Mutation: {
     addPost: async (_, { content }, { currentUserId, data }) => {
       const post = {
         id: `post-${data.posts.length + 1}`,
@@ -79,12 +87,6 @@ var resolvers = {
       };
       data.posts.push(post);
       return post;
-    },
-  },
-  User: {
-    posts: (parent, __, context) => {
-      const posts = context.data.posts.filter((p) => p.userId === parent.id);
-      return posts;
     },
   },
 };
