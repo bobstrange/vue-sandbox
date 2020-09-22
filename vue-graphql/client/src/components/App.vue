@@ -31,6 +31,31 @@ const POSTS_BY_USER = gql`
   }
 `;
 
+const ADD_POST = gql`
+  mutation($content: String!) {
+    addPost(content: $content) {
+      id
+      content
+    }
+  }
+`;
+
+function updateAddPost(cache, result) {
+  const newPost = result.data.addPost;
+  const cacheId = {
+    query: POSTS_BY_USER,
+    variables: { userId: this.currentUser.id }
+  };
+
+  const data = cache.readQuery(cacheId);
+  const newData = [...data.postsByUser, newPost];
+
+  cache.writeQuery({
+    ...cacheId,
+    data: { postsByUser: newData }
+  });
+}
+
 export default {
   name: "app",
   data: function() {
@@ -42,7 +67,11 @@ export default {
   },
   methods: {
     addPost() {
-      this.posts.push({ content: this.newPostContent });
+      this.$apollo.mutate({
+        mutation: ADD_POST,
+        variables: { content: this.newPostContent },
+        update: updateAddPost.bind(this)
+      });
       this.newPostContent = "";
     }
   },
