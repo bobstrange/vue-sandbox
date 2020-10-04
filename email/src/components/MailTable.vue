@@ -5,7 +5,7 @@
         v-for="email in unarchivedEmails"
         :key="email.id"
         :class="['clickable', email.read ? 'read' : '']"
-        @click="readEmail(email)"
+        @click="openEmail(email)"
       >
         <td><input type="checkbox" /></td>
         <td>{{ email.from }}</td>
@@ -21,6 +21,7 @@
       </tr>
     </tbody>
   </table>
+  <MailView v-if="focusedEmail" :email="focusedEmail" />
 </template>
 
 <script lang="ts">
@@ -29,19 +30,23 @@ import { format } from 'date-fns'
 import axios from 'axios'
 import { fetchEmails, updateEmail } from '../apis/emailClient'
 import { Email } from '../types/Email'
+import MailView from './MailView.vue'
 
 export default defineComponent({
   async setup() {
     const { data } = await fetchEmails()
     const emails = ref<Email[]>(data)
 
-    const readEmail = async (email: Email) => {
+    const focusedEmail = ref<Email | null>(null)
+
+    const openEmail = async (email: Email) => {
       await updateEmail({ ...email, read: true })
+      focusedEmail.value = email
       email.read = true
     }
 
     const archiveEmail = async (email: Email) => {
-      const res = await updateEmail({ ...email, archived: true })
+      await updateEmail({ ...email, archived: true })
       email.archived = true
     }
 
@@ -53,7 +58,17 @@ export default defineComponent({
     const unarchivedEmails = computed(() => {
       return sortedEmails.value.filter(email => !email.archived)
     })
-    return { emails, readEmail, archiveEmail, format, unarchivedEmails }
+    return {
+      emails,
+      focusedEmail,
+      openEmail,
+      archiveEmail,
+      format,
+      unarchivedEmails
+    }
+  },
+  components: {
+    MailView
   }
 })
 </script>
