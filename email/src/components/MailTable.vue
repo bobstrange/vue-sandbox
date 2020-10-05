@@ -21,16 +21,18 @@
       </tr>
     </tbody>
   </table>
-  <MailView v-if="focusedEmail" :email="focusedEmail" />
+  <ModalView v-if="focusedEmail" @closeModal="focusedEmail = null">
+    <MailView :email="focusedEmail" />
+  </ModalView>
 </template>
 
 <script lang="ts">
 import { computed, defineComponent, ref } from 'vue'
 import { format } from 'date-fns'
-import axios from 'axios'
-import { fetchEmails, updateEmail } from '../apis/emailClient'
-import { Email } from '../types/Email'
-import MailView from './MailView.vue'
+import { fetchEmails, updateEmail } from '@/apis/emailClient'
+import { Email } from '@/types/Email'
+import MailView from '@/components/MailView.vue'
+import ModalView from '@/components/ModalView.vue'
 
 export default defineComponent({
   async setup() {
@@ -68,7 +70,8 @@ export default defineComponent({
     }
   },
   components: {
-    MailView
+    MailView,
+    ModalView
   }
 })
 </script>

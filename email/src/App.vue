@@ -13,7 +13,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import MailTable from './components/MailTable.vue'
+import MailTable from '@/components/MailTable.vue'
 
 export default defineComponent({
   name: 'App',

@@ -20,19 +20,18 @@ import marked from 'marked'
 import { Email } from '@/types/Email'
 
 type MailViewProps = {
-  email: Email
+  email: Email | null
 }
-
 export default defineComponent({
   setup(props: MailViewProps) {
-    const showEmail = computed<Email>(() => {
-      return props.email
+    const showEmail = computed<Partial<Email>>(() => {
+      return props.email || {}
     })
     return { showEmail, format, marked }
   },
   props: {
     email: {
-      type: Object as PropType<Email>,
+      type: Object as PropType<Email | null>,
       required: true
     }
   }
