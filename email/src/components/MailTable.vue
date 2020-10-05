@@ -21,7 +21,7 @@
       </tr>
     </tbody>
   </table>
-  <ModalView v-if="focusedEmail" @closeModal="focusedEmail = null">
+  <ModalView v-if="focusedEmail" @close-modal="focusedEmail = null">
     <MailView :email="focusedEmail" />
   </ModalView>
 </template>
