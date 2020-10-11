@@ -26,7 +26,6 @@ import { computed, defineComponent, PropType } from 'vue'
 import { format } from 'date-fns'
 import marked from 'marked'
 import { Email } from '@/types/Email'
-import { updateEmail } from '@/apis/emailClient'
 
 export default defineComponent({
   setup(props, context) {
