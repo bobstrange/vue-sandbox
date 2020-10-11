@@ -22,7 +22,10 @@
     </tbody>
   </table>
   <ModalView v-if="focusedEmail" @close-modal="focusedEmail = null">
-    <MailView :email="focusedEmail" />
+    <MailView
+      :email="focusedEmail"
+      @onEmailUpdate="onFocusedEmailUpdate(focusedEmail)"
+    />
   </ModalView>
 </template>
 
@@ -52,6 +55,12 @@ export default defineComponent({
       email.archived = true
     }
 
+    const onFocusedEmailUpdate = async (email: Email) => {
+      await updateEmail({ ...email, archived: true })
+      const index = emails.value.findIndex(_ => _.id === email.id)
+      emails.value[index] = email
+    }
+
     const sortedEmails = computed(() => {
       return emails.value.sort((e1, e2) => {
         return e1.sentAt < e2.sentAt ? 1 : -1
@@ -65,6 +74,7 @@ export default defineComponent({
       focusedEmail,
       openEmail,
       archiveEmail,
+      onFocusedEmailUpdate,
       format,
       unarchivedEmails
     }

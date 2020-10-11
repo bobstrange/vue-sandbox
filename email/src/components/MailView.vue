@@ -29,13 +29,13 @@ import { Email } from '@/types/Email'
 import { updateEmail } from '@/apis/emailClient'
 
 export default defineComponent({
-  setup(props) {
+  setup(props, context) {
     const showEmail = computed<Partial<Email>>(() => {
       return props.email
     })
     const toggleRead = async () => {
-      const email = props.email
-      console.log(await updateEmail({ ...email, read: !email.read }))
+      const email = showEmail.value
+      context.emit('on-email-update', { ...email, read: !email.read })
     }
     return { showEmail, format, marked, toggleRead }
   },
