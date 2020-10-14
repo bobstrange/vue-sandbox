@@ -3,7 +3,7 @@
     <div>
       <button>Archive</button>
       <button @click="toggleRead()">
-        {{ showEmail.read ? 'Mark Unread' : 'Mark Read' }}
+        {{ showEmail.read ? 'Mark Unread(r)' : 'Mark Read(r)' }}
       </button>
       <button>Newer</button>
       <button>Older</button>
@@ -26,16 +26,26 @@ import { computed, defineComponent, PropType } from 'vue'
 import { format } from 'date-fns'
 import marked from 'marked'
 import { Email } from '@/types/Email'
+import { useKeydown } from '@/composables/useKeydown'
 
 export default defineComponent({
   setup(props, context) {
     const showEmail = computed<Partial<Email>>(() => {
+      console.log('Show email called: ', props.email)
       return props.email
     })
     const toggleRead = async () => {
       const email = showEmail.value
       context.emit('on-email-update', { ...email, read: !email.read })
     }
+
+    useKeydown([
+      {
+        key: 'r',
+        fn: toggleRead
+      }
+    ])
+
     return { showEmail, format, marked, toggleRead }
   },
   props: {

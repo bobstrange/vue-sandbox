@@ -10,6 +10,7 @@ export type KeyCombo = {
 export const useKeydown = (keyCombos: KeyCombo[]) => {
   const onKeydown = (event: KeyboardEvent) => {
     const kc = keyCombos.find(kc => kc.key === event.key)
+    console.log(`event.key: ${event.key} kc: ${kc}`)
     if (kc) {
       kc.fn()
     }
