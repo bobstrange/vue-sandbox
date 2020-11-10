@@ -56,3 +56,10 @@ npm run serve
 
 [webpack](https://webpack.js.org/) でビルドが行われ、[webpack-dev-server](https://github.com/webpack/webpack-dev-server) が立ち上げる。
 (デフォルトでは localhost:8080)
+
+## テスト用 API サーバーの設定
+
+[`json-server`](https://github.com/typicode/json-server) と [`json-server-auth`](https://github.com/jeremyben/json-server-auth) を使用する。
+
+`npm install -D json-server json-server-auth`
+
