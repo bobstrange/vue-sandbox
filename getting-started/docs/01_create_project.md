@@ -63,3 +63,33 @@ npm run serve
 
 `npm install -D json-server json-server-auth`
 
+`db.json` を作成
+
+```json
+{
+    "users": []
+}
+```
+
+## 起動用のスクリプトの用意
+
+コマンド一つで、 `webpack-dev-server` と `json-server` が両方起動されている状態にしたいので npm スクリプトを作る。
+↑の２つのコマンドを並行で実行させるために [`npm-run-all`](https://github.com/mysticatea/npm-run-all) を使う
+
+`npm install -D npm-run-all`
+
+package.json の `"scripts"` を↓のように変更する。
+※ "dev:vue" は元の "serve" の中身を移し替える
+
+```json
+"scripts": {
+  ...
+  "dev": "run-p dev:*",
+  "dev:vue": "vue-cli-service serve",
+  "dev:db": "json-server-auth db.json",
+  ...
+}
+```
+
+これで、 `npm run dev` を実行すると `webpack-dev-server` (デフォルトでは 8080 番ポート) と `json-server` (デフォルトでは 3000番ポート) が起動した状態になる。
+port が既存の他のサーバーとぶつかって起動できない場合は、"dev:vue" や "dev:db" の中身に空いている port 番号 `--port xxxx` を明示的に渡す。
