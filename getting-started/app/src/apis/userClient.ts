@@ -1,11 +1,5 @@
 import { httpClient } from "./httpClient"
-
-type User = {
-  id: number
-  firstName: string
-  lastName: string
-  screenName: string
-}
+import { User } from "@/models/user"
 
 export const fetchUsers = async (): Promise<User[]> => {
   const response = await httpClient.get<User[]>("/users")

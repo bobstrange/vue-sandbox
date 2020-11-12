@@ -1,18 +1,29 @@
 <template>
   <div>
-    <h1>Users</h1>
+    <UserList :users="users" />
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, onBeforeMount, ref } from "vue"
+import { User } from "../models/user"
+import { fetchUsers } from "../apis/userClient"
+import UserList from "../components/UserList.vue"
 
 export default defineComponent({
   name: "Users",
   setup() {
-    return {};
-  }
-});
+    const users = ref<User[]>([])
+    onBeforeMount(async () => {
+      const data = await fetchUsers()
+      users.value = data
+    })
+    return { users }
+  },
+  components: {
+    UserList,
+  },
+})
 </script>
 
 <style scoped></style>
