@@ -1,16 +1,29 @@
 <template>
   <div>
-    <h1>Posts</h1>
+    <PostList :posts="posts" />
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, onBeforeMount, ref } from "vue";
+import { fetchPosts } from "../apis/postClient";
+import { Post } from "../models/post";
+import PostList from "../components/PostList.vue";
 
 export default defineComponent({
   name: "Posts",
   setup() {
-    return {};
+    const posts = ref<Post[]>([]);
+
+    onBeforeMount(async () => {
+      const data = await fetchPosts();
+      posts.value = data;
+    });
+
+    return { posts };
+  },
+  components: {
+    PostList
   }
 });
 </script>
