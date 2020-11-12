@@ -8,6 +8,34 @@
   <router-view />
 </template>
 
+<script lang="ts">
+import Vue, { defineComponent, provide, ref } from "vue"
+import { User } from "./models/user"
+
+const useCurrentUser = () => {
+  const currentUser = ref<User>(null)
+  const setCurrentUser = (user: User) => {
+    currentUser.value = user
+  }
+  return [currentUser, setCurrentUser]
+}
+
+const useUsers = () => {
+  const users = ref<User[]>([])
+  const setUsers = (data: User[]) => {
+    users.value = data
+  }
+  return [users, setUsers]
+}
+export default defineComponent({
+  name: "App",
+  setup() {
+    provide("currentUser", useCurrentUser())
+    provide("usersContext", useUsers())
+  },
+})
+</script>
+
 <style lang="scss">
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
