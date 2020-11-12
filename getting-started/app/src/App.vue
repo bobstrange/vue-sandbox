@@ -9,34 +9,36 @@
 </template>
 
 <script lang="ts">
-import Vue, { defineComponent, provide, ref } from "vue"
-import { fetchUsers } from "./apis/userClient"
-import { User } from "./models/user"
+import Vue, { defineComponent, onBeforeMount, provide, ref } from "vue";
+import { fetchUsers } from "./apis/userClient";
+import { User } from "./models/user";
 
 const useCurrentUser = () => {
-  const currentUser = ref<User>(null)
+  const currentUser = ref<User | null>(null);
   const setCurrentUser = (user: User) => {
-    currentUser.value = user
-  }
-  return [currentUser, setCurrentUser]
-}
+    currentUser.value = user;
+  };
+  return [currentUser, setCurrentUser];
+};
 
 const useUsers = () => {
-  const users = ref<User[]>([])
+  const users = ref<User[]>([]);
   const reloadUsers = async () => {
-    const data = await fetchUsers()
-    users.value = data
-  }
+    const data = await fetchUsers();
+    users.value = data;
+  };
+  onBeforeMount(() => reloadUsers());
 
-  return [users, reloadUsers]
-}
+  return [users, reloadUsers];
+};
+
 export default defineComponent({
   name: "App",
   setup() {
-    provide("currentUser", useCurrentUser())
-    provide("usersContext", useUsers())
-  },
-})
+    provide("currentUser", useCurrentUser());
+    provide("usersContext", useUsers());
+  }
+});
 </script>
 
 <style lang="scss">
