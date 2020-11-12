@@ -10,6 +10,7 @@
 
 <script lang="ts">
 import Vue, { defineComponent, provide, ref } from "vue"
+import { fetchUsers } from "./apis/userClient"
 import { User } from "./models/user"
 
 const useCurrentUser = () => {
@@ -22,10 +23,12 @@ const useCurrentUser = () => {
 
 const useUsers = () => {
   const users = ref<User[]>([])
-  const setUsers = (data: User[]) => {
+  const reloadUsers = async () => {
+    const data = await fetchUsers()
     users.value = data
   }
-  return [users, setUsers]
+
+  return [users, reloadUsers]
 }
 export default defineComponent({
   name: "App",
