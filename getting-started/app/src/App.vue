@@ -9,34 +9,15 @@
 </template>
 
 <script lang="ts">
-import Vue, { defineComponent, onBeforeMount, provide, ref } from "vue";
-import { fetchUsers } from "./apis/userClient";
-import { User } from "./models/user";
-
-const useCurrentUser = () => {
-  const currentUser = ref<User | null>(null);
-  const setCurrentUser = (user: User) => {
-    currentUser.value = user;
-  };
-  return [currentUser, setCurrentUser];
-};
-
-const useUsers = () => {
-  const users = ref<User[]>([]);
-  const reloadUsers = async () => {
-    const data = await fetchUsers();
-    users.value = data;
-  };
-  onBeforeMount(() => reloadUsers());
-
-  return [users, reloadUsers];
-};
+import { defineComponent, onBeforeMount, provide, ref } from "vue";
+import { useCurrentUser, CurrentUserStoreKey } from "./composables/currentUser";
+import { useUsers, UsersStoreKey } from "./composables/users";
 
 export default defineComponent({
   name: "App",
   setup() {
-    provide("currentUser", useCurrentUser());
-    provide("usersContext", useUsers());
+    provide(CurrentUserStoreKey, useCurrentUser());
+    provide(UsersStoreKey, useUsers());
   }
 });
 </script>
