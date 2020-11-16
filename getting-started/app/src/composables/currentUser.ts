@@ -1,24 +1,20 @@
-import { ref, InjectionKey, provide, inject } from "vue";
-import { User } from "../models/user";
+import { ref, InjectionKey, inject } from "vue"
+import { User } from "@/models/user"
 
-export const CurrentUserKey: InjectionKey<CurrentUserStore> = Symbol(
+export const CurrentUserStoreKey: InjectionKey<CurrentUserStore> = Symbol(
   "CurrentUserStore"
-);
+)
 
 export const useCurrentUser = () => {
-  const currentUser = ref<User | null>(null);
+  const currentUser = ref<User | null>(null)
   const setCurrentUser = (user: User) => {
-    currentUser.value = user;
-  };
-  return { currentUser, setCurrentUser };
-};
+    currentUser.value = user
+  }
+  return { currentUser, setCurrentUser }
+}
 
-export type CurrentUserStore = ReturnType<typeof useCurrentUser>;
-
-export const provideCurrentUser = () => {
-  provide(CurrentUserKey, useCurrentUser());
-};
+export type CurrentUserStore = ReturnType<typeof useCurrentUser>
 
 export const injectCurrentUser = () => {
-  return inject(CurrentUserKey);
-};
+  return inject(CurrentUserStoreKey)
+}
