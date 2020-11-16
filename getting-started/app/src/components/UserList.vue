@@ -11,7 +11,7 @@ import { User } from "../models/user";
 
 export default defineComponent({
   name: "UserList",
-  setup(props) {
+  setup() {
     return {};
   },
   props: {

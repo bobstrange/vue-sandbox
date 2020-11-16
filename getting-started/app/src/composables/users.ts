@@ -19,5 +19,9 @@ export const useUsers = () => {
 export type UsersStore = ReturnType<typeof useUsers>;
 
 export const injectUsers = () => {
-  return inject(UsersStoreKey);
+  const store = inject(UsersStoreKey);
+  if (!store) {
+    throw new Error("Failed to inject UsersStore");
+  }
+  return store;
 };
