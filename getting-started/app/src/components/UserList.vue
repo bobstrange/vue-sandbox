@@ -5,14 +5,14 @@
 </template>
 
 <script lang="ts">
-import { PropType } from "vue";
-import { defineComponent } from "vue";
-import { User } from "../models/user";
+import { PropType } from "vue"
+import { defineComponent } from "vue"
+import { User } from "../models/user"
 
 export default defineComponent({
   name: "UserList",
   setup() {
-    return {};
+    return {}
   },
   props: {
     users: {
@@ -20,7 +20,7 @@ export default defineComponent({
       default: []
     }
   }
-});
+})
 </script>
 
 <style scoped></style>

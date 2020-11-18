@@ -1,8 +1,8 @@
-import { createApp } from "vue";
-import App from "./App.vue";
-import router from "./router";
-import "./config/environments";
+import { createApp } from "vue"
+import App from "./App.vue"
+import router from "./router"
+import "./config/environments"
 
 createApp(App)
   .use(router)
-  .mount("#app");
+  .mount("#app")

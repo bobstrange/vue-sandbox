@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="post-detail">
     <div class="title">{{ post.title }}</div>
     <div class="text">{{ post.text }}</div>
     <div class="posted-by">{{ email }}</div>
@@ -7,21 +7,21 @@
 </template>
 
 <script lang="ts">
-import { computed, PropType } from "vue";
-import { defineComponent } from "vue";
+import { computed, PropType } from "vue"
+import { defineComponent } from "vue"
 
-import { Post } from "../models/post";
-import { injectUsers } from "../composables/users";
+import { Post } from "../models/post"
+import { injectUsers } from "../composables/users"
 
 export default defineComponent({
   name: "PostDetail",
   setup(props) {
-    const { users, reloadUsers } = injectUsers();
+    const { users, reloadUsers } = injectUsers()
     const email = computed(() => {
-      const user = users.value.find(user => user.id === props.post.userId);
-      return user?.email;
-    });
-    return { email };
+      const user = users.value.find(user => user.id === props.post.userId)
+      return user?.email
+    })
+    return { email }
   },
   props: {
     post: {
@@ -29,7 +29,30 @@ export default defineComponent({
       required: true
     }
   }
-});
+})
 </script>
 
-<style scoped></style>
+<style scoped>
+.post-detail {
+  padding: 20px;
+  text-align: left;
+  border-style: dotted;
+  border-radius: 10px;
+  border-width: 1px;
+}
+
+.title {
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.text {
+  font-size: 1rem;
+  margin-bottom: 20px;
+}
+
+.posted-by {
+  text-align: right;
+}
+</style>

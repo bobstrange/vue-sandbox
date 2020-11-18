@@ -1,5 +1,5 @@
-import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
-import Home from "../views/Home.vue";
+import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router"
+import Home from "../views/Home.vue"
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -26,11 +26,11 @@ const routes: Array<RouteRecordRaw> = [
     name: "Posts",
     component: () => import(/* webpackChunkName: "posts" */ "@/views/Posts.vue")
   }
-];
+]
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes
-});
+})
 
-export default router;
+export default router

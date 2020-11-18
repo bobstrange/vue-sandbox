@@ -5,21 +5,21 @@
     <router-link :to="{ name: 'Users' }">Users</router-link> |
     <router-link :to="{ name: 'Posts' }">Posts</router-link>
   </div>
-  <router-view />
+  <router-view class="router-view" />
 </template>
 
 <script lang="ts">
-import { defineComponent, provide } from "vue";
-import { useCurrentUser, CurrentUserStoreKey } from "./composables/currentUser";
-import { useUsers, UsersStoreKey } from "./composables/users";
+import { defineComponent, provide } from "vue"
+import { useCurrentUser, CurrentUserStoreKey } from "./composables/currentUser"
+import { useUsers, UsersStoreKey } from "./composables/users"
 
 export default defineComponent({
   name: "App",
   setup() {
-    provide(CurrentUserStoreKey, useCurrentUser());
-    provide(UsersStoreKey, useUsers());
+    provide(CurrentUserStoreKey, useCurrentUser())
+    provide(UsersStoreKey, useUsers())
   }
-});
+})
 </script>
 
 <style lang="scss">
@@ -42,5 +42,10 @@ export default defineComponent({
       color: #42b983;
     }
   }
+}
+
+.router-view {
+  max-width: 800px;
+  margin: auto;
 }
 </style>
