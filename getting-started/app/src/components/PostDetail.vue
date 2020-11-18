@@ -17,12 +17,8 @@ export default defineComponent({
   name: "PostDetail",
   setup(props) {
     const { users, reloadUsers } = injectUsers();
-    console.log(users);
     const email = computed(() => {
-      console.log("props ", props.post);
       const user = users.value.find(user => user.id === props.post.userId);
-      console.log("users ", users);
-      console.log("user ", user);
       return user?.email;
     });
     return { email };

@@ -9,7 +9,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onBeforeMount, provide, ref } from "vue";
+import { defineComponent, provide } from "vue";
 import { useCurrentUser, CurrentUserStoreKey } from "./composables/currentUser";
 import { useUsers, UsersStoreKey } from "./composables/users";
 
