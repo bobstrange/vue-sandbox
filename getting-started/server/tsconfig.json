@@ -7,7 +7,15 @@
     "moduleResolution": "node",
     "esModuleInterop": true,
     "resolveJsonModule": true,
-    "rootDir": "./src",
-    "outDir": "./dist"
-  }
+    "baseUrl": "./src/",
+    "outDir": "./dist",
+    "paths": {
+      "@/": ["src/*"]
+    }
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.js",
+    "src/**/*.json"
+  ]
 }

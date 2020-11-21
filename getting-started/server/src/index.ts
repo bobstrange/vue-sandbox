@@ -1,1 +1,6 @@
-console.log('Hi there')
+import { app } from "./app"
+import { PORT } from "./config"
+
+app.listen(PORT, () => {
+  console.log(`Listening on localhost:${PORT}`)
+})
