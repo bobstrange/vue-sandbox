@@ -14,7 +14,8 @@ interface PostDocument extends Document {
 
 interface PostModel extends Model<PostDocument> {
   build(attrs: PostAttrs): PostDocument
-  fetchPosts(): PostDocument[]
+  fetchPosts(): Promise<PostDocument[]>
+  fetchPostById(id: string): Promise<PostDocument>
 }
 
 const postSchema = new Schema(
@@ -55,6 +56,10 @@ postSchema.statics.build = (attrs: PostAttrs) => {
 
 postSchema.statics.fetchPosts = async () => {
   return await Post.find({})
+}
+
+postSchema.statics.fetchPostById = async (id: string) => {
+  return await Post.findById(id)
 }
 
 export const Post = mongoose.model<PostDocument, PostModel>('Post', postSchema)

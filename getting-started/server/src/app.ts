@@ -11,6 +11,7 @@ import { LoginRouter } from './routes/auth/login'
 import { currentUserRouter } from './routes/auth/currentUser'
 import { PostIndexRouter } from './routes/post'
 import { PostCreateRouter } from './routes/post/create'
+import { PostShowRouter } from './routes/post/show'
 
 export const app = Express()
 app.set('trust proxy', true)
@@ -30,6 +31,7 @@ app.use(currentUserRouter)
 
 app.use(PostIndexRouter)
 app.use(PostCreateRouter)
+app.use(PostShowRouter)
 
 app.all('*', async () => {
   throw new NotFoundError()
