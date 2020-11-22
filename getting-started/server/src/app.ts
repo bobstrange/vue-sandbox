@@ -17,6 +17,7 @@ import { PostDeleteRouter } from './routes/post/delete'
 import { UserIndexRouter } from './routes/users'
 
 export const app = Express()
+app.use(cors())
 app.set('trust proxy', true)
 app.use(Express.json())
 app.use(
@@ -25,7 +26,6 @@ app.use(
     signed: false
   })
 )
-app.use(cors())
 app.use(currentUserMiddleware)
 
 app.use(SignupRouter)
