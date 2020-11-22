@@ -7,20 +7,22 @@ import { errorHandler } from './middlewares/errorHandler'
 
 import { SignupRouter } from './routes/signup'
 import { LoginRouter } from './routes/login'
+import { currentUserRouter } from './routes/currentUser'
 
 export const app = Express()
-
+app.set('trust proxy', true)
 app.use(Express.json())
 app.use(
   cookieSession({
-    signed: false,
-    secure: process.env.NODE_ENV !== 'test'
+    name: 'session',
+    signed: false
   })
 )
 app.use(cors())
 
 app.use(SignupRouter)
 app.use(LoginRouter)
+app.use(currentUserRouter)
 
 app.all('*', async () => {
   throw new NotFoundError()
