@@ -1,5 +1,4 @@
 import { Request, Response, Router } from 'express'
-import { currentUserMiddleware } from '../../middlewares/currentUserMiddleware'
 
 const router = Router()
 
