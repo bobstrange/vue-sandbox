@@ -4,10 +4,10 @@ import { scrypt } from 'crypto'
 import jwt from 'jsonwebtoken'
 import { promisify } from 'util'
 
-import { BadRequestError } from '../errors/BadRequestError'
-import { validateRequestHandler } from '../middlewares/validateRequestHandler'
-import { User } from '../models/User'
-import { JWT_KEY } from '../config'
+import { BadRequestError } from '../../errors/BadRequestError'
+import { validateRequestHandler } from '../../middlewares/validateRequestHandler'
+import { User } from '../../models/User'
+import { JWT_KEY } from '../../config'
 
 const router = Router()
 

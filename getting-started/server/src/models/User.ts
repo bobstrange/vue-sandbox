@@ -37,6 +37,10 @@ const userSchema = new Schema(
         delete ret.__v
       },
     },
+    timestamps: {
+      createdAt: 'created_at',
+      updatedAt: 'updated_at',
+    },
   }
 )
 

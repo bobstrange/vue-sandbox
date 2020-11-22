@@ -1,10 +1,10 @@
-import { BadRequestError } from '../errors/BadRequestError'
+import { BadRequestError } from '../../errors/BadRequestError'
 import jwt from 'jsonwebtoken'
 import Express, { Handler } from 'express'
 import { body } from 'express-validator'
-import { User } from '../models/User'
-import { JWT_KEY } from '../config'
-import { validateRequestHandler } from '../middlewares/validateRequestHandler'
+import { User } from '../../models/User'
+import { JWT_KEY } from '../../config'
+import { validateRequestHandler } from '../../middlewares/validateRequestHandler'
 
 const router = Express.Router()
 
