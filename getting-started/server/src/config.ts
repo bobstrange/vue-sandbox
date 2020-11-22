@@ -1,6 +1,8 @@
 import 'dotenv/config'
 
-export const PORT = Number(process.env.APP_PORT || '8080')
+if (!process.env.JWT_KEY) {
+  throw new Error('Please define JWT_KEY')
+}
 
 if (!process.env.DB_HOST) {
   throw new Error('Please define DB_HOST')
@@ -22,6 +24,8 @@ if (!process.env.DB_NAME) {
   throw new Error('Please define DB_NAME')
 }
 
+export const PORT = Number(process.env.APP_PORT || '8080')
+export const JWT_KEY = process.env.JWT_KEY
 export const DB_HOST = process.env.DB_HOST
 export const DB_PORT = process.env.DB_PORT
 export const DB_USER = process.env.DB_USER
