@@ -4,7 +4,7 @@ import Express, { Handler } from 'express'
 import { body } from 'express-validator'
 import { User } from '../../models/User'
 import { JWT_KEY } from '../../config'
-import { validateRequestHandler } from '../../middlewares/validateRequestHandler'
+import { validateRequestMiddleware } from '../../middlewares/validateRequestMiddleware'
 
 const router = Express.Router()
 
@@ -50,7 +50,7 @@ router.post(
     next()
   },
   validations,
-  validateRequestHandler,
+  validateRequestMiddleware,
   signupHandler
 )
 

@@ -2,7 +2,7 @@ import { NextFunction, Request, Response } from 'express'
 import { validationResult } from 'express-validator'
 import { RequestValidationError } from '../errors/RequestValidationError'
 
-export const validateRequestHandler = (
+export const validateRequestMiddleware = (
   req: Request,
   _: Response,
   next: NextFunction

@@ -1,11 +1,12 @@
 import { Request, Response, Router } from 'express'
 import { body } from 'express-validator'
 import { loginRequiredMiddleware } from '../../middlewares/loginRequiredMiddleware'
-import { validateRequestHandler } from '../../middlewares/validateRequestHandler'
+import { validateRequestMiddleware } from '../../middlewares/validateRequestMiddleware'
 import { Post } from '../../models/Post'
 
 const router = Router()
-const validations = [
+
+const postValidations = [
   body('title')
     .notEmpty()
     .isLength({ max: 50 })
@@ -25,8 +26,8 @@ const postCreateHandler = async (req: Request, res: Response) => {
 router.post(
   '/posts',
   loginRequiredMiddleware,
-  validations,
-  validateRequestHandler,
+  postValidations,
+  validateRequestMiddleware,
   postCreateHandler
 )
 export { router as PostCreateRouter }

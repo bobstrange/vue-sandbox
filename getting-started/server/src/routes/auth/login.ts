@@ -5,7 +5,7 @@ import jwt from 'jsonwebtoken'
 import { promisify } from 'util'
 
 import { BadRequestError } from '../../errors/BadRequestError'
-import { validateRequestHandler } from '../../middlewares/validateRequestHandler'
+import { validateRequestMiddleware } from '../../middlewares/validateRequestMiddleware'
 import { User } from '../../models/User'
 import { JWT_KEY } from '../../config'
 
@@ -45,6 +45,6 @@ const loginHandler = async (req: Request, res: Response) => {
   res.status(200).send(existingUser)
 }
 
-router.post('/login', validations, validateRequestHandler, loginHandler)
+router.post('/login', validations, validateRequestMiddleware, loginHandler)
 
 export { router as LoginRouter }
