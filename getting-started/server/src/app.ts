@@ -14,6 +14,7 @@ import { PostCreateRouter } from './routes/post/create'
 import { PostShowRouter } from './routes/post/show'
 import { PostUpdateRouter } from './routes/post/update'
 import { PostDeleteRouter } from './routes/post/delete'
+import { UserIndexRouter } from './routes/users'
 
 export const app = Express()
 app.set('trust proxy', true)
@@ -30,6 +31,7 @@ app.use(currentUserMiddleware)
 app.use(SignupRouter)
 app.use(LoginRouter)
 app.use(currentUserRouter)
+app.use(UserIndexRouter)
 
 app.use(PostIndexRouter)
 app.use(PostCreateRouter)

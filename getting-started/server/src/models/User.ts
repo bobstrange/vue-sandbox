@@ -21,6 +21,7 @@ interface UserDocument extends Document {
 interface UserModel extends Model<UserDocument> {
   build(attrs: UserAttrs): UserDocument
   fetchByEmail(email: string): Promise<UserDocument>
+  fetchAllWithoutEmail(): Promise<Omit<UserAttrs, 'email'>[]>
 }
 
 const userSchema = new Schema(
@@ -79,6 +80,22 @@ userSchema.statics.build = (attrs: UserAttrs) => {
 
 userSchema.statics.fetchByEmail = async (email: string) => {
   return User.findOne({ email })
+}
+
+userSchema.statics.fetchAllWithoutEmail = async () => {
+  const users = await User.find({})
+
+  return users.map((user) => {
+    return user.toJSON({
+      transform: (_, ret) => {
+        ret.id = ret._id
+        delete ret._id
+        delete ret.password
+        delete ret.email
+        delete ret.__v
+      },
+    })
+  })
 }
 
 export const User = mongoose.model<UserDocument, UserModel>('User', userSchema)
