@@ -24,7 +24,7 @@ if (!process.env.DB_NAME) {
   throw new Error('Please define DB_NAME')
 }
 
-export const PORT = Number(process.env.APP_PORT || '8080')
+export const PORT = Number(process.env.API_PORT || '8080')
 export const JWT_KEY = process.env.JWT_KEY
 export const DB_HOST = process.env.DB_HOST
 export const DB_PORT = process.env.DB_PORT

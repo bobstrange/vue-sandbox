@@ -9,17 +9,28 @@ services:
     ports:
       - ${DB_PORT}:27017
     volumes:
-      - ./db:/data/db
-  api:
+      - ./server/db:/data/db
+  ui:
     build:
-      context: .
+      context: ./app
       dockerfile: Dockerfile
-    environment:
-      APP_PORT: ${APP_PORT}
     ports:
-      - ${APP_PORT}:${APP_PORT}
+      - ${APP_PORT}:8080
     volumes:
       - /app/node_modules
-      - .:/app
+      - ./app:/app
+    depends_on:
+      - api
+  api:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    environment:
+      API_PORT: ${API_PORT}
+    ports:
+      - ${API_PORT}:${API_PORT}
+    volumes:
+      - /app/node_modules
+      - ./server:/app
     depends_on:
       - db
