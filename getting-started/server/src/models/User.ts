@@ -14,6 +14,7 @@ interface UserDocument extends Document {
 
 interface UserModel extends Model<UserDocument> {
   build(attrs: UserAttrs): UserDocument
+  fetchByEmail(email: string): Promise<UserDocument>
 }
 
 const userSchema = new Schema(
@@ -52,6 +53,10 @@ userSchema.pre('save', async function (done) {
 
 userSchema.statics.build = (attrs: UserAttrs) => {
   return new User(attrs)
+}
+
+userSchema.statics.fetchByEmail = async (email: string) => {
+  return User.findOne({ email })
 }
 
 export const User = mongoose.model<UserDocument, UserModel>('User', userSchema)

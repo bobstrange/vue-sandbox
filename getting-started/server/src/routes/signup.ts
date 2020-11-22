@@ -19,7 +19,7 @@ const validations = [
 const signupHandler: Handler = async (req, res) => {
   const { email, password }: { email: string; password: string } = req.body
 
-  const existingUser = await User.findOne({ email })
+  const existingUser = await User.fetchByEmail(email)
 
   if (existingUser) {
     throw new BadRequestError('Already use email')

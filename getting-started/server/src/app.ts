@@ -2,9 +2,11 @@ import Express from 'express'
 import 'express-async-errors'
 import cors from 'cors'
 import cookieSession from 'cookie-session'
-import { SignupRouter } from './routes/signup'
 import { NotFoundError } from './errors/NotFoundError'
 import { errorHandler } from './middlewares/errorHandler'
+
+import { SignupRouter } from './routes/signup'
+import { LoginRouter } from './routes/login'
 
 export const app = Express()
 
@@ -16,7 +18,10 @@ app.use(
   })
 )
 app.use(cors())
+
 app.use(SignupRouter)
+app.use(LoginRouter)
+
 app.all('*', async () => {
   throw new NotFoundError()
 })
