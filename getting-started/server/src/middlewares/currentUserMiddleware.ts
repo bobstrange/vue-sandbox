@@ -3,6 +3,9 @@ import jwt from 'jsonwebtoken'
 import { JWT_KEY } from '../config'
 
 interface UserPayload {
+  firstName: string
+  lastName: string
+  screenName: string
   id: string
   email: string
 }

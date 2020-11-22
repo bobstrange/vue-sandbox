@@ -3,12 +3,18 @@ import { scrypt, randomBytes } from 'crypto'
 import { promisify } from 'util'
 
 interface UserAttrs {
+  firstName: string
+  lastName: string
+  screenName: string
   email: string
   password: string
 }
 
 interface UserDocument extends Document {
   email: string
+  firstName: string
+  lastName: string
+  screenName: string
   password: string
 }
 
@@ -19,6 +25,18 @@ interface UserModel extends Model<UserDocument> {
 
 const userSchema = new Schema(
   {
+    firstName: {
+      type: String,
+      required: true,
+    },
+    lastName: {
+      type: String,
+      required: true,
+    },
+    screenName: {
+      type: String,
+      required: true,
+    },
     email: {
       type: String,
       required: true,

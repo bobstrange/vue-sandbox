@@ -34,6 +34,9 @@ const loginHandler = async (req: Request, res: Response) => {
   const userJwt = jwt.sign(
     {
       id: existingUser.id,
+      firstName: existingUser.firstName,
+      lastName: existingUser.lastName,
+      screenName: existingUser.screenName,
       email: existingUser.email,
     },
     JWT_KEY
