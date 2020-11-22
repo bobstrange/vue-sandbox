@@ -8,6 +8,8 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: ${DB_PASSWORD}
     ports:
       - ${DB_PORT}:27017
+    volumes:
+      - ./db:/data/db
   api:
     build:
       context: .
@@ -18,5 +20,6 @@ services:
       - ${APP_PORT}:${APP_PORT}
     volumes:
       - /app/node_modules
+      - .:/app
     depends_on:
       - db

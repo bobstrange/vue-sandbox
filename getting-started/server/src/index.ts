@@ -1,6 +1,10 @@
-import { app } from "./app"
-import { PORT } from "./config"
+import { app } from './app'
+import { PORT } from './config'
 
-app.listen(PORT, () => {
-  console.log(`Listening on localhost:${PORT}`)
-})
+const start = () => {
+  app.listen(PORT, () => {
+    console.log(`Listening on localhost:${PORT}`)
+  })
+}
+
+start()

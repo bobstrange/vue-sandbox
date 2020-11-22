@@ -1,6 +1,8 @@
 {
   "compilerOptions": {
-    "lib": ["ES2019"],
+    "lib": [
+      "ES2019"
+    ],
     "module": "commonjs",
     "target": "ES2019",
     "strict": true,
@@ -10,7 +12,9 @@
     "baseUrl": "./src/",
     "outDir": "./dist",
     "paths": {
-      "@/": ["src/*"]
+      "@/": [
+        "src/*"
+      ]
     }
   },
   "include": [
