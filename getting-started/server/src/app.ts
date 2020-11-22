@@ -13,6 +13,7 @@ import { PostIndexRouter } from './routes/post'
 import { PostCreateRouter } from './routes/post/create'
 import { PostShowRouter } from './routes/post/show'
 import { PostUpdateRouter } from './routes/post/update'
+import { PostDeleteRouter } from './routes/post/delete'
 
 export const app = Express()
 app.set('trust proxy', true)
@@ -34,6 +35,7 @@ app.use(PostIndexRouter)
 app.use(PostCreateRouter)
 app.use(PostShowRouter)
 app.use(PostUpdateRouter)
+app.use(PostDeleteRouter)
 
 app.all('*', async () => {
   throw new NotFoundError()

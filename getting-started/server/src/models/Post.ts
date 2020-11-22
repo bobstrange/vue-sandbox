@@ -16,6 +16,7 @@ interface PostModel extends Model<PostDocument> {
   build(attrs: PostAttrs): PostDocument
   fetchPosts(): Promise<PostDocument[]>
   fetchPostById(id: string): Promise<PostDocument>
+  deletePostById(id: string): Promise<void>
 }
 
 const postSchema = new Schema(
@@ -60,6 +61,10 @@ postSchema.statics.fetchPosts = async () => {
 
 postSchema.statics.fetchPostById = async (id: string) => {
   return await Post.findById(id)
+}
+
+postSchema.statics.deletePostById = async (id: string) => {
+  return await Post.deleteOne({ _id: id })
 }
 
 export const Post = mongoose.model<PostDocument, PostModel>('Post', postSchema)
