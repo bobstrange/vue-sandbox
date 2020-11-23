@@ -7,18 +7,16 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent } from "vue"
 
 export default defineComponent({
-  setup () {
-
+  setup() {
     return {}
-  }
+  },
 })
 </script>
 
 <style lang="scss" scoped>
-
 .nav-bar {
   display: flex;
   align-items: center;
@@ -39,7 +37,6 @@ a {
 a:visited {
   color: #2c3e50;
 }
-
 
 .button {
   display: flex;

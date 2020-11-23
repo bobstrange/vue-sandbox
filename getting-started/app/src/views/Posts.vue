@@ -23,8 +23,8 @@ export default defineComponent({
     return { posts }
   },
   components: {
-    PostList
-  }
+    PostList,
+  },
 })
 </script>
 

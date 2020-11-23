@@ -6,18 +6,18 @@
 <script lang="ts">
 import { defineComponent, provide } from "vue"
 import NavBar from "@/components/NavBar.vue"
-import { useCurrentUser, CurrentUserStoreKey } from "./composables/currentUser"
+import { authStore, AuthStoreKey } from "@/store/authStore"
 import { useUsers, UsersStoreKey } from "./composables/users"
 
 export default defineComponent({
   name: "App",
   setup() {
-    provide(CurrentUserStoreKey, useCurrentUser())
+    provide(AuthStoreKey, authStore)
     provide(UsersStoreKey, useUsers())
   },
   components: {
-    NavBar
-  }
+    NavBar,
+  },
 })
 </script>
 
@@ -37,5 +37,4 @@ export default defineComponent({
   flex-direction: column;
   min-height: calc(100vh - 56px);
 }
-
 </style>

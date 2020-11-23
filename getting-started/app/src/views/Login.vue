@@ -2,7 +2,7 @@
   <div>
     <form @submit.prevent="requestLogin">
       <label for="email">Email:</label>
-      <input type="email" v-model="email" name="email" value/>
+      <input type="email" v-model="email" name="email" value />
 
       <label for="password">Password:</label>
       <input type="password" v-model="password" name="password" value />
@@ -13,13 +13,12 @@
 </template>
 
 <script lang="ts">
-
 import { defineComponent, ref } from "vue"
 import { login } from "@/apis/authClient"
-import { useRouter } from 'vue-router'
+import { useRouter } from "vue-router"
 
 export default defineComponent({
-  setup () {
+  setup() {
     const email = ref("")
     const password = ref("")
 
@@ -28,11 +27,11 @@ export default defineComponent({
     const requestLogin = async () => {
       const result = await login({
         email: email.value,
-        password: password.value
+        password: password.value,
       })
 
       if (result.data) {
-        router.push('Home')
+        router.push("Home")
       } else {
         console.error(result.requestErrors)
       }
@@ -41,14 +40,13 @@ export default defineComponent({
     return {
       email,
       password,
-      requestLogin
+      requestLogin,
     }
-  }
+  },
 })
 </script>
 
 <style lang="scss" scoped>
-
 form {
   display: flex;
   align-items: center;
@@ -58,7 +56,7 @@ form {
 }
 
 label {
-  margin-bottom: .2em;
+  margin-bottom: 0.2em;
 }
 
 input {

@@ -13,11 +13,11 @@ type RequestErrorObject = AxiosError<RequestErrors>
 
 export const httpClient = Axios.create({
   baseURL: `${API_URL}:${PORT}`,
-  withCredentials: true
+  withCredentials: true,
 })
 
 const isRequestErrorObject = (e: any): e is RequestErrorObject => {
-  return typeof e === 'object' && e.isAxiosError !== undefined
+  return typeof e === "object" && e.isAxiosError !== undefined
 }
 
 export function getRequestErrors(e: any): RequestErrors | undefined {

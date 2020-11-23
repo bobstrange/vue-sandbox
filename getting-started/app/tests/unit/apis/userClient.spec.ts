@@ -11,7 +11,7 @@ describe("userClient", () => {
         lastName: "Doe",
         screenName: "jd",
         email: "john.doe@mail.com",
-        password: "j0hhnD0e"
+        password: "j0hhnD0e",
       })
       expect(users[1]).toEqual({
         id: 2,
@@ -19,7 +19,7 @@ describe("userClient", () => {
         lastName: "Smith",
         email: "adam.smith@mail.com",
         password: "passw0rd",
-        screenName: "AS"
+        screenName: "AS",
       })
     })
   })

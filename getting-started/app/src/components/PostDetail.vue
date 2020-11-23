@@ -18,7 +18,7 @@ export default defineComponent({
   setup(props) {
     const { users, reloadUsers } = injectUsers()
     const screenName = computed(() => {
-      const user = users.value.find(user => user.id === props.post.userId)
+      const user = users.value.find((user) => user.id === props.post.userId)
       return user?.screenName
     })
     return { screenName }
@@ -26,9 +26,9 @@ export default defineComponent({
   props: {
     post: {
       type: Object as PropType<Post>,
-      required: true
-    }
-  }
+      required: true,
+    },
+  },
 })
 </script>
 

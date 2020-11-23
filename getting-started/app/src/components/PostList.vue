@@ -23,10 +23,10 @@ export default defineComponent({
   props: {
     posts: {
       type: Object as PropType<Post[]>,
-      required: true
-    }
+      required: true,
+    },
   },
-  components: { PostDetail }
+  components: { PostDetail },
 })
 </script>
 
