@@ -31,7 +31,11 @@ export default defineComponent({
 }
 
 .router-view {
-  max-width: 800px;
-  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  min-height: calc(100vh - 56px);
 }
+
 </style>

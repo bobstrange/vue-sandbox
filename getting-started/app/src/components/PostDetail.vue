@@ -17,11 +17,11 @@ export default defineComponent({
   name: "PostDetail",
   setup(props) {
     const { users, reloadUsers } = injectUsers()
-    const email = computed(() => {
+    const screenName = computed(() => {
       const user = users.value.find(user => user.id === props.post.userId)
-      return user?.email
+      return user?.screenName
     })
-    return { email }
+    return { screenName }
   },
   props: {
     post: {
