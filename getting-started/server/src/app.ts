@@ -17,7 +17,12 @@ import { PostDeleteRouter } from './routes/post/delete'
 import { UserIndexRouter } from './routes/users'
 
 export const app = Express()
-app.use(cors())
+app.use(
+  cors({
+    origin: true,
+    credentials: true
+  })
+)
 app.set('trust proxy', true)
 app.use(Express.json())
 app.use(
