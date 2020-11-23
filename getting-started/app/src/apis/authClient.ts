@@ -1,8 +1,8 @@
 import { getRequestErrors, httpClient, RequestErrors } from "./httpClient"
 import { CurrentUser } from "@/models/user"
 
-type SignupAttrs = Pick<CurrentUser, "email"> & { password: string }
-type LoginAttrs = SignupAttrs
+export type SignupAttrs = Pick<CurrentUser, "email"> & { password: string }
+export type LoginAttrs = SignupAttrs
 
 export const signup = async ({
   email,

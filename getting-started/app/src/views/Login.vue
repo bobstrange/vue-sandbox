@@ -14,8 +14,8 @@
 
 <script lang="ts">
 import { defineComponent, ref } from "vue"
-import { login } from "@/apis/authClient"
 import { useRouter } from "vue-router"
+import { injectAuthStore } from "@/store/authStore"
 
 export default defineComponent({
   setup() {
@@ -23,6 +23,9 @@ export default defineComponent({
     const password = ref("")
 
     const router = useRouter()
+    const {
+      actions: { login },
+    } = injectAuthStore()
 
     const requestLogin = async () => {
       const result = await login({

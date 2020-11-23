@@ -1,18 +1,42 @@
-import { ref, InjectionKey, inject } from "vue"
+import { InjectionKey, inject, ref } from "vue"
 import { CurrentUser } from "@/models/user"
-import { login as loginRequest } from "@/apis/authClient"
+import { login as loginRequest, LoginAttrs } from "@/apis/authClient"
 
-export const AuthStoreKey: InjectionKey<AuthStore> = Symbol("AuthStore")
+export const AuthStoreKey: InjectionKey<typeof authStore> = Symbol("AuthStore")
 
-const getCurrentUser = () => {}
+const state = {
+  user: ref<CurrentUser | null>(null),
+}
 
-const getters = { getCurrentUser }
+const loggedIn = () => {
+  return !!state.user
+}
 
-const login = async () => {}
+const getCurrentUser = () => {
+  return state.user
+}
 
-const signup = async () => {}
+const getters = { loggedIn, getCurrentUser }
 
-const logout = async () => {}
+const login = async (attrs: LoginAttrs) => {
+  const result = await loginRequest(attrs)
+  if (result.data) {
+    const userData = result.data
+    state.user.value = {
+      ...userData,
+    }
+    localStorage.setItem("user", JSON.stringify(userData))
+  }
+  return result
+}
+
+const signup = async () => {
+  console.log("signup")
+}
+
+const logout = async () => {
+  console.log("signin")
+}
 
 const actions = {
   login,
@@ -21,12 +45,11 @@ const actions = {
 }
 
 export const authStore = {
+  state,
   getters,
   actions,
 }
 
-export type AuthStore = ReturnType<typeof useCurrentUser>
-
 export const injectAuthStore = () => {
-  return inject(AuthStoreKey)
+  return inject(AuthStoreKey) as typeof authStore
 }
