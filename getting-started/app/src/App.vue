@@ -1,15 +1,11 @@
 <template>
-  <div id="nav">
-    <router-link :to="{ name: 'Home' }">Home</router-link> |
-    <router-link :to="{ name: 'About' }">About</router-link> |
-    <router-link :to="{ name: 'Users' }">Users</router-link> |
-    <router-link :to="{ name: 'Posts' }">Posts</router-link>
-  </div>
+  <NavBar />
   <router-view class="router-view" />
 </template>
 
 <script lang="ts">
 import { defineComponent, provide } from "vue"
+import NavBar from "@/components/NavBar.vue"
 import { useCurrentUser, CurrentUserStoreKey } from "./composables/currentUser"
 import { useUsers, UsersStoreKey } from "./composables/users"
 
@@ -18,6 +14,9 @@ export default defineComponent({
   setup() {
     provide(CurrentUserStoreKey, useCurrentUser())
     provide(UsersStoreKey, useUsers())
+  },
+  components: {
+    NavBar
   }
 })
 </script>
@@ -29,19 +28,6 @@ export default defineComponent({
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
 }
 
 .router-view {
