@@ -15,6 +15,7 @@ import { PostShowRouter } from './routes/post/show'
 import { PostUpdateRouter } from './routes/post/update'
 import { PostDeleteRouter } from './routes/post/delete'
 import { UserIndexRouter } from './routes/users'
+import { LogoutRouter } from './routes/auth/logout'
 
 export const app = Express()
 app.use(
@@ -35,6 +36,7 @@ app.use(currentUserMiddleware)
 
 app.use(SignupRouter)
 app.use(LoginRouter)
+app.use(LogoutRouter)
 app.use(currentUserRouter)
 app.use(UserIndexRouter)
 
