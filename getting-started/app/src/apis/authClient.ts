@@ -38,3 +38,11 @@ export const login = async ({
     throw e
   }
 }
+
+export const logout = async (): Promise<void> => {
+  try {
+    await httpClient.post("logout")
+  } catch {
+    // something went wrong but process logout anyway
+  }
+}

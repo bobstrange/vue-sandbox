@@ -1,6 +1,6 @@
 import { InjectionKey, inject, ref } from "vue"
 import { CurrentUser } from "@/models/user"
-import { login as loginRequest, LoginAttrs } from "@/apis/authClient"
+import { login as loginRequest, logout as logoutRequest, LoginAttrs } from "@/apis/authClient"
 
 export const AuthStoreKey: InjectionKey<typeof authStore> = Symbol("AuthStore")
 
@@ -9,7 +9,7 @@ const state = {
 }
 
 const loggedIn = () => {
-  return !!state.user
+  return !!state.user.value
 }
 
 const getCurrentUser = () => {
@@ -35,7 +35,9 @@ const signup = async () => {
 }
 
 const logout = async () => {
-  console.log("signin")
+  await logoutRequest()
+  localStorage.removeItem("user")
+  location.reload()
 }
 
 const actions = {

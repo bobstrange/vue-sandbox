@@ -2,16 +2,25 @@
   <nav class="nav-bar">
     <router-link :to="{ name: 'Home' }">Home</router-link>
     <router-link :to="{ name: 'Posts' }">Posts</router-link>
-    <router-link :to="{ name: 'Login' }" class="button">Login</router-link>
+    <router-link :to="{ name: 'Login' }" class="button" v-if="!isLoggedIn">Login</router-link>
+    <button v-else type="button" class="logout button" @click="logout">Logout</button>
   </nav>
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue"
+import { injectAuthStore } from '@/store/authStore'
+import { computed, defineComponent } from "vue"
 
 export default defineComponent({
   setup() {
-    return {}
+    const { getters: { loggedIn }, actions: { logout }} = injectAuthStore()
+    const isLoggedIn = computed(() => {
+      return loggedIn()
+    })
+    return {
+      isLoggedIn,
+      logout
+    }
   },
 })
 </script>
