@@ -1,6 +1,10 @@
 import { InjectionKey, inject, ref } from "vue"
 import { CurrentUser } from "@/models/user"
-import { login as loginRequest, logout as logoutRequest, LoginAttrs } from "@/apis/authClient"
+import {
+  login as loginRequest,
+  logout as logoutRequest,
+  LoginAttrs,
+} from "@/apis/authClient"
 
 export const AuthStoreKey: InjectionKey<typeof authStore> = Symbol("AuthStore")
 

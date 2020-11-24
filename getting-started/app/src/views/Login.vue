@@ -34,7 +34,7 @@ export default defineComponent({
       })
 
       if (result.data) {
-        router.push("Home")
+        router.push("/")
       } else {
         console.error(result.requestErrors)
       }
