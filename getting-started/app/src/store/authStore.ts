@@ -8,8 +8,16 @@ import {
 
 export const AuthStoreKey: InjectionKey<typeof authStore> = Symbol("AuthStore")
 
+const getUserFromLocalStorage = (): CurrentUser | null => {
+  const userString = localStorage.getItem("user")
+  if (userString) {
+    return JSON.parse(userString) as CurrentUser
+  }
+  return null
+}
+
 const state = {
-  user: ref<CurrentUser | null>(null),
+  user: ref<CurrentUser | null>(getUserFromLocalStorage()),
 }
 
 const loggedIn = () => {
