@@ -64,6 +64,6 @@ export const authStore = {
   actions,
 }
 
-export const injectAuthStore = () => {
+export const useAuthStore = () => {
   return inject(AuthStoreKey) as typeof authStore
 }

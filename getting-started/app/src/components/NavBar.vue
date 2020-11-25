@@ -12,7 +12,7 @@
 </template>
 
 <script lang="ts">
-import { injectAuthStore } from "@/store/authStore"
+import { useAuthStore } from "@/composables/authStore"
 import { computed, defineComponent } from "vue"
 
 export default defineComponent({
@@ -20,7 +20,7 @@ export default defineComponent({
     const {
       getters: { loggedIn },
       actions: { logout },
-    } = injectAuthStore()
+    } = useAuthStore()
     const isLoggedIn = computed(() => {
       return loggedIn()
     })

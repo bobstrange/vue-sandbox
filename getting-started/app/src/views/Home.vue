@@ -14,7 +14,7 @@
 </template>
 
 <script lang="ts">
-import { injectAuthStore } from "@/store/authStore"
+import { useAuthStore } from "@/composables/authStore"
 import { computed, defineComponent } from "vue"
 
 export default defineComponent({
@@ -22,7 +22,7 @@ export default defineComponent({
   setup() {
     const {
       getters: { loggedIn },
-    } = injectAuthStore()
+    } = useAuthStore()
     const isLoggedIn = computed(() => loggedIn())
     return {
       isLoggedIn,

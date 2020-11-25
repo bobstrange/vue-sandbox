@@ -6,7 +6,7 @@
 <script lang="ts">
 import { defineComponent, provide } from "vue"
 import NavBar from "@/components/NavBar.vue"
-import { authStore, AuthStoreKey } from "@/store/authStore"
+import { authStore, AuthStoreKey } from "@/composables/authStore"
 import { useUsers, UsersStoreKey } from "./composables/users"
 
 export default defineComponent({
