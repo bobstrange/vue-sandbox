@@ -12,7 +12,7 @@ import { usersStore, UsersStoreKey } from "@/composables/usersStore"
 export default defineComponent({
   name: "App",
   setup() {
-    provide(AuthStoreKey, authStore)
+    provide(AuthStoreKey, authStore())
     provide(UsersStoreKey, usersStore())
   },
   components: {

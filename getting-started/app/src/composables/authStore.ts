@@ -6,7 +6,9 @@ import {
   LoginAttrs,
 } from "@/apis/authClient"
 
-export const AuthStoreKey: InjectionKey<typeof authStore> = Symbol("AuthStore")
+export const AuthStoreKey: InjectionKey<ReturnType<typeof authStore>> = Symbol(
+  "AuthStore"
+)
 
 const getUserFromLocalStorage = (): CurrentUser | null => {
   const userString = localStorage.getItem("user")
@@ -16,54 +18,60 @@ const getUserFromLocalStorage = (): CurrentUser | null => {
   return null
 }
 
-const state = {
-  user: ref<CurrentUser | null>(getUserFromLocalStorage()),
-}
-
-const loggedIn = () => {
-  return !!state.user.value
-}
-
-const getCurrentUser = () => {
-  return state.user
-}
-
-const getters = { loggedIn, getCurrentUser }
-
-const login = async (attrs: LoginAttrs) => {
-  const result = await loginRequest(attrs)
-  if (result.data) {
-    const userData = result.data
-    state.user.value = {
-      ...userData,
-    }
-    localStorage.setItem("user", JSON.stringify(userData))
+export const authStore = () => {
+  const state = {
+    user: ref<CurrentUser | null>(getUserFromLocalStorage()),
   }
-  return result
-}
 
-const signup = async () => {
-  console.log("signup")
-}
+  const loggedIn = () => {
+    return !!state.user.value
+  }
 
-const logout = async () => {
-  await logoutRequest()
-  localStorage.removeItem("user")
-  location.reload()
-}
+  const getCurrentUser = () => {
+    return state.user
+  }
 
-const actions = {
-  login,
-  signup,
-  logout,
-}
+  const getters = { loggedIn, getCurrentUser }
 
-export const authStore = {
-  state,
-  getters,
-  actions,
+  const login = async (attrs: LoginAttrs) => {
+    const result = await loginRequest(attrs)
+    if (result.data) {
+      const userData = result.data
+      state.user.value = {
+        ...userData,
+      }
+      localStorage.setItem("user", JSON.stringify(userData))
+    }
+    return result
+  }
+
+  const signup = async () => {
+    console.log("signup")
+  }
+
+  const logout = async () => {
+    await logoutRequest()
+    localStorage.removeItem("user")
+    location.reload()
+  }
+
+  const actions = {
+    login,
+    signup,
+    logout,
+  }
+
+  return {
+    state,
+    getters,
+    actions,
+  }
 }
 
 export const useAuthStore = () => {
-  return inject(AuthStoreKey) as typeof authStore
+  const store = inject(AuthStoreKey)
+  if (!store) {
+    throw new Error("Please provide authStore before you inject.")
+  }
+  return store
 }

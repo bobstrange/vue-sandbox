@@ -19,7 +19,7 @@ export type UsersStore = ReturnType<typeof usersStore>
 export const useUsers = () => {
   const store = inject(UsersStoreKey)
   if (!store) {
-    throw new Error("Failed to inject UsersStore")
+    throw new Error("Please provide usersStore before you inject.")
   }
   return store
 }
