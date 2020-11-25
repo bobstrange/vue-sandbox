@@ -11,7 +11,7 @@ import { computed, PropType } from "vue"
 import { defineComponent } from "vue"
 
 import { Post } from "@/models/post"
-import { useUsers } from "@/composables/users"
+import { useUsers } from "@/composables/usersStore"
 
 export default defineComponent({
   name: "PostDetail",

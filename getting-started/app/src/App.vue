@@ -7,7 +7,7 @@
 import { defineComponent, provide } from "vue"
 import NavBar from "@/components/NavBar.vue"
 import { authStore, AuthStoreKey } from "@/composables/authStore"
-import { usersStore, UsersStoreKey } from "@/composables/users"
+import { usersStore, UsersStoreKey } from "@/composables/usersStore"
 
 export default defineComponent({
   name: "App",
