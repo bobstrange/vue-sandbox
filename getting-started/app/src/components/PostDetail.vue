@@ -10,13 +10,13 @@
 import { computed, PropType } from "vue"
 import { defineComponent } from "vue"
 
-import { Post } from "../models/post"
-import { injectUsers } from "../composables/users"
+import { Post } from "@/models/post"
+import { useUsers } from "@/composables/users"
 
 export default defineComponent({
   name: "PostDetail",
   setup(props) {
-    const { users, reloadUsers } = injectUsers()
+    const { users, reloadUsers } = useUsers()
     const screenName = computed(() => {
       const user = users.value.find((user) => user.id === props.post.userId)
       return user?.screenName
