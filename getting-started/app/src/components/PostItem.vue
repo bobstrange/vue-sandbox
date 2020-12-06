@@ -14,7 +14,7 @@ import { Post } from '@/models/post'
 import { useUsers } from '@/composables/usersStore'
 
 export default defineComponent({
-  name: 'PostDetail',
+  name: 'PostItem',
   setup(props) {
     const { users, reloadUsers } = useUsers()
     const screenName = computed(() => {
@@ -39,6 +39,7 @@ export default defineComponent({
   border-style: dotted;
   border-radius: 10px;
   border-width: 1px;
+  min-width: 50vw;
 }
 
 .title {

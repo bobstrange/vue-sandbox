@@ -2,7 +2,7 @@
   <div class="post-list">
     <ul>
       <li v-for="post in posts" :key="post.id">
-        <PostDetail :post="post" />
+        <PostItem :post="post" />
       </li>
     </ul>
   </div>
@@ -12,7 +12,7 @@
 import { PropType } from 'vue'
 import { defineComponent } from 'vue'
 
-import PostDetail from '../components/PostDetail.vue'
+import PostItem from '../components/PostItem.vue'
 import { Post } from '../models/post'
 
 export default defineComponent({
@@ -26,7 +26,7 @@ export default defineComponent({
       required: true,
     },
   },
-  components: { PostDetail },
+  components: { PostItem },
 })
 </script>
 
