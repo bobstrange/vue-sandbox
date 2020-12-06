@@ -6,4 +6,4 @@ export interface CurrentUser {
   email: string
 }
 
-export type User = Omit<CurrentUser, "email">
+export type User = Omit<CurrentUser, 'email'>

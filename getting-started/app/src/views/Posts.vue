@@ -5,13 +5,13 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onBeforeMount, ref } from "vue"
-import { fetchPosts } from "../apis/postClient"
-import { Post } from "../models/post"
-import PostList from "../components/PostList.vue"
+import { defineComponent, onBeforeMount, ref } from 'vue'
+import { fetchPosts } from '../apis/postClient'
+import { Post } from '../models/post'
+import PostList from '../components/PostList.vue'
 
 export default defineComponent({
-  name: "Posts",
+  name: 'Posts',
   setup() {
     const posts = ref<Post[]>([])
 

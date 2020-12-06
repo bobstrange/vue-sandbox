@@ -4,13 +4,13 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, provide } from "vue"
-import NavBar from "@/components/NavBar.vue"
-import { authStore, AuthStoreKey } from "@/composables/authStore"
-import { usersStore, UsersStoreKey } from "@/composables/usersStore"
+import { defineComponent, provide } from 'vue'
+import NavBar from '@/components/NavBar.vue'
+import { authStore, AuthStoreKey } from '@/composables/authStore'
+import { usersStore, UsersStoreKey } from '@/composables/usersStore'
 
 export default defineComponent({
-  name: "App",
+  name: 'App',
   setup() {
     provide(AuthStoreKey, authStore())
     provide(UsersStoreKey, usersStore())

@@ -1,5 +1,5 @@
-import Axios, { AxiosError } from "axios"
-import { API_URL, PORT } from "@/config/environments"
+import Axios, { AxiosError } from 'axios'
+import { API_URL, PORT } from '@/config/environments'
 
 export interface RequestError {
   message: string
@@ -17,7 +17,7 @@ export const httpClient = Axios.create({
 })
 
 const isRequestErrorObject = (e: any): e is RequestErrorObject => {
-  return typeof e === "object" && e.isAxiosError !== undefined
+  return typeof e === 'object' && e.isAxiosError !== undefined
 }
 
 export function getRequestErrors(e: any): RequestErrors | undefined {

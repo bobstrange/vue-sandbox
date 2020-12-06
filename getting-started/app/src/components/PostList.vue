@@ -9,14 +9,14 @@
 </template>
 
 <script lang="ts">
-import { PropType } from "vue"
-import { defineComponent } from "vue"
+import { PropType } from 'vue'
+import { defineComponent } from 'vue'
 
-import PostDetail from "../components/PostDetail.vue"
-import { Post } from "../models/post"
+import PostDetail from '../components/PostDetail.vue'
+import { Post } from '../models/post'
 
 export default defineComponent({
-  name: "PostList",
+  name: 'PostList',
   setup() {
     return {}
   },

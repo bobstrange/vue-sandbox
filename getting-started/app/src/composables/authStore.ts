@@ -1,17 +1,17 @@
-import { InjectionKey, inject, ref } from "vue"
-import { CurrentUser } from "@/models/user"
+import { InjectionKey, inject, ref } from 'vue'
+import { CurrentUser } from '@/models/user'
 import {
   login as loginRequest,
   logout as logoutRequest,
   LoginAttrs,
-} from "@/apis/authClient"
+} from '@/apis/authClient'
 
 export const AuthStoreKey: InjectionKey<ReturnType<typeof authStore>> = Symbol(
-  "AuthStore"
+  'AuthStore'
 )
 
 const getUserFromLocalStorage = (): CurrentUser | null => {
-  const userString = localStorage.getItem("user")
+  const userString = localStorage.getItem('user')
   if (userString) {
     return JSON.parse(userString) as CurrentUser
   }
@@ -40,18 +40,18 @@ export const authStore = () => {
       state.user.value = {
         ...userData,
       }
-      localStorage.setItem("user", JSON.stringify(userData))
+      localStorage.setItem('user', JSON.stringify(userData))
     }
     return result
   }
 
   const signup = async () => {
-    console.log("signup")
+    console.log('signup')
   }
 
   const logout = async () => {
     await logoutRequest()
-    localStorage.removeItem("user")
+    localStorage.removeItem('user')
     location.reload()
   }
 
@@ -71,7 +71,7 @@ export const authStore = () => {
 export const useAuthStore = () => {
   const store = inject(AuthStoreKey)
   if (!store) {
-    throw new Error("Please provide authStore before you inject.")
+    throw new Error('Please provide authStore before you inject.')
   }
   return store
 }

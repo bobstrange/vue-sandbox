@@ -7,14 +7,14 @@
 </template>
 
 <script lang="ts">
-import { computed, PropType } from "vue"
-import { defineComponent } from "vue"
+import { computed, PropType } from 'vue'
+import { defineComponent } from 'vue'
 
-import { Post } from "@/models/post"
-import { useUsers } from "@/composables/usersStore"
+import { Post } from '@/models/post'
+import { useUsers } from '@/composables/usersStore'
 
 export default defineComponent({
-  name: "PostDetail",
+  name: 'PostDetail',
   setup(props) {
     const { users, reloadUsers } = useUsers()
     const screenName = computed(() => {

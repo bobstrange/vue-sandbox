@@ -14,11 +14,11 @@
 </template>
 
 <script lang="ts">
-import { useAuthStore } from "@/composables/authStore"
-import { computed, defineComponent } from "vue"
+import { useAuthStore } from '@/composables/authStore'
+import { computed, defineComponent } from 'vue'
 
 export default defineComponent({
-  name: "Home",
+  name: 'Home',
   setup() {
     const {
       getters: { loggedIn },

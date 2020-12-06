@@ -1,14 +1,14 @@
-import { getRequestErrors, httpClient, RequestErrors } from "./httpClient"
-import { CurrentUser } from "@/models/user"
+import { getRequestErrors, httpClient, RequestErrors } from './httpClient'
+import { CurrentUser } from '@/models/user'
 
-export type SignupAttrs = Pick<CurrentUser, "email"> & { password: string }
+export type SignupAttrs = Pick<CurrentUser, 'email'> & { password: string }
 export type LoginAttrs = SignupAttrs
 
 export const signup = async ({
   email,
   password,
 }: SignupAttrs): Promise<CurrentUser> => {
-  const response = await httpClient.post<CurrentUser>("/login", {
+  const response = await httpClient.post<CurrentUser>('/login', {
     email,
     password,
   })
@@ -25,7 +25,7 @@ export const login = async ({
   password,
 }: LoginAttrs): Promise<Result<CurrentUser>> => {
   try {
-    const response = await httpClient.post<CurrentUser>("/login", {
+    const response = await httpClient.post<CurrentUser>('/login', {
       email,
       password,
     })
@@ -41,7 +41,7 @@ export const login = async ({
 
 export const logout = async (): Promise<void> => {
   try {
-    await httpClient.post("logout")
+    await httpClient.post('logout')
   } catch {
     // something went wrong but process logout anyway
   }

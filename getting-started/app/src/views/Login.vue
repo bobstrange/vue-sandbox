@@ -13,14 +13,14 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from "vue"
-import { useRouter } from "vue-router"
-import { useAuthStore } from "@/composables/authStore"
+import { defineComponent, ref } from 'vue'
+import { useRouter } from 'vue-router'
+import { useAuthStore } from '@/composables/authStore'
 
 export default defineComponent({
   setup() {
-    const email = ref("")
-    const password = ref("")
+    const email = ref('')
+    const password = ref('')
 
     const router = useRouter()
     const {
@@ -34,7 +34,7 @@ export default defineComponent({
       })
 
       if (result.data) {
-        router.push("/")
+        router.push('/')
       } else {
         console.error(result.requestErrors)
       }
