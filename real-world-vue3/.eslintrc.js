@@ -23,9 +23,10 @@ module.exports = {
     }
   ],
   extends: [
-    'plugin:vue/vue3-essential',
+    'plugin:vue/essential',
     'eslint:recommended',
+    '@vue/typescript/recommended',
     '@vue/prettier',
-    '@vue/typescript'
+    '@vue/prettier/@typescript-eslint'
   ]
 }

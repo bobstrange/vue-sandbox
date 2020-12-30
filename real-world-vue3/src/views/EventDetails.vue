@@ -8,12 +8,17 @@
   </div>
 </template>
 
-<script>
-import { onBeforeMount, ref } from 'vue'
-import { fetchEvent } from '../apis/event'
-export default {
-  setup(props) {
-    const event = ref(null)
+<script lang="ts">
+import { defineComponent, onBeforeMount, PropType, ref } from 'vue'
+import { fetchEvent, Event } from '../apis/event'
+
+interface Props {
+  readonly id: string
+}
+
+export default defineComponent({
+  setup(props: Props) {
+    const event = ref<Event | null>(null)
 
     onBeforeMount(async () => {
       event.value = await fetchEvent(props.id)
@@ -22,11 +27,11 @@ export default {
   },
   props: {
     id: {
-      type: String,
+      type: String as PropType<string>,
       required: true
     }
   }
-}
+})
 </script>
 
 <style lang="scss" scoped></style>

@@ -11,13 +11,14 @@
   </router-link>
 </template>
 
-<script>
-import { computed } from 'vue'
+<script lang="ts">
+import { computed, defineComponent, PropType } from 'vue'
+import { Event } from '../apis/event'
 
-export default {
+export default defineComponent({
   name: 'EventCard',
   setup(props) {
-    const data = computed(() => {
+    const data = computed<Event>(() => {
       return props.event
     })
 
@@ -25,11 +26,11 @@ export default {
   },
   props: {
     event: {
-      type: Object,
+      type: Object as PropType<Event>,
       required: true
     }
   }
-}
+})
 </script>
 
 <style scoped lang="scss"></style>

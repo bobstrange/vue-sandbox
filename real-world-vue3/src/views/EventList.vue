@@ -12,9 +12,9 @@
 <script lang="ts">
 import EventCard from '@/components/EventCard.vue'
 import { fetchEvents, Event } from '../apis/event'
-import { onBeforeMount, reactive } from 'vue'
+import { defineComponent, onBeforeMount, reactive } from 'vue'
 
-export default {
+export default defineComponent({
   name: 'EventList',
   setup() {
     const events = reactive<Event[]>([])
@@ -26,5 +26,5 @@ export default {
   components: {
     EventCard
   }
-}
+})
 </script>
