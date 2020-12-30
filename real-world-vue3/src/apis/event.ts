@@ -1,17 +1,19 @@
 import { client } from './client'
 
-export async function fetchEvents() {
-  try {
-    return (await client.get('/events')).data
-  } catch (e) {
-    console.error(e)
-  }
+interface Event {
+  id: number
+  category: string
+  title: string
+  description: string
+  location: string
+  date: string
+  time: string
+  organizer: string
+}
+export async function fetchEvents(): Promise<Event[]> {
+  return (await client.get('/events')).data
 }
 
-export async function fetchEvent(id) {
-  try {
-    return (await client.get(`/events/${id}`)).data
-  } catch (e) {
-    console.error(e)
-  }
+export async function fetchEvent(id: string): Promise<Event> {
+  return (await client.get(`/events/${id}`)).data
 }
