@@ -11,12 +11,14 @@
 
 <script>
 import { computed } from 'vue'
+
 export default {
   name: 'EventCard',
   setup(props) {
     const data = computed(() => {
       return props.event
     })
+
     return { data }
   },
   props: {

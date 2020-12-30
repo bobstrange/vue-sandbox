@@ -11,12 +11,16 @@
 
 <script>
 import EventCard from '@/components/EventCard.vue'
-import dummyEvents from '@/dummy_events.json'
+import { fetchEvents } from '../apis/event'
+import { onBeforeMount, reactive } from 'vue'
 
 export default {
   name: 'EventList',
   setup() {
-    const events = dummyEvents
+    const events = reactive([])
+    onBeforeMount(async () => {
+      events.push(...(await fetchEvents()))
+    })
     return { events }
   },
   components: {
