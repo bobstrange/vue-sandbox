@@ -9,15 +9,15 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import EventCard from '@/components/EventCard.vue'
-import { fetchEvents } from '../apis/event'
+import { fetchEvents, Event } from '../apis/event'
 import { onBeforeMount, reactive } from 'vue'
 
 export default {
   name: 'EventList',
   setup() {
-    const events = reactive([])
+    const events = reactive<Event[]>([])
     onBeforeMount(async () => {
       events.push(...(await fetchEvents()))
     })

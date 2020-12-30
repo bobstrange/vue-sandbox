@@ -13,6 +13,15 @@ module.exports = {
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off'
   },
 
+  overrides: [
+    // suppress no unused var error on typescript type in .vue
+    {
+      files: ['*.vue'],
+      rules: require('@typescript-eslint/eslint-plugin').configs[
+        'eslint-recommended'
+      ].overrides[0].rules
+    }
+  ],
   extends: [
     'plugin:vue/vue3-essential',
     'eslint:recommended',
