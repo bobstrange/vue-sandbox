@@ -1,0 +1,13 @@
+[
+  {
+    "id": "001",
+    "category": "animal welfare",
+    "title": "Cat Adoption Day",
+    "description": "Find your new feline friend at this event.",
+    "location": "Meow Town",
+    "date": "2020-12-28",
+    "time": "12:00",
+    "petsAllowed": true,
+    "organizer": "Kat Laydee"
+  }
+]
