@@ -7,3 +7,11 @@ export async function fetchEvents() {
     console.error(e)
   }
 }
+
+export async function fetchEvent(id) {
+  try {
+    return (await client.get(`/events/${id}`)).data
+  } catch (e) {
+    console.error(e)
+  }
+}

@@ -13,7 +13,7 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  @apply bg-gray-100;
+  @apply bg-gray-100 h-screen;
 }
 
 #nav {
