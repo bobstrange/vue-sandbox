@@ -49,12 +49,10 @@
       <h3 class="category-heading">Extras</h3>
       <div class="mt-2">
         <div>
-          <input type="checkbox" v-model="event.extras.catering" class="mr-1" />
-          <label class="text-gray-600 text-base">Catering</label>
+          <BaseCheckbox v-model="event.extras.catering" label="Catering" />
         </div>
         <div>
-          <input type="checkbox" v-model="event.extras.music" class="mr-1" />
-          <label class="text-gray-600 text-base">Live music</label>
+          <BaseCheckbox v-model="event.extras.music" label="Live Music" />
         </div>
       </div>
 
@@ -73,6 +71,7 @@
 import { defineProps, reactive } from 'vue'
 import BaseInput from '../components/BaseInput.vue'
 import BaseSelect from '../components/BaseSelect.vue'
+import BaseCheckbox from '../components/BaseCheckbox.vue'
 
 defineProps({
   msg: String,
