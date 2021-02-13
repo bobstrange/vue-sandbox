@@ -5,7 +5,7 @@
       :type="$attrs.type"
       :value="modelValue"
       :placeholder="label"
-      class="mt-1 px-2 pt-0.5 text-base"
+      class="mt-1 py-1 px-2 text-base"
       @input="$emit('update:modelValue', $event.target.value)"
     />
   </div>
