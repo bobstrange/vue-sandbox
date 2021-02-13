@@ -5,7 +5,7 @@
 </template>
 
 <script setup>
-import SimpleForm from './components/SimpleForm.vue'
+import SimpleForm from './views/SimpleForm.vue'
 </script>
 
 <style>

@@ -115,10 +115,6 @@ const event = reactive({
 </script>
 
 <style scoped>
-a {
-  color: #42b983;
-}
-
 .category-heading {
   @apply mt-4 font-semibold;
 }
