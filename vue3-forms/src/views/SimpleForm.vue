@@ -14,31 +14,12 @@
         </option>
       </select>
 
-      <h3 class="category-heading">Name & describe your event</h3>
-      <label for="title" class="category-label">Title</label>
-      <input
-        type="text"
-        v-model="event.title"
-        placeholder="Title"
-        class="category-text-input"
-      />
-
-      <label for="description" class="category-label">Description</label>
-      <input
-        type="text"
-        v-model="event.description"
-        placeholder="Description"
-        class="category-text-input"
-      />
+      <h3 class="category-heading mb-2">Name & describe your event</h3>
+      <BaseInput v-model="event.title" label="title" type="text" />
+      <BaseInput v-model="event.description" label="description" type="text" />
 
       <h3 class="category-heading">Where is your event ?</h3>
-      <label for="location" class="category-label">Location</label>
-      <input
-        type="text"
-        v-model="event.location"
-        placeholder="Location"
-        class="category-text-input"
-      />
+      <BaseInput v-model="event.location" label="location" type="text" />
 
       <h3 class="category-heading">Are pets allowed ?</h3>
       <div class="mt-2">
@@ -76,7 +57,8 @@
 
       <button
         type="submit"
-        class="mt-4 transition duration-200 transform py-1 px-4 text-lg text-gray-700 bg-gray-300 rounded shadow hover:scale-105 hover:shadow-lg focus:outline-none"
+        class="mt-4 transition duration-200 transform py-1 px-4 text-lg text-gray-700 bg-blue-300 rounded shadow hover:scale-105 hover:shadow-lg focus:outline-none"
+        @click.prevent="onSubmit"
       >
         Submit
       </button>
@@ -86,6 +68,7 @@
 
 <script setup>
 import { defineProps, reactive } from 'vue'
+import BaseInput from '../components/BaseInput.vue'
 
 defineProps({
   msg: String,
@@ -112,6 +95,12 @@ const event = reactive({
     music: false,
   },
 })
+
+const onSubmit = (e) => {
+  console.log('onSubmit')
+  console.log(e)
+  console.log(event)
+}
 </script>
 
 <style scoped>
