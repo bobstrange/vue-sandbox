@@ -26,10 +26,11 @@
 
       <h3 class="category-heading">Are pets allowed ?</h3>
       <div class="mt-2">
-        <BaseRadio v-model="event.pets" :value="1" name="pets" label="Yes" />
-      </div>
-      <div>
-        <BaseRadio v-model="event.pets" :value="0" name="pets" label="No" />
+        <BaseRadioGroup
+          v-model="event.pets"
+          name="pets"
+          :options="petOptions"
+        />
       </div>
 
       <h3 class="category-heading">Extras</h3>
@@ -59,6 +60,7 @@ import BaseInput from '../components/BaseInput.vue'
 import BaseSelect from '../components/BaseSelect.vue'
 import BaseCheckbox from '../components/BaseCheckbox.vue'
 import BaseRadio from '../components/BaseRadio.vue'
+import BaseRadioGroup from '../components/BaseRadioGroup.vue'
 
 defineProps({
   msg: String,
@@ -72,6 +74,11 @@ const categories = reactive([
   'education',
   'food',
   'community',
+])
+
+const petOptions = reactive([
+  { label: 'Yes', value: 1 },
+  { label: 'No', value: 0 },
 ])
 
 const event = reactive({
