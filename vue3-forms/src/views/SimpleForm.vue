@@ -26,24 +26,10 @@
 
       <h3 class="category-heading">Are pets allowed ?</h3>
       <div class="mt-2">
-        <input
-          type="radio"
-          v-model="event.pets"
-          :value="1"
-          name="pets"
-          class="mr-1"
-        />
-        <label class="text-gray-600 text-base">Yes</label>
+        <BaseRadio v-model="event.pets" :value="1" name="pets" label="Yes" />
       </div>
       <div>
-        <input
-          type="radio"
-          v-model="event.pets"
-          :value="0"
-          name="pets"
-          class="mr-1"
-        />
-        <label class="text-gray-600 text-base">No</label>
+        <BaseRadio v-model="event.pets" :value="0" name="pets" label="No" />
       </div>
 
       <h3 class="category-heading">Extras</h3>
@@ -72,6 +58,7 @@ import { defineProps, reactive } from 'vue'
 import BaseInput from '../components/BaseInput.vue'
 import BaseSelect from '../components/BaseSelect.vue'
 import BaseCheckbox from '../components/BaseCheckbox.vue'
+import BaseRadio from '../components/BaseRadio.vue'
 
 defineProps({
   msg: String,
