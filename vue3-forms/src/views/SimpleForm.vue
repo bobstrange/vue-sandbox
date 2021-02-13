@@ -14,12 +14,22 @@
         </option>
       </select>
 
-      <h3 class="category-heading mb-2">Name & describe your event</h3>
-      <BaseInput v-model="event.title" label="title" type="text" />
-      <BaseInput v-model="event.description" label="description" type="text" />
+      <h3 class="category-heading">Name & describe your event</h3>
+      <BaseInput v-model="event.title" label="title" type="text" class="my-2" />
+      <BaseInput
+        v-model="event.description"
+        label="description"
+        type="text"
+        class="my-2"
+      />
 
       <h3 class="category-heading">Where is your event ?</h3>
-      <BaseInput v-model="event.location" label="location" type="text" />
+      <BaseInput
+        v-model="event.location"
+        label="location"
+        type="text"
+        class="my-2"
+      />
 
       <h3 class="category-heading">Are pets allowed ?</h3>
       <div class="mt-2">
