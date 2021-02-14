@@ -2,7 +2,9 @@
   "name": "vue3-forms",
   "version": "0.0.0",
   "scripts": {
-    "dev": "vite",
+    "dev": "run-p dev:*",
+    "dev:server": "vite",
+    "dev:db": "json-server db.json --port 3001",
     "build": "vite build",
     "serve": "vite preview",
     "lint": "eslint **/*.{js,ts,vue}",
@@ -23,6 +25,7 @@
     "eslint-config-prettier": "^7.2.0",
     "eslint-plugin-vue": "^7.5.0",
     "json-server": "^0.16.3",
+    "npm-run-all": "^4.1.5",
     "postcss": "^8.2.6",
     "prettier": "^2.2.1",
     "tailwindcss": "^2.0.3",
