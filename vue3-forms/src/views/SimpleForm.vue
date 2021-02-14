@@ -1,7 +1,7 @@
 <template>
   <div class="text-lg pt-16">
     <h1 class="text-2xl font-extrabold text-gray-800">Create an event</h1>
-    <form>
+    <form @submit.prevent="sendForm">
       <BaseSelect
         v-model="event.category"
         :options="categories"
@@ -46,7 +46,6 @@
       <button
         type="submit"
         class="mt-4 transition duration-200 transform py-1 px-4 text-lg text-gray-700 bg-blue-300 rounded shadow hover:scale-105 hover:shadow-lg focus:outline-none"
-        @click.prevent="onSubmit"
       >
         Submit
       </button>
@@ -56,6 +55,8 @@
 
 <script setup>
 import { defineProps, reactive } from 'vue'
+import axios from 'axios'
+
 import BaseInput from '../components/BaseInput.vue'
 import BaseSelect from '../components/BaseSelect.vue'
 import BaseCheckbox from '../components/BaseCheckbox.vue'
@@ -93,10 +94,14 @@ const event = reactive({
   },
 })
 
-const onSubmit = (e) => {
+const sendForm = async (e) => {
   console.log('onSubmit')
-  console.log(e)
-  console.log(event)
+  try {
+    const result = await axios.post('http://localhost:3001/events', event)
+    console.log(result)
+  } catch (e) {
+    console.log(e)
+  }
 }
 </script>
 
