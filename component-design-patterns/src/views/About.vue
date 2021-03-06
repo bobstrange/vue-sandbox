@@ -1,7 +1,7 @@
 <template>
   <BaseLayout>
-    <template v-slot:header="props">
-      <h1>{{ props.title }}</h1>
+    <template v-slot:header="{ title }">
+      <h1>{{ title }}</h1>
     </template>
     <template v-slot:default>
       <p>Page content</p>
