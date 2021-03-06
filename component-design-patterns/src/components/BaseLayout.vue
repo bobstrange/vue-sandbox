@@ -1,7 +1,7 @@
 <template>
   <div class="base-layout">
     <header>
-      <slot name="header"></slot>
+      <slot name="header" :title="title"></slot>
     </header>
     <main>
       <slot name="default"></slot>
@@ -15,14 +15,8 @@
   </div>
 </template>
 
-<script setup>
-import { defineProps } from '@vue/runtime-core'
-
-const props = defineProps({
-  logo: {
-    type: String
-  }
-})
+<script setup lang="ts">
+const title = 'Base layout title'
 </script>
 
 <style lang="scss" scoped>
