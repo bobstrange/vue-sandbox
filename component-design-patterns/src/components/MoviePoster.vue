@@ -1,6 +1,6 @@
 <template>
   <div>
-    <img alt="Vue logo" src="../assets/logo.png" />
+    <img alt="Vue logo" :src="image" />
     <h1>{{ title }}</h1>
     <p>{{ length }} <span v-if="watched">✅</span></p>
   </div>

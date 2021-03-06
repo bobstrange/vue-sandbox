@@ -1,6 +1,10 @@
 <template>
   <div class="home">
-    <MoviePoster title="Test Title" :watched="true" />
+    <MoviePoster
+      title="Test Title"
+      :watched="true"
+      :image="require('@/assets/logo.png')"
+    />
   </div>
 </template>
 
