@@ -1,6 +1,8 @@
 <template>
-  <DynamicHeading :level="1" />
-  <HelloWorld msg="Welcome to Your Vue.js App" />
+  <div :class="$style.app">
+    <DynamicHeading :level="'2'" />
+    <HelloWorld />
+  </div>
 </template>
 
 <script lang="ts">
@@ -15,9 +17,8 @@ export default {
 }
 </script>
 
-<style>
-/* Challenge: Refactor these styles into a CSS class and combine it with CSS modules */
-#app {
+<style module>
+.app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
