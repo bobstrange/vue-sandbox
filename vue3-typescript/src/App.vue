@@ -1,21 +1,22 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" />
+  <DynamicHeading :level="1" />
+  <HelloWorld msg="Welcome to Your Vue.js App" />
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
-import HelloWorld from './components/HelloWorld.vue'
-
-export default defineComponent({
+import DynamicHeading from '@/components/DynamicHeading.vue'
+import HelloWorld from '@/components/HelloWorld.vue'
+export default {
   name: 'App',
   components: {
+    DynamicHeading,
     HelloWorld
   }
-})
+}
 </script>
 
-<style lang="scss">
+<style>
+/* Challenge: Refactor these styles into a CSS class and combine it with CSS modules */
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
