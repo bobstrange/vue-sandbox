@@ -2,19 +2,16 @@
   <div :class="$style.app">
     <DynamicHeading :level="'2'" />
     <HelloWorld />
+    <!-- <BaseButton>
+      Submit
+    </BaseButton> -->
   </div>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
 import DynamicHeading from '@/components/DynamicHeading.vue'
 import HelloWorld from '@/components/HelloWorld.vue'
-export default {
-  name: 'App',
-  components: {
-    DynamicHeading,
-    HelloWorld
-  }
-}
+import BaseButton from '@/components/BaseButton.vue'
 </script>
 
 <style module>
