@@ -5,7 +5,8 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "test:unit": "vue-cli-service test:unit"
+    "test:unit": "vue-cli-service test:unit",
+    "format": "prettier --write src/**/*.{ts,vue}"
   },
   "dependencies": {
     "core-js": "^3.9.1",
