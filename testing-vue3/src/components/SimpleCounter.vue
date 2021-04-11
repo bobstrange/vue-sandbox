@@ -6,19 +6,19 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from "vue";
+import { defineComponent, ref } from 'vue'
 
 export default defineComponent({
-  name: "SimpleCounter",
+  name: 'SimpleCounter',
   setup() {
-    const count = ref(0);
+    const count = ref(0)
     const increment = () => {
-      count.value = count.value + 1;
-    };
+      count.value = count.value + 1
+    }
     return {
       count,
       increment,
-    };
+    }
   },
-});
+})
 </script>

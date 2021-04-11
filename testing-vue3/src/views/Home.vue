@@ -6,13 +6,13 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
-import SimpleCounter from "@/components/SimpleCounter.vue"; // @ is an alias to /src
+import { defineComponent } from 'vue'
+import SimpleCounter from '@/components/SimpleCounter.vue' // @ is an alias to /src
 
 export default defineComponent({
-  name: "Home",
+  name: 'Home',
   components: {
     SimpleCounter,
   },
-});
+})
 </script>
