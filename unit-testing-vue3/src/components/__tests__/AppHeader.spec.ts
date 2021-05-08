@@ -8,8 +8,7 @@ describe('AppHeader', () => {
   })
 
   test('If user is logged in, show logout button', async () => {
-    const wrapper = shallowMount(AppHeader)
-    await wrapper.setData({ loggedIn: true })
+    const wrapper = shallowMount(AppHeader, { props: { loggedIn: true } })
     expect(wrapper.find('button').isVisible()).toBeTruthy()
   })
 })
