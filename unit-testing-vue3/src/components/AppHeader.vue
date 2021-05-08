@@ -2,21 +2,29 @@
   <nav>
     <ul>
       <li><router-link to="/">Home</router-link></li>
-      <li><router-link to="/about">About</router-link></li>
+      <li><router-link to="/login">Login</router-link></li>
     </ul>
-    <button v-show="loggedIn">Logout</button>
+    <button v-show="showLoggedIn" @click="logoutHandler()">Logout</button>
   </nav>
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, toRefs } from 'vue'
+import { computed, defineComponent } from 'vue'
 
 export default defineComponent({
-  setup() {
-    const state = reactive({
-      loggedIn: true,
-    })
-    return toRefs(state)
+  setup(props) {
+    const showLoggedIn = computed(() => props.loggedIn)
+    return { showLoggedIn, logoutHandler: props.logout }
+  },
+  props: {
+    loggedIn: {
+      type: Boolean,
+      require: true,
+    },
+    logout: {
+      type: Function,
+      require: true,
+    },
   },
 })
 </script>

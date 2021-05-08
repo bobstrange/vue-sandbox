@@ -1,6 +1,6 @@
 <template>
   <div class="app-container">
-    <AppHeader />
+    <AppHeader :loggedIn="loggedIn" :logout="logout" />
     <router-view />
   </div>
 </template>
@@ -8,8 +8,16 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import AppHeader from '@/components/AppHeader.vue'
+import { registerAuthStore } from './composables/authStore'
 
 export default defineComponent({
+  setup() {
+    const authStore = registerAuthStore()
+    return {
+      loggedIn: authStore.loggedIn,
+      logout: authStore.logout,
+    }
+  },
   components: { AppHeader },
 })
 </script>
