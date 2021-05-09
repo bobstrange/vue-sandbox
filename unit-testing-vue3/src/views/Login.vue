@@ -1,6 +1,7 @@
 <template>
-  <div class="about">
-    <h1>Please login</h1>
+  <div class="login">
+    <p v-if="!loggedIn">Please login</p>
+    <p v-else>You've already logged in</p>
     <button v-show="!loggedIn" @click="login">Login</button>
   </div>
 </template>
@@ -22,6 +23,12 @@ export default defineComponent({
 </script>
 
 <style scoped>
+.login {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
 button {
   height: 30px;
   padding: 5px 10px;
@@ -31,6 +38,9 @@ button {
   font-size: 16px;
   font-weight: bold;
   color: white;
-  margin-right: 20px;
+}
+
+p {
+  font-size: 20px;
 }
 </style>
