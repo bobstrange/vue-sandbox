@@ -9,6 +9,7 @@
     "e2e": "cypress open"
   },
   "dependencies": {
+    "axios": "^0.21.1",
     "vue": "^3.0.5"
   },
   "devDependencies": {
