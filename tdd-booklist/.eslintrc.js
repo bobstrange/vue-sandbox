@@ -17,5 +17,5 @@ module.exports = {
     sourceType: 'module',
   },
   plugins: ['vue', '@typescript-eslint'],
-  rules: {},
+  rules: { 'vue/no-multiple-template-root': 'off' },
 }
