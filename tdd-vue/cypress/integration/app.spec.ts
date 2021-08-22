@@ -1,6 +1,11 @@
-describe('booklist', () => {
+describe('app', () => {
   it('shows title', () => {
-    cy.visit('http://localhost:3000')
-    cy.get('h1').should('have.text', 'Book List')
+    cy.visit('/')
+    cy.get('h1').should('have.text', 'Post List')
+  })
+
+  it('shows posts', () => {
+    cy.visit('/')
+    cy.get('.post-item').should('have.length', 100)
   })
 })

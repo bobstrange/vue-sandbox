@@ -1,7 +1,7 @@
 <template>
   <h1 class="text-2xl">Post List</h1>
   <ul v-for="post in posts" :key="post.id">
-    <li>{{ post.title }}</li>
+    <li class="post-item">{{ post.title }}</li>
   </ul>
 </template>
 
