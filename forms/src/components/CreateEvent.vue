@@ -40,13 +40,11 @@
 
       <h3>Extras</h3>
       <div>
-        <input type="checkbox" v-model="event.extras.catering" class="field" />
-        <label>Catering</label>
+        <BaseCheckbox v-model="event.extras.catering" label="Catering" />
       </div>
 
       <div>
-        <input type="checkbox" v-model="event.extras.music" class="field" />
-        <label>Live music</label>
+        <BaseCheckbox v-model="event.extras.music" label="Live Music" />
       </div>
 
       <button type="submit">Submit</button>
@@ -58,6 +56,7 @@
 import { defineComponent, reactive } from 'vue'
 import BaseInput from './BaseInput.vue'
 import BaseSelect from './BaseSelect.vue'
+import BaseCheckbox from './BaseCheckbox.vue'
 
 export default defineComponent({
   setup() {
@@ -91,6 +90,7 @@ export default defineComponent({
   components: {
     BaseInput,
     BaseSelect,
+    BaseCheckbox,
   },
 })
 </script>
