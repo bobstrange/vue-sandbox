@@ -1,7 +1,8 @@
 <template>
-  <div>
+  <div class="base-input">
     <label>{{ label }}</label>
     <input
+      v-bind="$attrs"
       :placeholder="label"
       class="field"
       :value="modelValue"
@@ -30,4 +31,14 @@ export default defineComponent({
 })
 </script>
 
-<style scoped></style>
+<style scoped>
+.base-input {
+  display: flex;
+  align-items: center;
+}
+
+label {
+  display: inline-block;
+  margin-right: 1rem;
+}
+</style>

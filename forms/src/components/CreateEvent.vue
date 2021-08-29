@@ -1,22 +1,33 @@
 <template>
-  <div>
+  <div class="create-event">
     <h1>Create a Event</h1>
     <form>
       <label>Select a category</label>
       <select v-model="event.category">
         <option
           v-for="option in categories"
-          value="option"
+          :value="option"
           :key="option"
           :selected="option === event.category"
         >
-          {option}
+          {{ option }}
         </option>
       </select>
+
       <h3>Name & describe your event</h3>
 
-      <BaseInput v-model="event.title" label="Title" type="text" />
-      <BaseInput v-model="event.description" label="Description" type="text" />
+      <BaseInput
+        class="title"
+        v-model="event.title"
+        label="Title"
+        type="text"
+      />
+      <BaseInput
+        class="description"
+        v-model="event.description"
+        label="Description"
+        type="text"
+      />
 
       <h3>Where is your event?</h3>
 
@@ -88,4 +99,12 @@ export default defineComponent({
 })
 </script>
 
-<style scoped></style>
+<style scoped>
+.create-event {
+  padding: 1rem;
+}
+
+.description {
+  margin-top: 0.5rem;
+}
+</style>
