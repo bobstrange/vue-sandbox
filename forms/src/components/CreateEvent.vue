@@ -28,13 +28,12 @@
       <BaseInput v-model="event.location" label="Location" type="text" />
 
       <h3>Are pets allowed?</h3>
-      <div>
-        <BaseRadio v-model="event.pets" :value="1" name="pets" label="Yes" />
-      </div>
-
-      <div>
-        <BaseRadio v-model="event.pets" :value="0" name="pets" label="No" />
-      </div>
+      <BaseRadioGroup
+        v-model="event.pets"
+        name="pets"
+        :options="petOptions"
+        vertical
+      />
 
       <h3>Extras</h3>
       <div>
@@ -56,6 +55,7 @@ import BaseInput from './BaseInput.vue'
 import BaseSelect from './BaseSelect.vue'
 import BaseCheckbox from './BaseCheckbox.vue'
 import BaseRadio from './BaseRadio.vue'
+import BaseRadioGroup from './BaseRadioGroup.vue'
 
 export default defineComponent({
   setup() {
@@ -81,9 +81,15 @@ export default defineComponent({
       },
     })
 
+    const petOptions = [
+      { label: 'Yes', value: 1 },
+      { label: 'No', value: 0 },
+    ]
+
     return {
       categories,
       event,
+      petOptions,
     }
   },
   components: {
@@ -91,6 +97,7 @@ export default defineComponent({
     BaseSelect,
     BaseCheckbox,
     BaseRadio,
+    BaseRadioGroup,
   },
 })
 </script>
