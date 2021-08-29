@@ -2,17 +2,11 @@
   <div class="create-event">
     <h1>Create a Event</h1>
     <form>
-      <label>Select a category</label>
-      <select v-model="event.category">
-        <option
-          v-for="option in categories"
-          :value="option"
-          :key="option"
-          :selected="option === event.category"
-        >
-          {{ option }}
-        </option>
-      </select>
+      <BaseSelect
+        label="Select a category"
+        v-model="event.category"
+        :options="categories"
+      />
 
       <h3>Name & describe your event</h3>
 
@@ -63,6 +57,7 @@
 <script lang="ts">
 import { defineComponent, reactive } from 'vue'
 import BaseInput from './BaseInput.vue'
+import BaseSelect from './BaseSelect.vue'
 
 export default defineComponent({
   setup() {
@@ -95,6 +90,7 @@ export default defineComponent({
   },
   components: {
     BaseInput,
+    BaseSelect,
   },
 })
 </script>
