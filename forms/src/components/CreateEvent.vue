@@ -15,13 +15,7 @@
       </select>
       <h3>Name & describe your event</h3>
 
-      <label>Title</label>
-      <input
-        v-model="event.title"
-        type="text"
-        placeholder="Title"
-        class="field"
-      />
+      <BaseInput v-model="event.title" label="Title" type="text" />
 
       <h3>Where is your event?</h3>
 
@@ -56,13 +50,12 @@
 
       <button type="submit">Submit</button>
     </form>
-
-    >
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, reactive } from 'vue'
+import BaseInput from './BaseInput.vue'
 
 export default defineComponent({
   setup() {
@@ -76,7 +69,7 @@ export default defineComponent({
       'community',
     ]
 
-    const event = {
+    const event = reactive({
       category: '',
       title: '',
       description: '',
@@ -86,12 +79,15 @@ export default defineComponent({
         catering: false,
         music: false,
       },
-    }
+    })
 
     return {
       categories,
       event,
     }
+  },
+  components: {
+    BaseInput,
   },
 })
 </script>
