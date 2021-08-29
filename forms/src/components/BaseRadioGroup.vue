@@ -16,8 +16,13 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, PropType } from 'vue'
 import BaseRadio from './BaseRadio.vue'
+
+type Option = {
+  label: string
+  value: string | number
+}
 
 export default defineComponent({
   setup() {
@@ -25,7 +30,7 @@ export default defineComponent({
   },
   props: {
     options: {
-      type: Array,
+      type: Array as PropType<Option[]>,
       required: true,
     },
     name: {

@@ -6,7 +6,7 @@
     v-bind="{
       ...$attrs,
       onChange: (event) => {
-        $emit('update:modelValue', event.target?.value)
+        $emit('update:modelValue', (event.target as HTMLInputElement).value)
       },
     }"
   >
@@ -22,7 +22,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, PropType } from 'vue'
 
 export default defineComponent({
   setup() {
@@ -37,7 +37,7 @@ export default defineComponent({
       default: '',
     },
     options: {
-      type: Array,
+      type: Array as PropType<string[]>,
       required: true,
     },
   },
