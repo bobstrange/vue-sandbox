@@ -54,7 +54,6 @@ import { defineComponent, reactive } from 'vue'
 import BaseInput from './BaseInput.vue'
 import BaseSelect from './BaseSelect.vue'
 import BaseCheckbox from './BaseCheckbox.vue'
-import BaseRadio from './BaseRadio.vue'
 import BaseRadioGroup from './BaseRadioGroup.vue'
 
 export default defineComponent({
@@ -96,7 +95,6 @@ export default defineComponent({
     BaseInput,
     BaseSelect,
     BaseCheckbox,
-    BaseRadio,
     BaseRadioGroup,
   },
 })
