@@ -1,7 +1,7 @@
 <template>
   <div class="create-event">
     <h1>Create a Event</h1>
-    <form>
+    <form @submit.prevent="sendForm">
       <BaseSelect
         label="Select a category"
         v-model="event.category"
@@ -51,6 +51,7 @@
 
 <script lang="ts">
 import { defineComponent, reactive } from 'vue'
+import axios from 'axios'
 import BaseInput from './BaseInput.vue'
 import BaseSelect from './BaseSelect.vue'
 import BaseCheckbox from './BaseCheckbox.vue'
@@ -85,10 +86,20 @@ export default defineComponent({
       { label: 'No', value: 0 },
     ]
 
+    const sendForm = async () => {
+      try {
+        const response = await axios.post('http://localhost:3001/events', event)
+        console.log(response)
+      } catch (error) {
+        console.error(error)
+      }
+    }
+
     return {
       categories,
       event,
       petOptions,
+      sendForm,
     }
   },
   components: {
