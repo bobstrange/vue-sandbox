@@ -6,7 +6,7 @@
     v-bind="{
       ...$attrs,
       onChange: (event) => {
-        $emit('update:modelValue', (event.target as HTMLInputElement).value)
+        $emit('update:modelValue', event.target.value)
       },
     }"
   >

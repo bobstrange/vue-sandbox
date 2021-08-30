@@ -3,7 +3,7 @@
     type="checkbox"
     class="field"
     :checked="modelValue"
-    @change="$emit('update:modelValue', ($event.target as HTMLInputElement).checked)"
+    @change="$emit('update:modelValue', $event.target.checked)"
   />
   <label v-if="label">{{ label }}</label>
 </template>
