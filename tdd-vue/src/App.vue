@@ -1,5 +1,7 @@
 <template>
-  <router-view />
+  <div class="mx-auto max-w-lg">
+    <router-view />
+  </div>
 </template>
 
 <script lang="ts">

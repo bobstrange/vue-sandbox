@@ -1,10 +1,14 @@
 <template>
-  <h1 class="text-2xl">Post List</h1>
-  <ul v-for="post in posts" :key="post.id">
-    <li class="post-item">
-      {{ post.title }}
-    </li>
-  </ul>
+  <div class="p-1">
+    <h1 class="text-2xl">Post List</h1>
+    <ul v-for="post in posts" :key="post.id" class="mt-1">
+      <li class="post-item">
+        <router-link :to="{ name: 'PostDetail', params: { id: post.id } }">{{
+          post.title
+        }}</router-link>
+      </li>
+    </ul>
+  </div>
 </template>
 
 <script lang="ts">
