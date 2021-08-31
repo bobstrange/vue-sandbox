@@ -11,7 +11,8 @@
   "dependencies": {
     "axios": "^0.21.1",
     "vue": "^3.0.5",
-    "vue-router": "^4.0.11"
+    "vue-router": "^4.0.11",
+    "vuex": "^4.0.2"
   },
   "devDependencies": {
     "@testing-library/vue": "^6.4.2",
