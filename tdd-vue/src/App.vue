@@ -1,16 +1,12 @@
 <template>
-  <PostList />
+  <router-view />
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import PostList from './views/PostList.vue'
 
 export default defineComponent({
   name: 'App',
-  components: {
-    PostList,
-  },
 })
 </script>
 

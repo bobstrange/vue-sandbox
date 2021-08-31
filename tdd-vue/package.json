@@ -10,7 +10,8 @@
   },
   "dependencies": {
     "axios": "^0.21.1",
-    "vue": "^3.0.5"
+    "vue": "^3.0.5",
+    "vue-router": "^4.0.11"
   },
   "devDependencies": {
     "@testing-library/vue": "^6.4.2",
@@ -23,12 +24,12 @@
     "cypress": "^8.3.1",
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",
-    "jest": "^26.6.3",
     "eslint-plugin-vue": "^7.17.0",
+    "jest": "^26.6.3",
     "postcss": "^8.3.6",
     "prettier": "^2.3.2",
-    "ts-jest": "^26.5.6",
     "tailwindcss": "^2.2.9",
+    "ts-jest": "^26.5.6",
     "typescript": "^4.4.2",
     "vite": "^2.5.2",
     "vue-eslint-parser": "^7.10.0",
