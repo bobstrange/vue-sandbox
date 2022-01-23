@@ -6,7 +6,7 @@ module.exports = {
   },
   extends: [
     'eslint:recommended',
-    'plugin:vue/essential',
+    'plugin:vue/vue3-essential',
     'plugin:@typescript-eslint/recommended',
     'prettier',
   ],
@@ -17,7 +17,5 @@ module.exports = {
     sourceType: 'module',
   },
   plugins: ['vue', '@typescript-eslint'],
-  rules: {
-    'vue/no-multiple-template-root': 0,
-  },
+  rules: {},
 }
