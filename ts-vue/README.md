@@ -26,3 +26,14 @@ npm init vite@latest ts-vue -- --template vue-ts
 ```
 
 とある
+
+### Lint
+
+いつもので init する
+
+```bash
+npx eslint --init
+```
+
+生成される `.eslintrc.js` には、 `parserOptions` は設定されているが、
+`parser` が設定されておらず、 SFC でエラーになっているので、`parser: 'vue-eslint-parser'`を追加する
