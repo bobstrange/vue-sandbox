@@ -1,15 +1,16 @@
 <script setup lang="ts">
 import { reactive, ref } from 'vue'
 const count = ref(0)
+const step = ref(1)
 
 const appInfo = reactive({
   name: 'Counter',
   slogan: 'an app you can count on',
 })
 
-const addCount = () => {
+const addCount = (num = 1) => {
   if (count.value !== null) {
-    count.value += 1
+    count.value += num
   }
 }
 </script>
@@ -20,7 +21,11 @@ const addCount = () => {
     <h2>{{ appInfo.slogan }}</h2>
   </div>
   <p>{{ count }}</p>
-  <button @click="addCount">Add</button>
+  <button @click="addCount()">Add 1</button>
+  <button @click="addCount(step)">Add {{ step }}</button>
+  <div class="">
+    <label>Step: </label><input type="number" min="0" v-model="step" />
+  </div>
 </template>
 
 <style>
