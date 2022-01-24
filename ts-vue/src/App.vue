@@ -1,37 +1,10 @@
 <script setup lang="ts">
-import { onMounted, reactive, ref } from 'vue'
-import fetchCount from './services/fetch-count'
-const count = ref(0)
-const step = ref(1)
-
-const appInfo = reactive({
-  name: 'Counter',
-  slogan: 'an app you can count on',
-})
-
-const addCount = (num = 1) => {
-  if (count.value !== null) {
-    count.value += num
-  }
-}
-
-onMounted(() => {
-  fetchCount((initialCount) => {
-    count.value = initialCount
-  })
-})
+import Counter from './components/Counter.vue'
 </script>
 
 <template>
   <div>
-    <h1>{{ appInfo.name }}</h1>
-    <h2>{{ appInfo.slogan }}</h2>
-  </div>
-  <p>{{ count }}</p>
-  <button @click="addCount()">Add 1</button>
-  <button @click="addCount(step)">Add {{ step }}</button>
-  <div class="">
-    <label>Step: </label><input type="number" min="0" v-model="step" />
+    <Counter />
   </div>
 </template>
 
