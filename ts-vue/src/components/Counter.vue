@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import fetchCount from '../services/fetch-count'
+import ControlBar from './ControlBar.vue'
 
 interface Props {
   limit: number
@@ -10,7 +11,6 @@ const props = withDefaults(defineProps<Props>(), {
   alertMessageOnLimit: 'Oh no something went wrong',
 })
 const count = ref<number | null>(null)
-const step = ref(1)
 const alertShown = ref(false)
 
 onMounted(() => {
@@ -28,6 +28,7 @@ const addCount = (num = 1) => {
     alertShown.value = true
     return
   }
+  alertShown.value = false
   count.value += num
 }
 </script>
@@ -35,12 +36,8 @@ const addCount = (num = 1) => {
 <template>
   <div>
     <p>{{ count }}</p>
-    <button @click="addCount()">Add 1</button>
-    <button @click="addCount(step)">Add {{ step }}</button>
+    <ControlBar @add-count="addCount" @reset-count="count = 0" />
     <div class="alert" v-if="alertShown">{{ props.alertMessageOnLimit }}</div>
-    <div>
-      <label>Step: </label><input type="number" min="0" v-model="step" />
-    </div>
   </div>
 </template>
 
