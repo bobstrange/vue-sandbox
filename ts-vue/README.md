@@ -49,6 +49,22 @@ npx eslint --init
 - `<script setup>` 内でのみ有効なコンパイラマクロなので、 import する必要は無いし、コンパイルされた後は消える
 - `defineProps` は `props` と同様の、`defineEmits` は `emit` と同様のオプションを受け取る
 
+props の方のデフォルト値の与え方
+
+```ts
+interface Props {
+  foo: string
+  bar?: number
+}
+
+const props = withDefaults(
+  defineProps<Props>(),
+  {
+    bar: 100
+  }
+)
+```
+
 ESLint で怒られるので、 global で定義しておく必要ありそう
 
 [ESLint Vue 公式](https://eslint.vuejs.org/user-guide/#faq) に、env を設定しろと書かれている
