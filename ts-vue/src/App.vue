@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { reactive, ref } from 'vue'
+import { onMounted, reactive, ref } from 'vue'
+import fetchCount from './services/fetch-count'
 const count = ref(0)
 const step = ref(1)
 
@@ -13,6 +14,12 @@ const addCount = (num = 1) => {
     count.value += num
   }
 }
+
+onMounted(() => {
+  fetchCount((initialCount) => {
+    count.value = initialCount
+  })
+})
 </script>
 
 <template>
