@@ -4,10 +4,7 @@ import Counter from './components/Counter.vue'
 
 <template>
   <div>
-    <Counter
-      :alert-message-on-limit="'please do not count up any more'"
-      :limit="10"
-    />
+    <Counter :limit="10" />
   </div>
 </template>
 

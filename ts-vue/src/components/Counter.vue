@@ -4,9 +4,11 @@ import fetchCount from '../services/fetch-count'
 
 interface Props {
   limit: number
-  alertMessageOnLimit: string
+  alertMessageOnLimit?: string
 }
-const props = defineProps<Props>()
+const props = withDefaults(defineProps<Props>(), {
+  alertMessageOnLimit: 'Oh no something went wrong',
+})
 const count = ref<number | null>(null)
 const step = ref(1)
 const alertShown = ref(false)
