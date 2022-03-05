@@ -1,6 +1,5 @@
 <template>
   <div class="my-checkbox">
-    <h1>MyText</h1>
     <input type="text" v-model="value" />
   </div>
 </template>

@@ -4,22 +4,30 @@
     <!-- <UserList :users="users" /> -->
     <!-- <CompositionUserList :users="users" @deleteUser="userDeleteClicked" /> -->
     <div class="my-text">
+      <h3>My Text</h3>
       <MyText v-model="myTextValue" />
       <p>Input value: {{ MyTextValue }}</p>
     </div>
     <div class="my-checkbox">
+      <h3>My Checkbox</h3>
       <MyCheckbox v-model="myCheckboxValue" />
       <p>Checked: {{ myCheckboxValue }}</p>
+    </div>
+    <div class="my-checkbox-group">
+      <h3>My Checkbox Group</h3>
+      <MyCheckboxGroup v-model="myCheckboxGroupValue" />
+      <pre>{{ JSON.stringify(myCheckboxGroupValue, null, 8) }}</pre>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, computed } from '@vue/composition-api'
+import { defineComponent, ref, computed, reactive } from '@vue/composition-api'
 // import UserList from './components/UserList.vue'
 // import CompositionUserList from '@/components/CompositionUserList.vue'
 import MyText from '@/components/MyText.vue'
 import MyCheckbox from '@/components/MyCheckbox.vue'
+import MyCheckboxGroup from '@/components/MyCheckboxGroup.vue'
 // import { User } from '@/model/User'
 
 export default defineComponent({
@@ -28,7 +36,8 @@ export default defineComponent({
     // UserList,
     // CompositionUserList
     MyText,
-    MyCheckbox
+    MyCheckbox,
+    MyCheckboxGroup
   },
   setup(props, { root }) {
     // const users = computed<User[]>(() => {
@@ -44,8 +53,13 @@ export default defineComponent({
 
     const myTextValue = ref('default')
     const myCheckboxValue = ref(false)
+    const myCheckboxGroupValue = reactive([
+      { name: 'checkbox1', value: false },
+      { name: 'checkbox2', value: false },
+      { name: 'checkbox3', value: false }
+    ])
 
-    return { myTextValue, myCheckboxValue }
+    return { myTextValue, myCheckboxValue, myCheckboxGroupValue }
   }
 })
 </script>
