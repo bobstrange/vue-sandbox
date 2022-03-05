@@ -3,8 +3,14 @@
     <img alt="Vue logo" src="./assets/logo.png" />
     <!-- <UserList :users="users" /> -->
     <!-- <CompositionUserList :users="users" @deleteUser="userDeleteClicked" /> -->
-    <MyText v-model="MyTextValue" />
-    <p>Input value: {{ MyTextValue }}</p>
+    <div class="my-text">
+      <MyText v-model="myTextValue" />
+      <p>Input value: {{ MyTextValue }}</p>
+    </div>
+    <div class="my-checkbox">
+      <MyCheckbox v-model="myCheckboxValue" />
+      <p>Checked: {{ myCheckboxValue }}</p>
+    </div>
   </div>
 </template>
 
@@ -13,6 +19,7 @@ import { defineComponent, ref, computed } from '@vue/composition-api'
 // import UserList from './components/UserList.vue'
 // import CompositionUserList from '@/components/CompositionUserList.vue'
 import MyText from '@/components/MyText.vue'
+import MyCheckbox from '@/components/MyCheckbox.vue'
 // import { User } from '@/model/User'
 
 export default defineComponent({
@@ -20,7 +27,8 @@ export default defineComponent({
   components: {
     // UserList,
     // CompositionUserList
-    MyText
+    MyText,
+    MyCheckbox
   },
   setup(props, { root }) {
     // const users = computed<User[]>(() => {
@@ -34,8 +42,10 @@ export default defineComponent({
     //   userDeleteClicked
     // }
 
-    const MyTextValue = ref('default')
-    return { MyTextValue }
+    const myTextValue = ref('default')
+    const myCheckboxValue = ref(false)
+
+    return { myTextValue, myCheckboxValue }
   }
 })
 </script>
