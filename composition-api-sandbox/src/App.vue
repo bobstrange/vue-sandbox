@@ -15,7 +15,10 @@
     </div>
     <div class="my-checkbox-group">
       <h3>My Checkbox Group</h3>
-      <MyCheckboxGroup v-model="myCheckboxGroupValue" />
+      <MyCheckboxGroup
+        v-model="myCheckboxGroupValue"
+        :options="myCheckboxGroupOptions"
+      />
       <pre>{{ JSON.stringify(myCheckboxGroupValue, null, 8) }}</pre>
     </div>
     <div class="my-radio">
@@ -70,24 +73,26 @@ export default defineComponent({
 
     const myTextValue = ref('default')
     const myCheckboxValue = ref(false)
-    const myCheckboxGroupValue = reactive([
-      { name: 'checkbox1', value: false },
-      { name: 'checkbox2', value: false },
-      { name: 'checkbox3', value: false }
-    ])
+    const myCheckboxGroupValue = reactive([])
+    const myCheckboxGroupOptions = [
+      { name: 'checkbox1' },
+      { name: 'checkbox2' },
+      { name: 'checkbox3' }
+    ]
 
     const myRadioValue = ref('true')
     const myRadioGroupValue = ref('picked')
-    const myRadioGroupOptions = ref([
+    const myRadioGroupOptions = [
       { name: 'radio1' },
       { name: 'radio2' },
       { name: 'radio3' }
-    ])
+    ]
 
     return {
       myTextValue,
       myCheckboxValue,
       myCheckboxGroupValue,
+      myCheckboxGroupOptions,
       myRadioValue,
       myRadioGroupValue,
       myRadioGroupOptions

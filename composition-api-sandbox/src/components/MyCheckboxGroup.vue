@@ -1,8 +1,8 @@
 <template>
   <div class="my-checkbox-group">
-    <div class="checkboxes" v-for="(data, index) in value" :key="index">
-      <label>{{ data.name }}</label>
-      <MyCheckbox v-model="value[index].value" />
+    <div class="checkboxes" v-for="({ name }, index) in options" :key="index">
+      <label>{{ name }}</label>
+      <MyCheckbox v-model="value[index]" />
     </div>
   </div>
 </template>
@@ -16,8 +16,13 @@ export default {
     MyCheckbox
   },
   props: {
+    options: {
+      type: Array,
+      required: true
+    },
     value: {
-      type: Array
+      type: Array,
+      required: true
     }
   },
   watch: {
