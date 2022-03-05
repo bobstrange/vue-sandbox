@@ -18,6 +18,10 @@
       <MyCheckboxGroup v-model="myCheckboxGroupValue" />
       <pre>{{ JSON.stringify(myCheckboxGroupValue, null, 8) }}</pre>
     </div>
+    <div class="my-radio">
+      <h3>MyRadio</h3>
+      <MyRadio v-model="myRadioValue" />
+    </div>
   </div>
 </template>
 
@@ -28,6 +32,7 @@ import { defineComponent, ref, computed, reactive } from '@vue/composition-api'
 import MyText from '@/components/MyText.vue'
 import MyCheckbox from '@/components/MyCheckbox.vue'
 import MyCheckboxGroup from '@/components/MyCheckboxGroup.vue'
+import MyRadio from '@/components/MyRadio.vue'
 // import { User } from '@/model/User'
 
 export default defineComponent({
@@ -37,7 +42,8 @@ export default defineComponent({
     // CompositionUserList
     MyText,
     MyCheckbox,
-    MyCheckboxGroup
+    MyCheckboxGroup,
+    MyRadio
   },
   setup(props, { root }) {
     // const users = computed<User[]>(() => {
@@ -59,7 +65,9 @@ export default defineComponent({
       { name: 'checkbox3', value: false }
     ])
 
-    return { myTextValue, myCheckboxValue, myCheckboxGroupValue }
+    const myRadioValue = ref('true')
+
+    return { myTextValue, myCheckboxValue, myCheckboxGroupValue, myRadioValue }
   }
 })
 </script>
