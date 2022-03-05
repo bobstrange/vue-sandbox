@@ -6,7 +6,7 @@
     <div class="my-text">
       <h3>My Text</h3>
       <MyText v-model="myTextValue" />
-      <p>Input value: {{ MyTextValue }}</p>
+      <p>Input value: {{ myTextValue }}</p>
     </div>
     <div class="my-checkbox">
       <h3>My Checkbox</h3>
@@ -20,7 +20,16 @@
     </div>
     <div class="my-radio">
       <h3>MyRadio</h3>
-      <MyRadio v-model="myRadioValue" />
+      <MyRadio v-model="myRadioValue" orgValue="myRadio" />
+      <p>Input: {{ myRadioValue }}</p>
+    </div>
+    <div class="my-radio-group">
+      <h3>MyRadioGroup</h3>
+      <MyRadioGroup
+        v-model="myRadioGroupValue"
+        :options="myRadioGroupOptions"
+      />
+      <pre>{{ JSON.stringify(myRadioGroupValue, null, 8) }}</pre>
     </div>
   </div>
 </template>
@@ -33,6 +42,7 @@ import MyText from '@/components/MyText.vue'
 import MyCheckbox from '@/components/MyCheckbox.vue'
 import MyCheckboxGroup from '@/components/MyCheckboxGroup.vue'
 import MyRadio from '@/components/MyRadio.vue'
+import MyRadioGroup from '@/components/MyRadioGroup.vue'
 // import { User } from '@/model/User'
 
 export default defineComponent({
@@ -43,7 +53,8 @@ export default defineComponent({
     MyText,
     MyCheckbox,
     MyCheckboxGroup,
-    MyRadio
+    MyRadio,
+    MyRadioGroup
   },
   setup(props, { root }) {
     // const users = computed<User[]>(() => {
@@ -66,8 +77,21 @@ export default defineComponent({
     ])
 
     const myRadioValue = ref('true')
+    const myRadioGroupValue = ref('picked')
+    const myRadioGroupOptions = ref([
+      { name: 'radio1' },
+      { name: 'radio2' },
+      { name: 'radio3' }
+    ])
 
-    return { myTextValue, myCheckboxValue, myCheckboxGroupValue, myRadioValue }
+    return {
+      myTextValue,
+      myCheckboxValue,
+      myCheckboxGroupValue,
+      myRadioValue,
+      myRadioGroupValue,
+      myRadioGroupOptions
+    }
   }
 })
 </script>

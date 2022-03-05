@@ -1,6 +1,6 @@
 <template>
   <div class="my-radio">
-    <input type="radio" v-model="value" />
+    <input type="radio" :value="orgValue" v-model="value" />
   </div>
 </template>
 
@@ -8,7 +8,12 @@
 export default {
   name: 'my-radio',
   props: {
-    value: {}
+    value: {
+      required: true
+    },
+    orgValue: {
+      required: true
+    }
   },
   watch: {
     value(newValue) {
