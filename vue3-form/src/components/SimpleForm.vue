@@ -70,25 +70,25 @@
 </template>
 
 <script setup lang="ts">
-import { reactive } from "@vue/reactivity";
+import { reactive } from '@vue/reactivity'
 const categories = [
-  "sustainability",
-  "nature",
-  "animal welfare",
-  "housing",
-  "education",
-  "food",
-  "community",
-];
+  'sustainability',
+  'nature',
+  'animal welfare',
+  'housing',
+  'education',
+  'food',
+  'community',
+]
 const event = reactive({
-  category: "",
-  title: "",
-  description: "",
-  location: "",
+  category: '',
+  title: '',
+  description: '',
+  location: '',
   pets: 1,
   extras: {
     catering: false,
     music: false,
   },
-});
+})
 </script>
