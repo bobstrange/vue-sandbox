@@ -8,8 +8,8 @@
       <MyText v-model="myTextValue" />
       <p>Input value: {{ myTextValue }}</p>
     </div>
+    <h3>My Checkbox</h3>
     <div class="my-checkbox">
-      <h3>My Checkbox</h3>
       <MyCheckbox v-model="myCheckboxValue" />
       <p>Checked: {{ myCheckboxValue }}</p>
     </div>

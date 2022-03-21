@@ -16,31 +16,12 @@
 
       <h3>Name & describe your event</h3>
 
-      <label>Title</label>
-      <input
-        v-model="event.title"
-        type="text"
-        placeholder="Title"
-        class="field"
-      />
-
-      <label>Description</label>
-      <input
-        v-model="event.description"
-        type="text"
-        placeholder="Description"
-        class="field"
-      />
+      <BaseInput v-model="event.title" label="Title" type="text" />
+      <BaseInput v-model="event.description" label="Description" type="text" />
 
       <h3>Where is your event?</h3>
 
-      <label>Location</label>
-      <input
-        v-model="event.location"
-        type="text"
-        placeholder="Location"
-        class="field"
-      />
+      <BaseInput v-model="event.location" label="Location" type="text" />
 
       <h3>Are pets allowed?</h3>
       <div>
@@ -71,6 +52,7 @@
 
 <script setup lang="ts">
 import { reactive } from '@vue/reactivity'
+import BaseInput from './BaseInput.vue'
 const categories = [
   'sustainability',
   'nature',
@@ -78,7 +60,7 @@ const categories = [
   'housing',
   'education',
   'food',
-  'community',
+  'community'
 ]
 const event = reactive({
   category: '',
@@ -88,7 +70,7 @@ const event = reactive({
   pets: 1,
   extras: {
     catering: false,
-    music: false,
-  },
+    music: false
+  }
 })
 </script>
