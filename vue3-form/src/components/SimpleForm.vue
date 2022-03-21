@@ -28,16 +28,10 @@
       </div>
 
       <h3>Extras</h3>
-      <div>
-        <input type="checkbox" v-model="event.extras.catering" class="field" />
-        <label>Catering</label>
-      </div>
+      <BaseCheckbox v-model="event.extras.catering" label="Catering" />
+      <BaseCheckbox v-model="event.extras.music" label="Live music" />
 
-      <div>
-        <input type="checkbox" v-model="event.extras.music" class="field" />
-        <label>Live music</label>
-      </div>
-
+      <pre>{{ JSON.stringify(event, null, 2) }}</pre>
       <button type="submit">Submit</button>
     </form>
   </div>
@@ -47,6 +41,7 @@
 import { reactive } from '@vue/reactivity'
 import BaseInput from './BaseInput.vue'
 import BaseSelect from './BaseSelect.vue'
+import BaseCheckbox from './BaseCheckbox.vue'
 const categories = [
   'sustainability',
   'nature',
