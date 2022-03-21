@@ -17,15 +17,8 @@
       <BaseInput v-model="event.location" label="Location" type="text" />
 
       <h3>Are pets allowed?</h3>
-      <div>
-        <input type="radio" v-model="event.pets" :value="1" name="pets" />
-        <label>Yes</label>
-      </div>
-
-      <div>
-        <input type="radio" v-model="event.pets" :value="0" name="pets" />
-        <label>No</label>
-      </div>
+      <BaseRadio v-model="event.pets" :value="1" label="Yes" type="radio" />
+      <BaseRadio v-model="event.pets" :value="0" label="No" type="radio" />
 
       <h3>Extras</h3>
       <BaseCheckbox v-model="event.extras.catering" label="Catering" />
@@ -42,6 +35,7 @@ import { reactive } from '@vue/reactivity'
 import BaseInput from './BaseInput.vue'
 import BaseSelect from './BaseSelect.vue'
 import BaseCheckbox from './BaseCheckbox.vue'
+import BaseRadio from './BaseRadio.vue'
 const categories = [
   'sustainability',
   'nature',
