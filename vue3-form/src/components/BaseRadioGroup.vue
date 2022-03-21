@@ -1,13 +1,20 @@
 <template>
-  <BaseRadio
+  <component
     v-for="{ value, label } in options"
     :key="value"
-    :label="label"
-    :value="value"
-    :name="name"
-    :modelValue="modelValue"
-    @update:modelValue="emit('update:modelValue', $event)"
-  />
+    :is="vertical === true ? 'div' : 'span'"
+    :class="{
+      horizontal: !vertical,
+    }"
+  >
+    <BaseRadio
+      :label="label"
+      :value="value"
+      :name="name"
+      :modelValue="modelValue"
+      @update:modelValue="emit('update:modelValue', $event)"
+    />
+  </component>
 </template>
 
 <script setup lang="ts">
@@ -17,10 +24,16 @@ type Option = {
   value: string | number
   label: string
 }
-const { options, name, modelValue } = defineProps<{
+const {
+  options,
+  name,
+  modelValue,
+  vertical = false,
+} = defineProps<{
   options: Option[]
   name: string
   modelValue: string | number
+  vertical?: boolean
 }>()
 
 const emit = defineEmits<{
@@ -28,4 +41,8 @@ const emit = defineEmits<{
 }>()
 </script>
 
-<style scoped></style>
+<style scoped>
+.horizontal {
+  margin-right: 20px;
+}
+</style>
