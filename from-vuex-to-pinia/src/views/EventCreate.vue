@@ -1,28 +1,28 @@
 <script>
-import { v4 as uuidv4 } from 'uuid'
+import { v4 as uuidv4 } from "uuid"
 
 export default {
   data() {
     return {
       categories: [
-        'sustainability',
-        'nature',
-        'animal welfare',
-        'housing',
-        'education',
-        'food',
-        'community'
+        "sustainability",
+        "nature",
+        "animal welfare",
+        "housing",
+        "education",
+        "food",
+        "community",
       ],
       event: {
-        id: '',
-        category: '',
-        title: '',
-        description: '',
-        location: '',
-        date: '',
-        time: '',
-        organizer: ''
-      }
+        id: "",
+        category: "",
+        title: "",
+        description: "",
+        location: "",
+        date: "",
+        time: "",
+        organizer: "",
+      },
     }
   },
   methods: {
@@ -30,24 +30,24 @@ export default {
       const event = {
         ...this.event,
         id: uuidv4(),
-        organizer: this.$store.state.user
+        organizer: this.$store.state.user,
       }
       this.$store
-        .dispatch('createEvent', event)
+        .dispatch("createEvent", event)
         .then(() => {
           this.$router.push({
-            name: 'EventDetails',
-            params: { id: event.id }
+            name: "EventDetails",
+            params: { id: event.id },
           })
         })
-        .catch(error => {
+        .catch((error) => {
           this.$router.push({
-            name: 'ErrorDisplay',
-            params: { error: error }
+            name: "ErrorDisplay",
+            params: { error: error },
           })
         })
-    }
-  }
+    },
+  },
 }
 </script>
 
@@ -74,11 +74,7 @@ export default {
       <input v-model="event.title" type="text" placeholder="Title" />
 
       <label>Description</label>
-      <input
-        v-model="event.description"
-        type="text"
-        placeholder="Description"
-      />
+      <input v-model="event.description" type="text" placeholder="Description" />
 
       <h3>Where is your event?</h3>
 

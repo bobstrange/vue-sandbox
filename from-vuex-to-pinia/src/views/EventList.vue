@@ -1,22 +1,22 @@
 <script>
-import EventCard from '../components/EventCard.vue'
+import EventCard from "../components/EventCard.vue"
 export default {
   components: {
-    EventCard
+    EventCard,
   },
   created() {
-    this.$store.dispatch('fetchEvents').catch(error => {
+    this.$store.dispatch("fetchEvents").catch((error) => {
       this.$router.push({
-        name: 'ErrorDisplay',
-        params: { error: error }
+        name: "ErrorDisplay",
+        params: { error: error },
       })
     })
   },
   computed: {
     events() {
       return this.$store.state.events
-    }
-  }
+    },
+  },
 }
 </script>
 
