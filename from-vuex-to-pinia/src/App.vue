@@ -5,10 +5,25 @@
       <router-link :to="{ name: 'About' }">About</router-link>
       |
       <router-link :to="{ name: 'EventCreate' }">Create Event</router-link>
+      |
+      <p>User {{ useUserStore.user }}</p>
     </div>
     <router-view />
   </div>
 </template>
+
+<script lang="ts">
+import { useUserStore } from "./stores/UserStore"
+
+export default {
+  name: "App",
+  setup() {
+    return {
+      useUserStore,
+    }
+  },
+}
+</script>
 
 <style>
 #app {

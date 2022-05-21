@@ -1,5 +1,5 @@
 import { createStore } from "vuex"
-import EventService from "../services/EventService.js"
+import EventService from "../services/EventService"
 
 export default createStore({
   state: {
