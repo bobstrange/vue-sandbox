@@ -1,53 +1,44 @@
-<script>
+<script setup lang="ts">
 import { v4 as uuidv4 } from "uuid"
+import { useRouter } from "vue-router"
+import { Event, eventCategories as categories, useEventStore } from "../stores/EventStore"
+import { useUserStore } from "../stores/UserStore"
 
-export default {
-  data() {
-    return {
-      categories: [
-        "sustainability",
-        "nature",
-        "animal welfare",
-        "housing",
-        "education",
-        "food",
-        "community",
-      ],
-      event: {
-        id: "",
-        category: "",
-        title: "",
-        description: "",
-        location: "",
-        date: "",
-        time: "",
-        organizer: "",
-      },
+const event: Event = {
+  id: "",
+  category: "",
+  title: "",
+  description: "",
+  location: "",
+  date: "",
+  time: "",
+  organizer: "",
+}
+const eventStore = useEventStore()
+const userStore = useUserStore()
+const router = useRouter()
+
+const onSubmit = async () => {
+  const submittingEvent = {
+    ...event,
+    id: uuidv4(),
+    organizer: userStore.user,
+  }
+
+  try {
+    await eventStore.createEvent(submittingEvent)
+    router.push({
+      name: "EventDetails",
+      params: { id: submittingEvent.id },
+    })
+  } catch (error) {
+    if (error instanceof Error) {
+      router.push({
+        name: "ErrorDisplay",
+        params: { error: error.message },
+      })
     }
-  },
-  methods: {
-    onSubmit() {
-      const event = {
-        ...this.event,
-        id: uuidv4(),
-        organizer: this.$store.state.user,
-      }
-      this.$store
-        .dispatch("createEvent", event)
-        .then(() => {
-          this.$router.push({
-            name: "EventDetails",
-            params: { id: event.id },
-          })
-        })
-        .catch((error) => {
-          this.$router.push({
-            name: "ErrorDisplay",
-            params: { error: error },
-          })
-        })
-    },
-  },
+  }
 }
 </script>
 
@@ -60,8 +51,8 @@ export default {
       <select v-model="event.category">
         <option
           v-for="option in categories"
-          :value="option"
           :key="option"
+          :value="option"
           :selected="option === event.category"
         >
           {{ option }}

@@ -8,6 +8,7 @@ export type Event = {
   description: string
   location: string
   date: string
+  time: string
   organizer: string
 }
 
@@ -18,13 +19,21 @@ type EventCategories = [
   "housing",
   "education",
   "food",
-  "community"
+  "community",
+  ""
 ]
 type EventCategory = EventCategories[number]
 
-export const eventCategories = (): EventCategories => {
-  return ["sustainability", "nature", "animal welfare", "housing", "education", "food", "community"]
-}
+export const eventCategories: EventCategories = [
+  "sustainability",
+  "nature",
+  "animal welfare",
+  "housing",
+  "education",
+  "food",
+  "community",
+  "",
+]
 
 export const useEventStore = defineStore("EventStore", {
   state: () => ({
