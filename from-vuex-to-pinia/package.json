@@ -13,8 +13,7 @@
     "pinia": "^2.0.14",
     "uuid": "^8.3.2",
     "vue": "^3.2.25",
-    "vue-router": "^4.0.12",
-    "vuex": "^4.0.2"
+    "vue-router": "^4.0.12"
   },
   "devDependencies": {
     "@types/uuid": "^8.3.4",
