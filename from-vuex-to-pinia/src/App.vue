@@ -6,7 +6,7 @@
       |
       <router-link :to="{ name: 'EventCreate' }">Create Event</router-link>
       |
-      <p>User {{ userStore.user }}</p>
+      <p>User {{ userStore.firstName }}</p>
     </div>
     <router-view />
   </div>
