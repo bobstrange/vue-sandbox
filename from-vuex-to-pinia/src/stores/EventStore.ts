@@ -29,5 +29,20 @@ export const useEventStore = defineStore("EventStore", {
           throw error
         })
     },
+    fetchEvent(id: string) {
+      const existingEvent = this.events.find((event) => event.id === id)
+
+      if (existingEvent) {
+        this.event = existingEvent
+      } else {
+        return EventService.getEvent(id)
+          .then((response) => {
+            this.event = response.data
+          })
+          .catch((error) => {
+            throw error
+          })
+      }
+    },
   },
 })
