@@ -6,23 +6,16 @@
       |
       <router-link :to="{ name: 'EventCreate' }">Create Event</router-link>
       |
-      <p>User {{ useUserStore.user }}</p>
+      <p>User {{ userStore.user }}</p>
     </div>
     <router-view />
   </div>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
 import { useUserStore } from "./stores/UserStore"
 
-export default {
-  name: "App",
-  setup() {
-    return {
-      useUserStore,
-    }
-  },
-}
+const userStore = useUserStore()
 </script>
 
 <style>
