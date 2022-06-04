@@ -6,7 +6,8 @@
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
     "preview": "vite preview",
-    "type-check": "tsc"
+    "type-check": "tsc",
+    "lint": "eslint --ignore-path .gitignore src/**/*.{ts,vue,json,html,css}"
   },
   "dependencies": {
     "vue": "^3.2.36"
